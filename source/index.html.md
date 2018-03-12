@@ -259,13 +259,13 @@ curl -XPOST
     "type": "user",
     "relationships": {},
     "links": {
-      "self": "/users/92"
+      "self": "/users/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
       "surname": "Watson",
       "role": "provider_admin",
-      "id": 92,
+      "id": 1,
       "first-name": "Sam",
       "email": "user@domain.com"
     }
@@ -277,7 +277,7 @@ Create a user for the supplied data.
 
 ### HTTP Request
 
-`POST https://eventing.api.equiratings.com/v1/users/:id`
+`POST https://eventing.api.equiratings.com/v1/users/`
 
 ### Attributes
 
@@ -300,7 +300,7 @@ curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
      -d '{"user": {"first_name": "Sam", "surname": "Watson", "email": "user@domain.com", "password": "abc123", role:"provider_admin"}}'
-     'https://eventing.api.equiratings.com/v1/users'
+     'https://eventing.api.equiratings.com/v1/users/1'
 ```
 
 > The above command returns JSON structured like this:
@@ -314,13 +314,13 @@ curl -XPUT
     "type": "user",
     "relationships": {},
     "links": {
-      "self": "/users/92"
+      "self": "/users/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
       "surname": "Watson",
       "role": "provider_admin",
-      "id": 92,
+      "id": 1,
       "first-name": "Sam",
       "email": "user@domain.com"
     }
@@ -402,28 +402,20 @@ curl -XGET
   "data": [
     {
       "type": "venue",
-      "relationships": {
-        "token": {
-          "data": null
-        }
-      },
       "links": {
-        "self": "/venues/90"
+        "self": "/venues/1"
       },
-      "id": "90",
+      "id": "1",
       "attributes": {
-        "surname": "Surname",
-        "role": "provider_admin",
-        "id": 90,
-        "first-name": "First",
-        "email": "email7@domain.com"
+        "name": "Chatsworth",
+        "id": 1
       }
     }
   ]
 }
 ```
 
-Returns all venue for the current venue's organization.
+Returns all venue for the current user's organization.
 
 ### HTTP Request
 
@@ -451,21 +443,13 @@ curl -XGET
   },
   "data": {
     "type": "venue",
-    "relationships": {
-      "token": {
-        "data": null
-      }
-    },
     "links": {
-      "self": "/venues/96"
+      "self": "/venues/1"
     },
-    "id": "96",
+    "id": "1",
     "attributes": {
-      "surname": "Surname",
-      "role": "provider_admin",
-      "id": 96,
-      "first-name": "First",
-      "email": "email13@domain.com"
+      "name": "Chatsworth",
+      "id": 1
     }
   }
 }
@@ -493,7 +477,7 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"venue": {"first_name": "Sam", "surname": "Watson", "email": "venue@domain.com", "password": "abc123", role:"provider_admin"}}'
+     -d '{"venue": {"name": Chatsworth}}'
      'https://eventing.api.equiratings.com/v1/venues'
 ```
 
@@ -506,17 +490,13 @@ curl -XPOST
   },
   "data": {
     "type": "venue",
-    "relationships": {},
     "links": {
-      "self": "/venues/92"
+      "self": "/venues/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "venue@domain.com"
+      "name": "Chatsworth",
+      "id": 1
     }
   }
 }
@@ -526,17 +506,14 @@ Create a venue for the supplied data.
 
 ### HTTP Request
 
-`POST https://eventing.api.equiratings.com/v1/venues/:id`
+`POST https://eventing.api.equiratings.com/v1/venues/`
 
 ### Attributes
 
 | Parameter  | Description                                                                      |
 | ---------- | -------------------------------------------------------------------------------- |
-| first_name | The first name of the venue                                                      |
-| surname    | The surname of the venue                                                         |
-| email      | The email of the venue                                                           |
-| password   | The password of the venue                                                        |
-| roles      | The venue role, valid roles are as follows: ["provider_admin", "provider_venue"] |
+| name       | The name of the Venue                                                            |
+
 
 ### Query Parameters
 
@@ -548,8 +525,8 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"venue": {"first_name": "Sam", "surname": "Watson", "email": "venue@domain.com", "password": "abc123", role:"provider_admin"}}'
-     'https://eventing.api.equiratings.com/v1/venues'
+     -d '{"venue": {"name": :Updated name}}'
+     'https://eventing.api.equiratings.com/v1/venues/1'
 ```
 
 > The above command returns JSON structured like this:
@@ -563,15 +540,12 @@ curl -XPUT
     "type": "venue",
     "relationships": {},
     "links": {
-      "self": "/venues/92"
+      "self": "/venues/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "venue@domain.com"
+      "name": "Updated name",
+      "id": 1
     }
   }
 }
@@ -585,13 +559,10 @@ Update a venue for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                      |
-| ---------- | -------------------------------------------------------------------------------- |
-| first_name | The first name of the venue                                                      |
-| surname    | The surname of the venue                                                         |
-| email      | The email of the venue                                                           |
-| password   | The password of the venue                                                        |
-| roles      | The venue role, valid roles are as follows: ["provider_admin", "provider_venue"] |
+| Parameter  | Description                                                           |
+| ---------- | --------------------------------------------------------------------- |
+| name       | The name of the venue                                                 |
+
 
 ### URL Parameters
 
@@ -648,31 +619,27 @@ curl -XGET
   "jsonapi": {
     "version": "1.0"
   },
-  "data": [
-    {
-      "type": "show",
-      "relationships": {
-        "token": {
-          "data": null
-        }
-      },
-      "links": {
-        "self": "/shows/90"
-      },
-      "id": "90",
-      "attributes": {
-        "surname": "Surname",
-        "role": "provider_admin",
-        "id": 90,
-        "first-name": "First",
-        "email": "email7@domain.com"
+  "data": [{
+    "type": "show",
+    "links": {
+      "self": "/shows/1"
+    },
+    "id": "1",
+    "attributes": {
+      "venue-id": 1,
+      "start-date": "2018-03-12",
+      "source-id": null,
+      "provider-id": 1,
+      "name": "Chatsworth International",
+      "id": 1,
+      "end-date": "2018-03-15"
       }
     }
   ]
 }
 ```
 
-Returns all show for the current show's organization.
+Returns all show for the current users's organization.
 
 ### HTTP Request
 
@@ -700,21 +667,18 @@ curl -XGET
   },
   "data": {
     "type": "show",
-    "relationships": {
-      "token": {
-        "data": null
-      }
-    },
     "links": {
-      "self": "/shows/96"
+      "self": "/shows/1"
     },
-    "id": "96",
+    "id": "1",
     "attributes": {
-      "surname": "Surname",
-      "role": "provider_admin",
-      "id": 96,
-      "first-name": "First",
-      "email": "email13@domain.com"
+      "venue-id": 1,
+      "start-date": "2018-03-12",
+      "source-id": null,
+      "provider-id": 1,
+      "name": "Chatsworth International",
+      "id": 1,
+      "end-date": "2018-03-15"
     }
   }
 }
@@ -742,7 +706,7 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"show": {"first_name": "Sam", "surname": "Watson", "email": "show@domain.com", "password": "abc123", role:"provider_admin"}}'
+     -d '{"show": { "start_date": "2018-03-12", "name": "Chatsworth International", "end_date": "2018-03-15", "venue_id": 1}}'
      'https://eventing.api.equiratings.com/v1/shows'
 ```
 
@@ -755,17 +719,18 @@ curl -XPOST
   },
   "data": {
     "type": "show",
-    "relationships": {},
     "links": {
-      "self": "/shows/92"
+      "self": "/shows/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "show@domain.com"
+      "venue-id": 1,
+      "start-date": "2018-03-12",
+      "source-id": null,
+      "provider-id": 1,
+      "name": "Chatsworth International",
+      "id": 1,
+      "end-date": "2018-03-15"
     }
   }
 }
@@ -775,17 +740,16 @@ Create a show for the supplied data.
 
 ### HTTP Request
 
-`POST https://eventing.api.equiratings.com/v1/shows/:id`
+`POST https://eventing.api.equiratings.com/v1/shows/`
 
 ### Attributes
 
 | Parameter  | Description                                                                    |
 | ---------- | ------------------------------------------------------------------------------ |
-| first_name | The first name of the show                                                     |
-| surname    | The surname of the show                                                        |
-| email      | The email of the show                                                          |
-| password   | The password of the show                                                       |
-| roles      | The show role, valid roles are as follows: ["provider_admin", "provider_show"] |
+| start_date | The start_date of the show                                                     |
+| name       | The name of the show                                                           |
+| end_date   | The end_date of the show                                                       |
+| venue_id | The venue id for the venue of the show |
 
 ### Query Parameters
 
@@ -797,8 +761,8 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"show": {"first_name": "Sam", "surname": "Watson", "email": "show@domain.com", "password": "abc123", role:"provider_admin"}}'
-     'https://eventing.api.equiratings.com/v1/shows'
+     -d '{"show": {"name": "Updated name"}}'
+     'https://eventing.api.equiratings.com/v1/shows/1'
 ```
 
 > The above command returns JSON structured like this:
@@ -810,17 +774,18 @@ curl -XPUT
   },
   "data": {
     "type": "show",
-    "relationships": {},
     "links": {
-      "self": "/shows/92"
+      "self": "/shows/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "show@domain.com"
+      "venue-id": 1,
+      "start-date": "2018-03-12",
+      "source-id": null,
+      "provider-id": 1,
+      "name": "Chatsworth International",
+      "id": 1,
+      "end-date": "2018-03-15"
     }
   }
 }
@@ -836,11 +801,11 @@ Update a show for the supplied data.
 
 | Parameter  | Description                                                                    |
 | ---------- | ------------------------------------------------------------------------------ |
-| first_name | The first name of the show                                                     |
-| surname    | The surname of the show                                                        |
-| email      | The email of the show                                                          |
-| password   | The password of the show                                                       |
-| roles      | The show role, valid roles are as follows: ["provider_admin", "provider_show"] |
+| start_date | The start_date of the show                                                     |
+| name       | The name of the show                                                           |
+| end_date   | The end_date of the show                                                       |
+| venue_id | The venue id for the venue of the show |
+
 
 ### URL Parameters
 
@@ -900,28 +865,26 @@ curl -XGET
   "data": [
     {
       "type": "competition",
-      "relationships": {
-        "token": {
-          "data": null
-        }
-      },
       "links": {
-        "self": "/competitions/90"
+        "self": "/competitions/1"
       },
-      "id": "90",
+      "id": "1",
       "attributes": {
-        "surname": "Surname",
-        "role": "provider_admin",
-        "id": 90,
-        "first-name": "First",
-        "email": "email7@domain.com"
+        "sj-before-xc": true,
+        "second-hi-order": null,
+        "name": "N",
+        "id": 1,
+        "first-hi-order": null,
+        "display-name": null,
+        "date": "2018-03-12",
+        "championship": false
       }
     }
   ]
 }
 ```
 
-Returns all competition for the current competition's organization.
+Returns all competition for the current user's organization.
 
 ### HTTP Request
 
@@ -949,21 +912,19 @@ curl -XGET
   },
   "data": {
     "type": "competition",
-    "relationships": {
-      "token": {
-        "data": null
-      }
-    },
     "links": {
-      "self": "/competitions/96"
+      "self": "/competitions/1"
     },
-    "id": "96",
+    "id": "1",
     "attributes": {
-      "surname": "Surname",
-      "role": "provider_admin",
-      "id": 96,
-      "first-name": "First",
-      "email": "email13@domain.com"
+      "sj-before-xc": true,
+      "second-hi-order": null,
+      "name": "N",
+      "id": 1,
+      "first-hi-order": null,
+      "display-name": null,
+      "date": "2018-03-12",
+      "championship": false
     }
   }
 }
@@ -991,7 +952,29 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"competition": {"first_name": "Sam", "surname": "Watson", "email": "competition@domain.com", "password": "abc123", role:"provider_admin"}}'
+     -d '{
+       "competition": {
+         "sj_before_xc": true,
+         "results": [
+           {
+             "xc_status": "EL",
+             "xc_jump": 0,
+             "xc_code": "FH",
+             "sj_status": "NS",
+             "provider_id": 2812,
+             "horse_id": 1108,
+             "final_status": "EL",
+             "dr_status": "OK",
+             "athlete_id": 1120
+           }
+         ],
+         "name": "N",
+         "date": "2018-03-12",
+         "class_category_id": 1465,
+         "championship": false,
+         "display_name": null
+       }
+     }'
      'https://eventing.api.equiratings.com/v1/competitions'
 ```
 
@@ -1004,17 +987,19 @@ curl -XPOST
   },
   "data": {
     "type": "competition",
-    "relationships": {},
     "links": {
-      "self": "/competitions/92"
+      "self": "/competitions/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "competition@domain.com"
+      "sj-before-xc": true,
+      "second-hi-order": null,
+      "name": "N",
+      "id": 1,
+      "first-hi-order": null,
+      "display-name": null,
+      "date": "2018-03-12",
+      "championship": false
     }
   }
 }
@@ -1024,17 +1009,21 @@ Create a competition for the supplied data.
 
 ### HTTP Request
 
-`POST https://eventing.api.equiratings.com/v1/competitions/:id`
+`POST https://eventing.api.equiratings.com/v1/competitions/`
 
 ### Attributes
 
 | Parameter  | Description                                                                                  |
 | ---------- | -------------------------------------------------------------------------------------------- |
-| first_name | The first name of the competition                                                            |
-| surname    | The surname of the competition                                                               |
-| email      | The email of the competition                                                                 |
-| password   | The password of the competition                                                              |
-| roles      | The competition role, valid roles are as follows: ["provider_admin", "provider_competition"] |
+| name      | The name of the competition                                                           |
+| date | The date that the competition started |
+| sj-before-xc       | If SJ is before XC this will be true, otherwise false                                |
+| first-hi-order      | If a 1st Horse Inspection takes place and if so before which phase the HI happens|
+| second-hi-order    | If a 2nd Horse Inspection takes place and if so before which phase the HI happens                     |
+| display-name | The display name of the competition if different to the competition name |
+| championship | Is the competition a championship competition |
+| results | These are the results for the compeition |
+| class_category_id | This is the class level for the competition |
 
 ### Query Parameters
 
@@ -1046,8 +1035,8 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"competition": {"first_name": "Sam", "surname": "Watson", "email": "competition@domain.com", "password": "abc123", role:"provider_admin"}}'
-     'https://eventing.api.equiratings.com/v1/competitions'
+     -d '{"competition": {"name": "Updated name"}}'
+     'https://eventing.api.equiratings.com/v1/competitions/1'
 ```
 
 > The above command returns JSON structured like this:
@@ -1059,17 +1048,19 @@ curl -XPUT
   },
   "data": {
     "type": "competition",
-    "relationships": {},
     "links": {
-      "self": "/competitions/92"
+      "self": "/competitions/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "competition@domain.com"
+      "sj-before-xc": true,
+      "second-hi-order": null,
+      "name": "Updated name",
+      "id": 1,
+      "first-hi-order": null,
+      "display-name": null,
+      "date": "2018-03-12",
+      "championship": false
     }
   }
 }
@@ -1083,13 +1074,17 @@ Update a competition for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                  |
-| ---------- | -------------------------------------------------------------------------------------------- |
-| first_name | The first name of the competition                                                            |
-| surname    | The surname of the competition                                                               |
-| email      | The email of the competition                                                                 |
-| password   | The password of the competition                                                              |
-| roles      | The competition role, valid roles are as follows: ["provider_admin", "provider_competition"] |
+| Parameter  | Description                                                                                |
+| ---------- | ------------------------------------------------------------------------------------------ |
+| name      | The name of the competition                                                   |
+| date | The date that the competition started |
+| sj-before-xc       | If SJ is before XC this will be true, otherwise false                                |
+| first-hi-order      | If a 1st Horse Inspection takes place and if so before which phase the HI happens|
+| second-hi-order    | If a 2nd Horse Inspection takes place and if so before which phase the HI happens                     |
+| display-name | The display name of the competition if different to the competition name |
+| championship | Is the competition a championship competition |
+| results | These are the results for the compeition |
+| class_category_id | This is the class level for the competition |
 
 ### URL Parameters
 
@@ -1148,29 +1143,25 @@ curl -XGET
   },
   "data": [
     {
-      "type": "class_category",
-      "relationships": {
-        "token": {
-          "data": null
-        }
-      },
+      "type": "CCI",
       "links": {
-        "self": "/class_categories/90"
+        "self": "/class_categories/1"
       },
-      "id": "90",
+      "id": "1",
       "attributes": {
-        "surname": "Surname",
-        "role": "provider_admin",
-        "id": 90,
-        "first-name": "First",
-        "email": "email7@domain.com"
+        "type": "CCI",
+        "provider-id": 2822,
+        "name": "CCI3*",
+        "level": "3",
+        "id": 1,
+        "er-level": 12
       }
     }
   ]
 }
 ```
 
-Returns all class_category for the current class_category's organization.
+Returns all class_category for the current user's organization.
 
 ### HTTP Request
 
@@ -1197,22 +1188,18 @@ curl -XGET
     "version": "1.0"
   },
   "data": {
-    "type": "class_category",
-    "relationships": {
-      "token": {
-        "data": null
-      }
-    },
+    "type": "CCI",
     "links": {
-      "self": "/class_categories/96"
+      "self": "/class_categories/1"
     },
-    "id": "96",
+    "id": "1",
     "attributes": {
-      "surname": "Surname",
-      "role": "provider_admin",
-      "id": 96,
-      "first-name": "First",
-      "email": "email13@domain.com"
+      "type": "CCI",
+      "provider-id": 2822,
+      "name": "CCI3*",
+      "level": "3",
+      "id": 1,
+      "er-level": 12
     }
   }
 }
@@ -1240,7 +1227,8 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"class_category": {"first_name": "Sam", "surname": "Watson", "email": "class_category@domain.com", "password": "abc123", role:"provider_admin"}}'
+     -d '{"class_category": {
+       "type": "CCI", "provider_id": 2818, "name": "CCI3*", "level": "3", "er_level": 12}}'
      'https://eventing.api.equiratings.com/v1/class_categories'
 ```
 
@@ -1252,18 +1240,18 @@ curl -XPOST
     "version": "1.0"
   },
   "data": {
-    "type": "class_category",
-    "relationships": {},
+    "type": "CCI",
     "links": {
-      "self": "/class_categories/92"
+      "self": "/class_categories/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "class_category@domain.com"
+      "type": "CCI",
+      "provider-id": 2818,
+      "name": "CCI3*",
+      "level": "3",
+      "id": 1,
+      "er-level": 12
     }
   }
 }
@@ -1273,17 +1261,17 @@ Create a class_category for the supplied data.
 
 ### HTTP Request
 
-`POST https://eventing.api.equiratings.com/v1/class_categories/:id`
+`POST https://eventing.api.equiratings.com/v1/class_categories/`
 
 ### Attributes
 
 | Parameter  | Description                                                                                        |
 | ---------- | -------------------------------------------------------------------------------------------------- |
-| first_name | The first name of the class_category                                                               |
-| surname    | The surname of the class_category                                                                  |
-| email      | The email of the class_category                                                                    |
-| password   | The password of the class_category                                                                 |
-| roles      | The class_category role, valid roles are as follows: ["provider_admin", "provider_class_category"] |
+| type | The type of the class |
+| name | The full name of the class |
+| level | The level of the class |
+| er-level | The equiraitings level of the class |
+| provider_id | The id of the provider ?????????? |
 
 ### Query Parameters
 
@@ -1295,8 +1283,8 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"class_category": {"first_name": "Sam", "surname": "Watson", "email": "class_category@domain.com", "password": "abc123", role:"provider_admin"}}'
-     'https://eventing.api.equiratings.com/v1/class_categories'
+     -d '{"class_category": {"name": "Updated name"}}'
+     'https://eventing.api.equiratings.com/v1/class_categories/1'
 ```
 
 > The above command returns JSON structured like this:
@@ -1307,18 +1295,18 @@ curl -XPUT
     "version": "1.0"
   },
   "data": {
-    "type": "class_category",
-    "relationships": {},
+    "type": "CCI",
     "links": {
-      "self": "/class_categories/92"
+      "self": "/class_categories/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "class_category@domain.com"
+      "type": "CCI",
+      "provider-id": 2821,
+      "name": "Updated name",
+      "level": "3",
+      "id": 1,
+      "er-level": 12
     }
   }
 }
@@ -1334,11 +1322,11 @@ Update a class_category for the supplied data.
 
 | Parameter  | Description                                                                                        |
 | ---------- | -------------------------------------------------------------------------------------------------- |
-| first_name | The first name of the class_category                                                               |
-| surname    | The surname of the class_category                                                                  |
-| email      | The email of the class_category                                                                    |
-| password   | The password of the class_category                                                                 |
-| roles      | The class_category role, valid roles are as follows: ["provider_admin", "provider_class_category"] |
+| type | The type of the class |
+| name | The full name of the class |
+| level | The level of the class |
+| er-level | The equiraitings level of the class |
+| provider_id | The id of the provider ?????????? |
 
 ### URL Parameters
 
@@ -1398,28 +1386,44 @@ curl -XGET
   "data": [
     {
       "type": "result",
-      "relationships": {
-        "token": {
-          "data": null
-        }
-      },
       "links": {
-        "self": "/results/90"
+        "self": "/results/1"
       },
-      "id": "90",
+      "id": "1",
       "attributes": {
-        "surname": "Surname",
-        "role": "provider_admin",
-        "id": 90,
-        "first-name": "First",
-        "email": "email7@domain.com"
+        "xc-time": null,
+        "xc-status": "EL",
+        "xc-jump": "0",
+        "xc-comment": null,
+        "xc-code": "FH",
+        "sj-time": null,
+        "sj-status": "NS",
+        "sj-jump": null,
+        "sj-code": null,
+        "second-hi-status": null,
+        "id": 1,
+        "horse-id": 1102,
+        "first-hi-status": null,
+        "final-status": "EL",
+        "final-score": null,
+        "final-position": null,
+        "final-comment": null,
+        "final-code": null,
+        "dr-status": "OK",
+        "dr-score": null,
+        "dr-percentage": null,
+        "dr-comment": null,
+        "dr-code": null,
+        "disqualification-code": null,
+        "competition-id": 2183,
+        "athlete-id": 1117
       }
     }
   ]
 }
 ```
 
-Returns all result for the current result's organization.
+Returns all result for the current users's organization.
 
 ### HTTP Request
 
@@ -1447,21 +1451,37 @@ curl -XGET
   },
   "data": {
     "type": "result",
-    "relationships": {
-      "token": {
-        "data": null
-      }
-    },
     "links": {
-      "self": "/results/96"
+      "self": "/results/1"
     },
-    "id": "96",
+    "id": "1",
     "attributes": {
-      "surname": "Surname",
-      "role": "provider_admin",
-      "id": 96,
-      "first-name": "First",
-      "email": "email13@domain.com"
+      "xc-time": null,
+      "xc-status": "EL",
+      "xc-jump": "0",
+      "xc-comment": null,
+      "xc-code": "FH",
+      "sj-time": null,
+      "sj-status": "NS",
+      "sj-jump": null,
+      "sj-code": null,
+      "second-hi-status": null,
+      "id": 1,
+      "horse-id": 1102,
+      "first-hi-status": null,
+      "final-status": "EL",
+      "final-score": null,
+      "final-position": null,
+      "final-comment": null,
+      "final-code": null,
+      "dr-status": "OK",
+      "dr-score": null,
+      "dr-percentage": null,
+      "dr-comment": null,
+      "dr-code": null,
+      "disqualification-code": null,
+      "competition-id": 2183,
+      "athlete-id": 1117
     }
   }
 }
@@ -1504,28 +1524,27 @@ curl -XGET
   "data": [
     {
       "type": "athlete",
-      "relationships": {
-        "token": {
-          "data": null
-        }
-      },
       "links": {
-        "self": "/athletes/90"
+        "self": "/athletes/1"
       },
-      "id": "90",
+      "id": "1",
       "attributes": {
-        "surname": "Surname",
-        "role": "provider_admin",
-        "id": 90,
-        "first-name": "First",
-        "email": "email7@domain.com"
+        "surname": "Watson",
+        "nationality": "Irish",
+        "id": 1,
+        "gender": "Male",
+        "first-name": "Sam",
+        "fei-id": 10007367,
+        "federation-id": 3041,
+        "dob": "1982-01-14",
+        "display-name": null
       }
     }
   ]
 }
 ```
 
-Returns all athlete for the current athlete's organization.
+Returns all athlete for the current user's organization.
 
 ### HTTP Request
 
@@ -1553,21 +1572,20 @@ curl -XGET
   },
   "data": {
     "type": "athlete",
-    "relationships": {
-      "token": {
-        "data": null
-      }
-    },
     "links": {
-      "self": "/athletes/96"
+      "self": "/athletes/1"
     },
-    "id": "96",
+    "id": "1",
     "attributes": {
-      "surname": "Surname",
-      "role": "provider_admin",
-      "id": 96,
-      "first-name": "First",
-      "email": "email13@domain.com"
+      "surname": "Watson",
+      "nationality": "Irish",
+      "id": 1,
+      "gender": "Male",
+      "first-name": "Sam",
+      "fei-id": 10007367,
+      "federation-id": 3041,
+      "dob": "1982-01-14",
+      "display-name": null
     }
   }
 }
@@ -1595,7 +1613,7 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"athlete": {"first_name": "Sam", "surname": "Watson", "email": "athlete@domain.com", "password": "abc123", role:"provider_admin"}}'
+     -d '{"athlete": {"surname": "Watson", "nationality": "Irish", "gender": "Male", "first_name": "Sam", "fei_id": 10007367, "dob": "1982-01-14"}}'
      'https://eventing.api.equiratings.com/v1/athletes'
 ```
 
@@ -1608,17 +1626,20 @@ curl -XPOST
   },
   "data": {
     "type": "athlete",
-    "relationships": {},
     "links": {
-      "self": "/athletes/92"
+      "self": "/athletes/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
       "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
+      "nationality": "Irish",
+      "id": 1,
+      "gender": "Male",
       "first-name": "Sam",
-      "email": "athlete@domain.com"
+      "fei-id": 10007367,
+      "federation-id": null,
+      "dob": "1982-01-14",
+      "display-name": null
     }
   }
 }
@@ -1628,7 +1649,7 @@ Create a athlete for the supplied data.
 
 ### HTTP Request
 
-`POST https://eventing.api.equiratings.com/v1/athletes/:id`
+`POST https://eventing.api.equiratings.com/v1/athletes/`
 
 ### Attributes
 
@@ -1636,9 +1657,12 @@ Create a athlete for the supplied data.
 | ---------- | ------------------------------------------------------------------------------------ |
 | first_name | The first name of the athlete                                                        |
 | surname    | The surname of the athlete                                                           |
-| email      | The email of the athlete                                                             |
-| password   | The password of the athlete                                                          |
-| roles      | The athlete role, valid roles are as follows: ["provider_admin", "provider_athlete"] |
+| gender | The gender of the athlete |
+| nationality | The nationality of the athlete |
+| dob | The date of birth of the athlete |
+| display-name  | The name that is displayed for the athlete if it is different to their name  |
+| fei-id | The fei-id of the athlete |
+|federation-id| The id of the federation the athlete belongs to |
 
 ### Query Parameters
 
@@ -1650,8 +1674,8 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"athlete": {"first_name": "Sam", "surname": "Watson", "email": "athlete@domain.com", "password": "abc123", role:"provider_admin"}}'
-     'https://eventing.api.equiratings.com/v1/athletes'
+     -d '{"athlete": {"first_name": "Updated name"}'
+     'https://eventing.api.equiratings.com/v1/athletes/1'
 ```
 
 > The above command returns JSON structured like this:
@@ -1663,17 +1687,20 @@ curl -XPUT
   },
   "data": {
     "type": "athlete",
-    "relationships": {},
     "links": {
-      "self": "/athletes/92"
+      "self": "/athletes/1125"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
       "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "athlete@domain.com"
+      "nationality": "Irish",
+      "id": 1,
+      "gender": "Male",
+      "first-name": "Updated name",
+      "fei-id": 10007367,
+      "federation-id": 3040,
+      "dob": "1982-01-14",
+      "display-name": null
     }
   }
 }
@@ -1691,9 +1718,13 @@ Update a athlete for the supplied data.
 | ---------- | ------------------------------------------------------------------------------------ |
 | first_name | The first name of the athlete                                                        |
 | surname    | The surname of the athlete                                                           |
-| email      | The email of the athlete                                                             |
-| password   | The password of the athlete                                                          |
-| roles      | The athlete role, valid roles are as follows: ["provider_admin", "provider_athlete"] |
+| gender | The gender of the athlete |
+| nationality | The nationality of the athlete |
+| dob | The date of birth of the athlete |
+| display-name  | The name that is displayed for the athlete if it is different to their name  |
+| fei-id | The fei-id of the athlete |
+|federation-id| The id of the federation the athlete belongs to |
+
 
 ### URL Parameters
 
@@ -1753,28 +1784,26 @@ curl -XGET
   "data": [
     {
       "type": "horse",
-      "relationships": {
-        "token": {
-          "data": null
-        }
-      },
       "links": {
-        "self": "/horses/90"
+        "self": "/horses/1"
       },
-      "id": "90",
+      "id": "1",
       "attributes": {
-        "surname": "Surname",
-        "role": "provider_admin",
-        "id": 90,
-        "first-name": "First",
-        "email": "email7@domain.com"
+        "ueln": null,
+        "risk-data": [],
+        "name": "Horseware Bushman",
+        "id": 1,
+        "gender": "Gelding",
+        "fei-id": "IRL03630",
+        "dob": "1999-05-24",
+        "display-name": null
       }
     }
   ]
 }
 ```
 
-Returns all horse for the current horse's organization.
+Returns all horse for the current user's organization.
 
 ### HTTP Request
 
@@ -1802,21 +1831,19 @@ curl -XGET
   },
   "data": {
     "type": "horse",
-    "relationships": {
-      "token": {
-        "data": null
-      }
-    },
     "links": {
-      "self": "/horses/96"
+      "self": "/horses/1"
     },
-    "id": "96",
+    "id": "1",
     "attributes": {
-      "surname": "Surname",
-      "role": "provider_admin",
-      "id": 96,
-      "first-name": "First",
-      "email": "email13@domain.com"
+      "ueln": null,
+      "risk-data": [],
+      "name": "Horseware Bushman",
+      "id": 1,
+      "gender": "Gelding",
+      "fei-id": "IRL03630",
+      "dob": "1999-05-24",
+      "display-name": null
     }
   }
 }
@@ -1844,7 +1871,7 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"horse": {"first_name": "Sam", "surname": "Watson", "email": "horse@domain.com", "password": "abc123", role:"provider_admin"}}'
+     -d '{"horse": {"provider_id": 2794, "name": "Horseware Bushman", "gender": "Gelding", "fei_id": "IRL03630", "dob": "1999-05-24"}}'
      'https://eventing.api.equiratings.com/v1/horses'
 ```
 
@@ -1857,17 +1884,19 @@ curl -XPOST
   },
   "data": {
     "type": "horse",
-    "relationships": {},
     "links": {
-      "self": "/horses/92"
+      "self": "/horses/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "horse@domain.com"
+      "ueln": null,
+      "risk-data": [],
+      "name": "Horseware Bushman",
+      "id": 1,
+      "gender": "Gelding",
+      "fei-id": "IRL03630",
+      "dob": "1999-05-24",
+      "display-name": null
     }
   }
 }
@@ -1877,17 +1906,18 @@ Create a horse for the supplied data.
 
 ### HTTP Request
 
-`POST https://eventing.api.equiratings.com/v1/horses/:id`
+`POST https://eventing.api.equiratings.com/v1/horses/`
 
 ### Attributes
 
 | Parameter  | Description                                                                      |
 | ---------- | -------------------------------------------------------------------------------- |
-| first_name | The first name of the horse                                                      |
-| surname    | The surname of the horse                                                         |
-| email      | The email of the horse                                                           |
-| password   | The password of the horse                                                        |
-| roles      | The horse role, valid roles are as follows: ["provider_admin", "provider_horse"] |
+| name | The name of the horse |
+| gender | The gender of the horse |
+| dob | The date of birth of the horse |
+| fei-id| The fei id for the horse |
+| ueln | The unique equine life number of the horse |
+| display-name | The display name of the horse if different from the name |
 
 ### Query Parameters
 
@@ -1899,8 +1929,8 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"horse": {"first_name": "Sam", "surname": "Watson", "email": "horse@domain.com", "password": "abc123", role:"provider_admin"}}'
-     'https://eventing.api.equiratings.com/v1/horses'
+     -d '{"horse": {"name": "Update name"}}'
+     'https://eventing.api.equiratings.com/v1/horses/1'
 ```
 
 > The above command returns JSON structured like this:
@@ -1912,17 +1942,19 @@ curl -XPUT
   },
   "data": {
     "type": "horse",
-    "relationships": {},
     "links": {
-      "self": "/horses/92"
+      "self": "/horses/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "horse@domain.com"
+      "ueln": null,
+      "risk-data": [],
+      "name": "Updated name",
+      "id": 1,
+      "gender": "Gelding",
+      "fei-id": "IRL03630",
+      "dob": "1999-05-24",
+      "display-name": null
     }
   }
 }
@@ -1938,11 +1970,12 @@ Update a horse for the supplied data.
 
 | Parameter  | Description                                                                      |
 | ---------- | -------------------------------------------------------------------------------- |
-| first_name | The first name of the horse                                                      |
-| surname    | The surname of the horse                                                         |
-| email      | The email of the horse                                                           |
-| password   | The password of the horse                                                        |
-| roles      | The horse role, valid roles are as follows: ["provider_admin", "provider_horse"] |
+| name | The name of the horse |
+| gender | The gender of the horse |
+| dob | The date of birth of the horse |
+| fei-id| The fei id for the horse |
+| ueln | The unique equine life number of the horse |
+| display-name | The display name of the horse if different from the name |
 
 ### URL Parameters
 
@@ -2002,28 +2035,21 @@ curl -XGET
   "data": [
     {
       "type": "federation",
-      "relationships": {
-        "token": {
-          "data": null
-        }
-      },
       "links": {
-        "self": "/federations/90"
+        "self": "/federations/1"
       },
-      "id": "90",
+      "id": "1",
       "attributes": {
-        "surname": "Surname",
-        "role": "provider_admin",
-        "id": 90,
-        "first-name": "First",
-        "email": "email7@domain.com"
+        "name": "British Eventing",
+        "id": 1,
+        "code": "GBR"
       }
     }
   ]
 }
 ```
 
-Returns all federation for the current federation's organization.
+Returns all federation for the current user's organization.
 
 ### HTTP Request
 
@@ -2051,21 +2077,14 @@ curl -XGET
   },
   "data": {
     "type": "federation",
-    "relationships": {
-      "token": {
-        "data": null
-      }
-    },
     "links": {
-      "self": "/federations/96"
+      "self": "/federations/1"
     },
-    "id": "96",
+    "id": "1",
     "attributes": {
-      "surname": "Surname",
-      "role": "provider_admin",
-      "id": 96,
-      "first-name": "First",
-      "email": "email13@domain.com"
+      "name": "British Eventing",
+      "id": 1,
+      "code": "GBR"
     }
   }
 }
@@ -2093,8 +2112,8 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"federation": {"first_name": "Sam", "surname": "Watson", "email": "federation@domain.com", "password": "abc123", role:"provider_admin"}}'
-     'https://eventing.api.equiratings.com/v1/federations'
+     -d '{"federation": {"name": "British Eventing", "code": "GBR"}}'
+     'https://eventing.api.equiratings.com/v1/federations/'
 ```
 
 > The above command returns JSON structured like this:
@@ -2106,17 +2125,14 @@ curl -XPOST
   },
   "data": {
     "type": "federation",
-    "relationships": {},
     "links": {
-      "self": "/federations/92"
+      "self": "/federations/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "federation@domain.com"
+      "name": "British Eventing",
+      "id": 1,
+      "code": "GBR"
     }
   }
 }
@@ -2126,17 +2142,14 @@ Create a federation for the supplied data.
 
 ### HTTP Request
 
-`POST https://eventing.api.equiratings.com/v1/federations/:id`
+`POST https://eventing.api.equiratings.com/v1/federations/`
 
 ### Attributes
 
 | Parameter  | Description                                                                                |
-| ---------- | ------------------------------------------------------------------------------------------ |
-| first_name | The first name of the federation                                                           |
-| surname    | The surname of the federation                                                              |
-| email      | The email of the federation                                                                |
-| password   | The password of the federation                                                             |
-| roles      | The federation role, valid roles are as follows: ["provider_admin", "provider_federation"] |
+| ---------- | ----------------------------------------------------------------------------------------- |
+| name | The name of the federation |
+| code | The country code for the federation |
 
 ### Query Parameters
 
@@ -2148,8 +2161,8 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"federation": {"first_name": "Sam", "surname": "Watson", "email": "federation@domain.com", "password": "abc123", role:"provider_admin"}}'
-     'https://eventing.api.equiratings.com/v1/federations'
+     -d '{"federation": {"name": "Updated name"}}'
+     'https://eventing.api.equiratings.com/v1/federations/1'
 ```
 
 > The above command returns JSON structured like this:
@@ -2161,17 +2174,14 @@ curl -XPUT
   },
   "data": {
     "type": "federation",
-    "relationships": {},
     "links": {
-      "self": "/federations/92"
+      "self": "/federations/1"
     },
-    "id": "92",
+    "id": "1",
     "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 92,
-      "first-name": "Sam",
-      "email": "federation@domain.com"
+      "name": "Updated name",
+      "id": 1,
+      "code": "GBR"
     }
   }
 }
@@ -2186,12 +2196,9 @@ Update a federation for the supplied data.
 ### Attributes
 
 | Parameter  | Description                                                                                |
-| ---------- | ------------------------------------------------------------------------------------------ |
-| first_name | The first name of the federation                                                           |
-| surname    | The surname of the federation                                                              |
-| email      | The email of the federation                                                                |
-| password   | The password of the federation                                                             |
-| roles      | The federation role, valid roles are as follows: ["provider_admin", "provider_federation"] |
+| ---------- | ----------------------------------------------------------------------------------------- |
+| name | The name of the federation |
+| code | The country code for the federation |
 
 ### URL Parameters
 
