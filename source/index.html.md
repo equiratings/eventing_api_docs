@@ -147,6 +147,9 @@ curl -XGET
 
 ```json
 {
+  "links": {
+    "self": "/v1/users?page[page]=1&page[page-size]=50"
+  },
   "jsonapi": {
     "version": "1.0"
   },
@@ -174,15 +177,18 @@ curl -XGET
 }
 ```
 
-Returns all user for the current user's organization.
+Returns all users for the current user's organization. Uses pagination with default 50 users per page.
 
 ### HTTP Request
 
-`GET https://eventing.api.equiratings.com/v1/users`
+`GET https://eventing.api.equiratings.com/v1/users?page[page]=:page&page[page-size]=:page-size`
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+| Parameter | Description                       |
+| --------- | ------------------------------    |
+| page      | The desired result page           |
+| page-size | The number of users per page      |
 
 ## Get a Specific User
 
@@ -396,6 +402,9 @@ curl -XGET
 
 ```json
 {
+  "links": {
+    "self": "/v1/venues?page[page]=1&page[page-size]=50"
+  },
   "jsonapi": {
     "version": "1.0"
   },
@@ -415,15 +424,19 @@ curl -XGET
 }
 ```
 
-Returns all venue for the current user's organization.
+Returns all venue for the current user's organization. Uses pagination with default 50 venues per page.
 
 ### HTTP Request
 
-`GET https://eventing.api.equiratings.com/v1/venues`
+`GET https://eventing.api.equiratings.com/v1/venues?page[page]=:page&page[page-size]=:page-size
+`
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+| Parameter | Description                       |
+| --------- | ------------------------------    |
+| page      | The desired result page           |
+| page-size | The number of venues per page     |
 
 ## Get a Specific Venue
 
@@ -609,13 +622,16 @@ This endpoint does not support query parameters.
 curl -XGET
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/shows'
+     'https://eventing.api.equiratings.com/v1/shows?page[page]=1&page[page-size]=50'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
+  "links": {
+    "self": "/v1/shows?page[page]=1&page[page-size]=50"
+  },
   "jsonapi": {
     "version": "1.0"
   },
@@ -639,15 +655,19 @@ curl -XGET
 }
 ```
 
-Returns all show for the current users's organization.
+Returns all show for the current users's organization. Uses pagination with default 50 shows per page.
 
 ### HTTP Request
 
-`GET https://eventing.api.equiratings.com/v1/shows`
+`GET https://eventing.api.equiratings.com/v1/shows?page[page]=:page&page[page-size]=:page-size
+`
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+| Parameter | Description                       |
+| --------- | ------------------------------    |
+| page      | The desired result page           |
+| page-size | The number of shows per page      |
 
 ## Get a Specific Show
 
@@ -744,12 +764,12 @@ Create a show for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                    |
-| ---------- | ------------------------------------------------------------------------------ |
-| start_date | The start_date of the show                                                     |
-| name       | The name of the show                                                           |
-| end_date   | The end_date of the show                                                       |
-| venue_id | The venue id for the venue of the show |
+| Parameter  | Description                                                  |
+| ---------- | ------------------------------------------------------------ |
+| name       | The name of the show                                         |
+| start_date | The start_date of the show                                   |
+| end_date   | The end_date of the show                                     |
+| venue_id   | The venue id for the venue hosting the show                  |
 
 ### Query Parameters
 
@@ -783,7 +803,7 @@ curl -XPUT
       "start-date": "2018-03-12",
       "source-id": null,
       "provider-id": 1,
-      "name": "Chatsworth International",
+      "name": "Updated name",
       "id": 1,
       "end-date": "2018-03-15"
     }
@@ -799,12 +819,12 @@ Update a show for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                    |
-| ---------- | ------------------------------------------------------------------------------ |
-| start_date | The start_date of the show                                                     |
-| name       | The name of the show                                                           |
-| end_date   | The end_date of the show                                                       |
-| venue_id | The venue id for the venue of the show |
+| Parameter  | Description                                                 |
+| ---------- | ----------------------------------------------------------- |
+| start_date | The start_date of the show                                  |
+| name       | The name of the show                                        |
+| end_date   | The end_date of the show                                    |
+| venue_id   | The venue id for the venue hosting the show                 |
 
 
 ### URL Parameters
@@ -852,13 +872,16 @@ This endpoint does not support query parameters.
 curl -XGET
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/competitions'
+     'https://eventing.api.equiratings.com/v1/competitions?page[page]=1&page[page-size]=50'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
+  "links": {
+    "self": "/v1/competitions?page[page]=1&page[page-size]=50"
+  },
   "jsonapi": {
     "version": "1.0"
   },
@@ -884,15 +907,19 @@ curl -XGET
 }
 ```
 
-Returns all competition for the current user's organization.
+Returns all competition for the current user's organization. Uses pagination with default 50 competitions per page.
+
 
 ### HTTP Request
 
-`GET https://eventing.api.equiratings.com/v1/competitions`
+`GET https://eventing.api.equiratings.com/v1/competitions?page[page]=:page&page[page-size]=:page-size`
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+| Parameter | Description                           |
+| --------- | ------------------------------------- |
+| page      | The desired result page               |
+| page-size | The number of competitions per page   |
 
 ## Get a Specific Competition
 
@@ -1013,17 +1040,17 @@ Create a competition for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                  |
-| ---------- | -------------------------------------------------------------------------------------------- |
-| name      | The name of the competition                                                           |
-| date | The date that the competition started |
-| sj-before-xc       | If SJ is before XC this will be true, otherwise false                                |
-| first-hi-order      | If a 1st Horse Inspection takes place and if so before which phase the HI happens|
-| second-hi-order    | If a 2nd Horse Inspection takes place and if so before which phase the HI happens                     |
+| Parameter  | Description                                                    |
+| ---------- | -------------------------------------------------------------- |
+| name       | The name of the competition                                    |
+| date       | The date that the competition started                          |
+| sj-before-xc  | If SJ is before XC this will be true, otherwise false       |
+| first-hi-order | If a 1st Horse Inspection takes place and if so before which phase the HI happens |
+| second-hi-order| If a 2nd Horse Inspection takes place and if so before which phase the HI happens |
 | display-name | The display name of the competition if different to the competition name |
-| championship | Is the competition a championship competition |
-| results | These are the results for the compeition |
-| class_category_id | This is the class level for the competition |
+| championship | Is the competition a championship competition                |
+| results      | These are the results for the competition, see results section for attributes for results |
+| class_category_id | This is the class level for the competition             |
 
 ### Query Parameters
 
@@ -1074,17 +1101,17 @@ Update a competition for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                |
-| ---------- | ------------------------------------------------------------------------------------------ |
-| name      | The name of the competition                                                   |
-| date | The date that the competition started |
-| sj-before-xc       | If SJ is before XC this will be true, otherwise false                                |
-| first-hi-order      | If a 1st Horse Inspection takes place and if so before which phase the HI happens|
-| second-hi-order    | If a 2nd Horse Inspection takes place and if so before which phase the HI happens                     |
+| Parameter  | Description                                                    |
+| ---------- | -------------------------------------------------------------- |
+| name       | The name of the competition                                    |
+| date       | The date that the competition started                          |
+| sj-before-xc  | If SJ is before XC this will be true, otherwise false       |
+| first-hi-order | If a 1st Horse Inspection takes place and if so before which phase the HI happens |
+| second-hi-order| If a 2nd Horse Inspection takes place and if so before which phase the HI happens |
 | display-name | The display name of the competition if different to the competition name |
-| championship | Is the competition a championship competition |
-| results | These are the results for the compeition |
-| class_category_id | This is the class level for the competition |
+| championship | Is the competition a championship competition                |
+| results      | These are the results for the competition, see results section for attributes for results |
+| class_category_id | This is the class level for the competition             |
 
 ### URL Parameters
 
@@ -1131,13 +1158,16 @@ This endpoint does not support query parameters.
 curl -XGET
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/class_categories'
+     'https://eventing.api.equiratings.com/v1/class_categories?page[page]=1&page[page-size]=50'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
+  "links": {
+    "self": "/v1/class_categories?page[page]=1&page[page-size]=50"
+  },
   "jsonapi": {
     "version": "1.0"
   },
@@ -1161,15 +1191,18 @@ curl -XGET
 }
 ```
 
-Returns all class_category for the current user's organization.
+Returns all class_category for the current user's organization. Uses pagination with default 50 class_categories per page.
 
 ### HTTP Request
 
-`GET https://eventing.api.equiratings.com/v1/class_categories`
+`GET https://eventing.api.equiratings.com/v1/class_categories?page[page]=:page&page[page-size]=:page-size`
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+| Parameter | Description                       |
+| --------- | ------------------------------    |
+| page      | The desired result page           |
+| page-size | The number of class_categories per page      |
 
 ## Get a Specific ClassCategory
 
@@ -1265,13 +1298,13 @@ Create a class_category for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                        |
-| ---------- | -------------------------------------------------------------------------------------------------- |
-| type | The type of the class |
-| name | The full name of the class |
-| level | The level of the class |
-| er-level | The equiraitings level of the class |
-| provider_id | The id of the provider ?????????? |
+| Parameter   | Description                         |
+| ----------  | ----------------------------------- |
+| type        | The type of the class               |
+| name        | The full name of the class          |
+| level       | The level of the class              |
+| er-level    | The equiraitings level of the class |
+| provider_id | The id of the provider              |
 
 ### Query Parameters
 
@@ -1320,13 +1353,13 @@ Update a class_category for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                        |
-| ---------- | -------------------------------------------------------------------------------------------------- |
-| type | The type of the class |
-| name | The full name of the class |
-| level | The level of the class |
-| er-level | The equiraitings level of the class |
-| provider_id | The id of the provider ?????????? |
+| Parameter  | Description                                  |
+| ---------- | -------------------------------------------- |
+| type       | The type of the class                        |
+| name       | The full name of the class                   |
+| level      | The level of the class                       |
+| er-level   | The equiraitings level of the class          |
+| provider_id | The id of the provider                      |
 
 ### URL Parameters
 
@@ -1373,13 +1406,16 @@ This endpoint does not support query parameters.
 curl -XGET
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/results'
+     'https://eventing.api.equiratings.com/v1/results?page[page]=1&page[page-size]=50'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
+  "links": {
+    "self": "/v1/results?page[page]=1&page[page-size]=50"
+  },
   "jsonapi": {
     "version": "1.0"
   },
@@ -1423,15 +1459,19 @@ curl -XGET
 }
 ```
 
-Returns all result for the current users's organization.
+Returns all result for the current users's organization. Uses pagination with default 50 results per page.
+
 
 ### HTTP Request
 
-`GET https://eventing.api.equiratings.com/v1/results`
+`GET https://eventing.api.equiratings.com/v1/results?page[page]=:page&page[page-size]=:page-size`
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+| Parameter | Description                       |
+| --------- | ------------------------------    |
+| page      | The desired result page           |
+| page-size | The number of results per page      |
 
 ## Get a Specific Result
 
@@ -1511,13 +1551,16 @@ This endpoint does not support query parameters.
 curl -XGET
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/athletes'
+     'https://eventing.api.equiratings.com/v1/athletes?page[page]=1&page[page-size]=50'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
+  "links": {
+    "self": "/v1/athletes?page[page]=1&page[page-size]=50"
+  },
   "jsonapi": {
     "version": "1.0"
   },
@@ -1544,15 +1587,18 @@ curl -XGET
 }
 ```
 
-Returns all athlete for the current user's organization.
+Returns all athlete for the current user's organization. Uses pagination with default 50 users per page.
 
 ### HTTP Request
 
-`GET https://eventing.api.equiratings.com/v1/athletes`
+`GET https://eventing.api.equiratings.com/v1/athletes?page[page]=:page&page[page-size]=:page-size`
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+| Parameter | Description                       |
+| --------- | ------------------------------    |
+| page      | The desired result page           |
+| page-size | The number of results per page      |
 
 ## Get a Specific Athlete
 
@@ -1653,16 +1699,16 @@ Create a athlete for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                          |
-| ---------- | ------------------------------------------------------------------------------------ |
-| first_name | The first name of the athlete                                                        |
-| surname    | The surname of the athlete                                                           |
-| gender | The gender of the athlete |
-| nationality | The nationality of the athlete |
-| dob | The date of birth of the athlete |
-| display-name  | The name that is displayed for the athlete if it is different to their name  |
-| fei-id | The fei-id of the athlete |
-|federation-id| The id of the federation the athlete belongs to |
+| Parameter  | Description                      |
+| ---------- | -------------------------------- |
+| first_name | The first name of the athlete    |
+| surname    | The surname of the athlete       |
+| gender     | The gender of the athlete        |
+| nationality | The nationality of the athlete  |
+| dob        | The date of birth of the athlete |
+| display-name  | The name that is displayed for the athlete if it is different to their name |
+| fei-id     |  The fei-id of the athlete       |
+| federation-id | The id of the federation the athlete belongs to |
 
 ### Query Parameters
 
@@ -1714,16 +1760,16 @@ Update a athlete for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                          |
-| ---------- | ------------------------------------------------------------------------------------ |
-| first_name | The first name of the athlete                                                        |
-| surname    | The surname of the athlete                                                           |
-| gender | The gender of the athlete |
-| nationality | The nationality of the athlete |
-| dob | The date of birth of the athlete |
-| display-name  | The name that is displayed for the athlete if it is different to their name  |
-| fei-id | The fei-id of the athlete |
-|federation-id| The id of the federation the athlete belongs to |
+| Parameter  | Description                      |
+| ---------- | -------------------------------- |
+| first_name | The first name of the athlete    |
+| surname    | The surname of the athlete       |
+| gender     | The gender of the athlete        |
+| nationality | The nationality of the athlete  |
+| dob        | The date of birth of the athlete |
+| display-name  | The name that is displayed for the athlete if it is different to their name |
+| fei-id     |  The fei-id of the athlete       |
+| federation-id | The id of the federation the athlete belongs to |
 
 
 ### URL Parameters
@@ -1771,13 +1817,16 @@ This endpoint does not support query parameters.
 curl -XGET
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/horses'
+     'https://eventing.api.equiratings.com/v1/horses?page[page]=:1&page[page-size]=:50'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
+  "links": {
+    "self": "/v1/horses?page[page]=1&page[page-size]=50"
+  },
   "jsonapi": {
     "version": "1.0"
   },
@@ -1790,7 +1839,21 @@ curl -XGET
       "id": "1",
       "attributes": {
         "ueln": null,
-        "risk-data": [],
+        "risk-data": [
+  {"er_level": 1, "erqi": #Decimal<0.9500>, "points": null},
+  {"er_level": 2, "erqi": #Decimal<0.900>, "points": null},
+  {"er_level": 3, "erqi": #Decimal<0.8500>, "points": null},
+  {"er_level": 4, "erqi": #Decimal<0.800>, "points": #Decimal<19.0>},
+  {"er_level": 5, "erqi": #Decimal<0.7060>, "points": #Decimal<18.0>},
+  {"er_level": 6, "erqi": #Decimal<0.6560>, "points": #Decimal<17.0>},
+  {"er_level": 7, "erqi": #Decimal<0.500>, "points": #Decimal<16.0>},
+  {"er_level": 8, "erqi": #Decimal<0.6060>, "points": #Decimal<15.0>},
+  {"er_level": 9, "erqi": #Decimal<0.5060>, "points": #Decimal<14.0>},
+  {"er_level": 10, "erqi": #Decimal<0.350>, "points": #Decimal<13.30>},
+  {"er_level": 11, "erqi": #Decimal<0.41960>, "points": #Decimal<12.50>},
+  {"er_level": 12, "erqi": #Decimal<0.354>, "points": #Decimal<10>},
+  {"er_level": 13, "erqi": #Decimal<0.22800>, "points": #Decimal<7.50>}
+],
         "name": "Horseware Bushman",
         "id": 1,
         "gender": "Gelding",
@@ -1803,15 +1866,19 @@ curl -XGET
 }
 ```
 
-Returns all horse for the current user's organization.
+Returns all horse for the current user's organization. Uses pagination with default 50 horses per page.
 
 ### HTTP Request
 
-`GET https://eventing.api.equiratings.com/v1/horses`
+`GET https://eventing.api.equiratings.com/v1/horses?page[page]=:page&page[page-size]=:page-size
+`
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+| Parameter | Description                       |
+| --------- | ------------------------------    |
+| page      | The desired result page           |
+| page-size | The number of horses per page      |
 
 ## Get a Specific Horse
 
@@ -1837,7 +1904,19 @@ curl -XGET
     "id": "1",
     "attributes": {
       "ueln": null,
-      "risk-data": [],
+      "risk-data": [  {"er_level": 1, "erqi": #Decimal<0.9500>, "points": null},
+        {"er_level": 2, "erqi": #Decimal<0.900>, "points": null},
+        {"er_level": 3, "erqi": #Decimal<0.8500>, "points": null},
+        {"er_level": 4, "erqi": #Decimal<0.800>, "points": #Decimal<19.0>},
+        {"er_level": 5, "erqi": #Decimal<0.7060>, "points": #Decimal<18.0>},
+        {"er_level": 6, "erqi": #Decimal<0.6560>, "points": #Decimal<17.0>},
+        {"er_level": 7, "erqi": #Decimal<0.500>, "points": #Decimal<16.0>},
+        {"er_level": 8, "erqi": #Decimal<0.6060>, "points": #Decimal<15.0>},
+        {"er_level": 9, "erqi": #Decimal<0.5060>, "points": #Decimal<14.0>},
+        {"er_level": 10, "erqi": #Decimal<0.350>, "points": #Decimal<13.30>},
+        {"er_level": 11, "erqi": #Decimal<0.41960>, "points": #Decimal<12.50>},
+        {"er_level": 12, "erqi": #Decimal<0.354>, "points": #Decimal<10>},
+        {"er_level": 13, "erqi": #Decimal<0.22800>, "points": #Decimal<7.50>}],
       "name": "Horseware Bushman",
       "id": 1,
       "gender": "Gelding",
@@ -1910,13 +1989,13 @@ Create a horse for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                      |
-| ---------- | -------------------------------------------------------------------------------- |
-| name | The name of the horse |
-| gender | The gender of the horse |
-| dob | The date of birth of the horse |
-| fei-id| The fei id for the horse |
-| ueln | The unique equine life number of the horse |
+| Parameter  | Description                          |
+| ---------- | ------------------------------------ |
+| name       | The name of the horse                |
+| gender     | The gender of the horse              |
+| dob        | The date of birth of the horse       |
+| fei-id     | The fei id for the horse             |
+| ueln       | The unique equine life number of the horse |
 | display-name | The display name of the horse if different from the name |
 
 ### Query Parameters
@@ -1948,7 +2027,19 @@ curl -XPUT
     "id": "1",
     "attributes": {
       "ueln": null,
-      "risk-data": [],
+      "risk-data": [  {"er_level": 1, "erqi": #Decimal<0.9500>, "points": null},
+        {"er_level": 2, "erqi": #Decimal<0.900>, "points": null},
+        {"er_level": 3, "erqi": #Decimal<0.8500>, "points": null},
+        {"er_level": 4, "erqi": #Decimal<0.800>, "points": #Decimal<19.0>},
+        {"er_level": 5, "erqi": #Decimal<0.7060>, "points": #Decimal<18.0>},
+        {"er_level": 6, "erqi": #Decimal<0.6560>, "points": #Decimal<17.0>},
+        {"er_level": 7, "erqi": #Decimal<0.500>, "points": #Decimal<16.0>},
+        {"er_level": 8, "erqi": #Decimal<0.6060>, "points": #Decimal<15.0>},
+        {"er_level": 9, "erqi": #Decimal<0.5060>, "points": #Decimal<14.0>},
+        {"er_level": 10, "erqi": #Decimal<0.350>, "points": #Decimal<13.30>},
+        {"er_level": 11, "erqi": #Decimal<0.41960>, "points": #Decimal<12.50>},
+        {"er_level": 12, "erqi": #Decimal<0.354>, "points": #Decimal<10>},
+        {"er_level": 13, "erqi": #Decimal<0.22800>, "points": #Decimal<7.50>}],
       "name": "Updated name",
       "id": 1,
       "gender": "Gelding",
@@ -1968,13 +2059,13 @@ Update a horse for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                      |
-| ---------- | -------------------------------------------------------------------------------- |
-| name | The name of the horse |
-| gender | The gender of the horse |
-| dob | The date of birth of the horse |
-| fei-id| The fei id for the horse |
-| ueln | The unique equine life number of the horse |
+| Parameter  | Description                          |
+| ---------- | ------------------------------------ |
+| name       | The name of the horse                |
+| gender     | The gender of the horse              |
+| dob        | The date of birth of the horse       |
+| fei-id     | The fei id for the horse             |
+| ueln       | The unique equine life number of the horse |
 | display-name | The display name of the horse if different from the name |
 
 ### URL Parameters
@@ -2022,13 +2113,16 @@ This endpoint does not support query parameters.
 curl -XGET
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/federations'
+     'https://eventing.api.equiratings.com/v1/federations?page[page]=1&page[page-size]=50'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
+  "links": {
+    "self": "/v1/federations?page[page]=1&page[page-size]=50"
+  },
   "jsonapi": {
     "version": "1.0"
   },
@@ -2049,15 +2143,19 @@ curl -XGET
 }
 ```
 
-Returns all federation for the current user's organization.
+Returns all federation for the current user's organization. Uses pagination with default 50 federations per page.
+
 
 ### HTTP Request
 
-`GET https://eventing.api.equiratings.com/v1/federations`
+`GET https://eventing.api.equiratings.com/v1/federations?page[page]=:page&page[page-size]=:page-size`
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+| Parameter | Description                       |
+| --------- | ------------------------------    |
+| page      | The desired result page           |
+| page-size | The number of federations per page      |
 
 ## Get a Specific Federation
 
@@ -2146,10 +2244,10 @@ Create a federation for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                |
-| ---------- | ----------------------------------------------------------------------------------------- |
-| name | The name of the federation |
-| code | The country code for the federation |
+| Parameter  | Description                         |
+| ---------- | ----------------------------------- |
+| name       | The name of the federation          |
+| code       | The country code for the federation |
 
 ### Query Parameters
 
@@ -2195,10 +2293,10 @@ Update a federation for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                |
-| ---------- | ----------------------------------------------------------------------------------------- |
-| name | The name of the federation |
-| code | The country code for the federation |
+| Parameter  | Description                         |
+| ---------- | ----------------------------------- |
+| name       | The name of the federation          |
+| code       | The country code for the federation |
 
 ### URL Parameters
 
