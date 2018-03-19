@@ -510,10 +510,9 @@ Create a venue for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                      |
-| ---------- | -------------------------------------------------------------------------------- |
-| name       | The name of the Venue                                                            |
-
+| Parameter | Description           |
+| --------- | --------------------- |
+| name      | The name of the Venue |
 
 ### Query Parameters
 
@@ -559,10 +558,9 @@ Update a venue for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                           |
-| ---------- | --------------------------------------------------------------------- |
-| name       | The name of the venue                                                 |
-
+| Parameter | Description           |
+| --------- | --------------------- |
+| name      | The name of the venue |
 
 ### URL Parameters
 
@@ -619,20 +617,21 @@ curl -XGET
   "jsonapi": {
     "version": "1.0"
   },
-  "data": [{
-    "type": "show",
-    "links": {
-      "self": "/shows/1"
-    },
-    "id": "1",
-    "attributes": {
-      "venue-id": 1,
-      "start-date": "2018-03-12",
-      "source-id": null,
-      "provider-id": 1,
-      "name": "Chatsworth International",
-      "id": 1,
-      "end-date": "2018-03-15"
+  "data": [
+    {
+      "type": "show",
+      "links": {
+        "self": "/shows/1"
+      },
+      "id": "1",
+      "attributes": {
+        "venue-id": 1,
+        "start-date": "2018-03-12",
+        "source-id": null,
+        "provider-id": 1,
+        "name": "Chatsworth International",
+        "id": 1,
+        "end-date": "2018-03-15"
       }
     }
   ]
@@ -744,12 +743,12 @@ Create a show for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                    |
-| ---------- | ------------------------------------------------------------------------------ |
-| start_date | The start_date of the show                                                     |
-| name       | The name of the show                                                           |
-| end_date   | The end_date of the show                                                       |
-| venue_id | The venue id for the venue of the show |
+| Parameter  | Description                            |
+| ---------- | -------------------------------------- |
+| start_date | The start_date of the show             |
+| name       | The name of the show                   |
+| end_date   | The end_date of the show               |
+| venue_id   | The venue id for the venue of the show |
 
 ### Query Parameters
 
@@ -799,13 +798,12 @@ Update a show for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                    |
-| ---------- | ------------------------------------------------------------------------------ |
-| start_date | The start_date of the show                                                     |
-| name       | The name of the show                                                           |
-| end_date   | The end_date of the show                                                       |
-| venue_id | The venue id for the venue of the show |
-
+| Parameter  | Description                            |
+| ---------- | -------------------------------------- |
+| start_date | The start_date of the show             |
+| name       | The name of the show                   |
+| end_date   | The end_date of the show               |
+| venue_id   | The venue id for the venue of the show |
 
 ### URL Parameters
 
@@ -877,7 +875,8 @@ curl -XGET
         "first-hi-order": null,
         "display-name": null,
         "date": "2018-03-12",
-        "championship": false
+        "championship": false,
+        "show-id": 1
       }
     }
   ]
@@ -1013,17 +1012,17 @@ Create a competition for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                  |
-| ---------- | -------------------------------------------------------------------------------------------- |
-| name      | The name of the competition                                                           |
-| date | The date that the competition started |
-| sj-before-xc       | If SJ is before XC this will be true, otherwise false                                |
-| first-hi-order      | If a 1st Horse Inspection takes place and if so before which phase the HI happens|
-| second-hi-order    | If a 2nd Horse Inspection takes place and if so before which phase the HI happens                     |
-| display-name | The display name of the competition if different to the competition name |
-| championship | Is the competition a championship competition |
-| results | These are the results for the compeition |
-| class_category_id | This is the class level for the competition |
+| Parameter         | Description                                                                       |
+| ----------------- | --------------------------------------------------------------------------------- |
+| name              | The name of the competition                                                       |
+| date              | The date that the competition started                                             |
+| sj-before-xc      | If SJ is before XC this will be true, otherwise false                             |
+| first-hi-order    | If a 1st Horse Inspection takes place and if so before which phase the HI happens |
+| second-hi-order   | If a 2nd Horse Inspection takes place and if so before which phase the HI happens |
+| display-name      | The display name of the competition if different to the competition name          |
+| championship      | Is the competition a championship competition                                     |
+| results           | These are the results for the compeition                                          |
+| class_category_id | This is the class level for the competition                                       |
 
 ### Query Parameters
 
@@ -1074,17 +1073,17 @@ Update a competition for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                |
-| ---------- | ------------------------------------------------------------------------------------------ |
-| name      | The name of the competition                                                   |
-| date | The date that the competition started |
-| sj-before-xc       | If SJ is before XC this will be true, otherwise false                                |
-| first-hi-order      | If a 1st Horse Inspection takes place and if so before which phase the HI happens|
-| second-hi-order    | If a 2nd Horse Inspection takes place and if so before which phase the HI happens                     |
-| display-name | The display name of the competition if different to the competition name |
-| championship | Is the competition a championship competition |
-| results | These are the results for the compeition |
-| class_category_id | This is the class level for the competition |
+| Parameter         | Description                                                                       |
+| ----------------- | --------------------------------------------------------------------------------- |
+| name              | The name of the competition                                                       |
+| date              | The date that the competition started                                             |
+| sj-before-xc      | If SJ is before XC this will be true, otherwise false                             |
+| first-hi-order    | If a 1st Horse Inspection takes place and if so before which phase the HI happens |
+| second-hi-order   | If a 2nd Horse Inspection takes place and if so before which phase the HI happens |
+| display-name      | The display name of the competition if different to the competition name          |
+| championship      | Is the competition a championship competition                                     |
+| results           | These are the results for the compeition                                          |
+| class_category_id | This is the class level for the competition                                       |
 
 ### URL Parameters
 
@@ -1265,13 +1264,13 @@ Create a class_category for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                        |
-| ---------- | -------------------------------------------------------------------------------------------------- |
-| type | The type of the class |
-| name | The full name of the class |
-| level | The level of the class |
-| er-level | The equiraitings level of the class |
-| provider_id | The id of the provider ?????????? |
+| Parameter   | Description                         |
+| ----------- | ----------------------------------- |
+| type        | The type of the class               |
+| name        | The full name of the class          |
+| level       | The level of the class              |
+| er-level    | The equiraitings level of the class |
+| provider_id | The id of the provider ??????????   |
 
 ### Query Parameters
 
@@ -1320,13 +1319,13 @@ Update a class_category for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                        |
-| ---------- | -------------------------------------------------------------------------------------------------- |
-| type | The type of the class |
-| name | The full name of the class |
-| level | The level of the class |
-| er-level | The equiraitings level of the class |
-| provider_id | The id of the provider ?????????? |
+| Parameter   | Description                         |
+| ----------- | ----------------------------------- |
+| type        | The type of the class               |
+| name        | The full name of the class          |
+| level       | The level of the class              |
+| er-level    | The equiraitings level of the class |
+| provider_id | The id of the provider ??????????   |
 
 ### URL Parameters
 
@@ -1653,16 +1652,16 @@ Create a athlete for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                          |
-| ---------- | ------------------------------------------------------------------------------------ |
-| first_name | The first name of the athlete                                                        |
-| surname    | The surname of the athlete                                                           |
-| gender | The gender of the athlete |
-| nationality | The nationality of the athlete |
-| dob | The date of birth of the athlete |
-| display-name  | The name that is displayed for the athlete if it is different to their name  |
-| fei-id | The fei-id of the athlete |
-|federation-id| The id of the federation the athlete belongs to |
+| Parameter     | Description                                                                 |
+| ------------- | --------------------------------------------------------------------------- |
+| first_name    | The first name of the athlete                                               |
+| surname       | The surname of the athlete                                                  |
+| gender        | The gender of the athlete                                                   |
+| nationality   | The nationality of the athlete                                              |
+| dob           | The date of birth of the athlete                                            |
+| display-name  | The name that is displayed for the athlete if it is different to their name |
+| fei-id        | The fei-id of the athlete                                                   |
+| federation-id | The id of the federation the athlete belongs to                             |
 
 ### Query Parameters
 
@@ -1714,17 +1713,16 @@ Update a athlete for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                          |
-| ---------- | ------------------------------------------------------------------------------------ |
-| first_name | The first name of the athlete                                                        |
-| surname    | The surname of the athlete                                                           |
-| gender | The gender of the athlete |
-| nationality | The nationality of the athlete |
-| dob | The date of birth of the athlete |
-| display-name  | The name that is displayed for the athlete if it is different to their name  |
-| fei-id | The fei-id of the athlete |
-|federation-id| The id of the federation the athlete belongs to |
-
+| Parameter     | Description                                                                 |
+| ------------- | --------------------------------------------------------------------------- |
+| first_name    | The first name of the athlete                                               |
+| surname       | The surname of the athlete                                                  |
+| gender        | The gender of the athlete                                                   |
+| nationality   | The nationality of the athlete                                              |
+| dob           | The date of birth of the athlete                                            |
+| display-name  | The name that is displayed for the athlete if it is different to their name |
+| fei-id        | The fei-id of the athlete                                                   |
+| federation-id | The id of the federation the athlete belongs to                             |
 
 ### URL Parameters
 
@@ -1910,13 +1908,13 @@ Create a horse for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                      |
-| ---------- | -------------------------------------------------------------------------------- |
-| name | The name of the horse |
-| gender | The gender of the horse |
-| dob | The date of birth of the horse |
-| fei-id| The fei id for the horse |
-| ueln | The unique equine life number of the horse |
+| Parameter    | Description                                              |
+| ------------ | -------------------------------------------------------- |
+| name         | The name of the horse                                    |
+| gender       | The gender of the horse                                  |
+| dob          | The date of birth of the horse                           |
+| fei-id       | The fei id for the horse                                 |
+| ueln         | The unique equine life number of the horse               |
 | display-name | The display name of the horse if different from the name |
 
 ### Query Parameters
@@ -1968,13 +1966,13 @@ Update a horse for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                      |
-| ---------- | -------------------------------------------------------------------------------- |
-| name | The name of the horse |
-| gender | The gender of the horse |
-| dob | The date of birth of the horse |
-| fei-id| The fei id for the horse |
-| ueln | The unique equine life number of the horse |
+| Parameter    | Description                                              |
+| ------------ | -------------------------------------------------------- |
+| name         | The name of the horse                                    |
+| gender       | The gender of the horse                                  |
+| dob          | The date of birth of the horse                           |
+| fei-id       | The fei id for the horse                                 |
+| ueln         | The unique equine life number of the horse               |
 | display-name | The display name of the horse if different from the name |
 
 ### URL Parameters
@@ -2146,10 +2144,10 @@ Create a federation for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                |
-| ---------- | ----------------------------------------------------------------------------------------- |
-| name | The name of the federation |
-| code | The country code for the federation |
+| Parameter | Description                         |
+| --------- | ----------------------------------- |
+| name      | The name of the federation          |
+| code      | The country code for the federation |
 
 ### Query Parameters
 
@@ -2195,10 +2193,10 @@ Update a federation for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                                |
-| ---------- | ----------------------------------------------------------------------------------------- |
-| name | The name of the federation |
-| code | The country code for the federation |
+| Parameter | Description                         |
+| --------- | ----------------------------------- |
+| name      | The name of the federation          |
+| code      | The country code for the federation |
 
 ### URL Parameters
 
