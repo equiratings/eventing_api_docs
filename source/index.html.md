@@ -115,7 +115,7 @@ curl -XGET
       "surname": "Surname",
       "role": "provider_admin",
       "id": 103,
-      "first-name": "First",
+      "first_name": "First",
       "email": "email@domain.com"
     }
   }
@@ -166,7 +166,7 @@ curl -XGET
         "surname": "Surname",
         "role": "provider_admin",
         "id": 90,
-        "first-name": "First",
+        "first_name": "First",
         "email": "email7@domain.com"
       }
     }
@@ -215,7 +215,7 @@ curl -XGET
       "surname": "Surname",
       "role": "provider_admin",
       "id": 96,
-      "first-name": "First",
+      "first_name": "First",
       "email": "email13@domain.com"
     }
   }
@@ -266,7 +266,7 @@ curl -XPOST
       "surname": "Watson",
       "role": "provider_admin",
       "id": 1,
-      "first-name": "Sam",
+      "first_name": "Sam",
       "email": "user@domain.com"
     }
   }
@@ -321,7 +321,7 @@ curl -XPUT
       "surname": "Watson",
       "role": "provider_admin",
       "id": 1,
-      "first-name": "Sam",
+      "first_name": "Sam",
       "email": "user@domain.com"
     }
   }
@@ -408,7 +408,9 @@ curl -XGET
       "id": "1",
       "attributes": {
         "name": "Chatsworth",
-        "id": 1
+        "id": 1,
+        "federation_id": 1,
+        "source_id": "abc123"
       }
     }
   ]
@@ -449,7 +451,9 @@ curl -XGET
     "id": "1",
     "attributes": {
       "name": "Chatsworth",
-      "id": 1
+      "id": 1,
+      "federation_id": 1,
+      "source_id": "abc123"
     }
   }
 }
@@ -496,7 +500,9 @@ curl -XPOST
     "id": "1",
     "attributes": {
       "name": "Chatsworth",
-      "id": 1
+      "id": 1,
+      "federation_id": 1,
+      "source_id": "abc123"
     }
   }
 }
@@ -510,9 +516,11 @@ Create a venue for the supplied data.
 
 ### Attributes
 
-| Parameter | Description           |
-| --------- | --------------------- |
-| name      | The name of the Venue |
+| Parameter     | Description                                               |
+| ------------- | --------------------------------------------------------- |
+| name          | The name of the Venue                                     |
+| federation_id | The ID of the Federation where the venue is located       |
+| source_id     | The ID that the Provider uses locally on their own system |
 
 ### Query Parameters
 
@@ -544,7 +552,9 @@ curl -XPUT
     "id": "1",
     "attributes": {
       "name": "Updated name",
-      "id": 1
+      "id": 1,
+      "federation_id": 1,
+      "source_id": "abc123"
     }
   }
 }
@@ -558,9 +568,11 @@ Update a venue for the supplied data.
 
 ### Attributes
 
-| Parameter | Description           |
-| --------- | --------------------- |
-| name      | The name of the venue |
+| Parameter     | Description                                               |
+| ------------- | --------------------------------------------------------- |
+| name          | The name of the venue                                     |
+| federation_id | The ID of the Federation where the venue is located       |
+| source_id     | The ID that the Provider uses locally on their own system |
 
 ### URL Parameters
 
@@ -625,13 +637,13 @@ curl -XGET
       },
       "id": "1",
       "attributes": {
-        "venue-id": 1,
-        "start-date": "2018-03-12",
-        "source-id": null,
-        "provider-id": 1,
+        "venue_id": 1,
+        "start_date": "2018-03-12",
+        "source_id": null,
+        "provider_id": 1,
         "name": "Chatsworth International",
         "id": 1,
-        "end-date": "2018-03-15"
+        "end_date": "2018-03-15"
       }
     }
   ]
@@ -671,13 +683,13 @@ curl -XGET
     },
     "id": "1",
     "attributes": {
-      "venue-id": 1,
-      "start-date": "2018-03-12",
-      "source-id": null,
-      "provider-id": 1,
+      "venue_id": 1,
+      "start_date": "2018-03-12",
+      "source_id": null,
+      "provider_id": 1,
       "name": "Chatsworth International",
       "id": 1,
-      "end-date": "2018-03-15"
+      "end_date": "2018-03-15"
     }
   }
 }
@@ -723,13 +735,13 @@ curl -XPOST
     },
     "id": "1",
     "attributes": {
-      "venue-id": 1,
-      "start-date": "2018-03-12",
-      "source-id": null,
-      "provider-id": 1,
+      "venue_id": 1,
+      "start_date": "2018-03-12",
+      "source_id": null,
+      "provider_id": 1,
       "name": "Chatsworth International",
       "id": 1,
-      "end-date": "2018-03-15"
+      "end_date": "2018-03-15"
     }
   }
 }
@@ -743,12 +755,13 @@ Create a show for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                            |
-| ---------- | -------------------------------------- |
-| start_date | The start_date of the show             |
-| name       | The name of the show                   |
-| end_date   | The end_date of the show               |
-| venue_id   | The venue id for the venue of the show |
+| Parameter  | Description                                               |
+| ---------- | --------------------------------------------------------- |
+| name       | The name of the show                                      |
+| start_date | The start_date of the show                                |
+| end_date   | The end_date of the show                                  |
+| venue_id   | The venue id for the venue of the show                    |
+| source_id  | The ID that the Provider uses locally on their own system |
 
 ### Query Parameters
 
@@ -778,13 +791,13 @@ curl -XPUT
     },
     "id": "1",
     "attributes": {
-      "venue-id": 1,
-      "start-date": "2018-03-12",
-      "source-id": null,
-      "provider-id": 1,
+      "venue_id": 1,
+      "start_date": "2018-03-12",
+      "source_id": null,
+      "provider_id": 1,
       "name": "Chatsworth International",
       "id": 1,
-      "end-date": "2018-03-15"
+      "end_date": "2018-03-15"
     }
   }
 }
@@ -798,12 +811,13 @@ Update a show for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                            |
-| ---------- | -------------------------------------- |
-| start_date | The start_date of the show             |
-| name       | The name of the show                   |
-| end_date   | The end_date of the show               |
-| venue_id   | The venue id for the venue of the show |
+| Parameter  | Description                                               |
+| ---------- | --------------------------------------------------------- |
+| start_date | The start_date of the show                                |
+| name       | The name of the show                                      |
+| end_date   | The end_date of the show                                  |
+| venue_id   | The venue id for the venue of the show                    |
+| source_id  | The ID that the Provider uses locally on their own system |
 
 ### URL Parameters
 
@@ -868,15 +882,17 @@ curl -XGET
       },
       "id": "1",
       "attributes": {
-        "sj-before-xc": true,
-        "second-hi-order": null,
+        "sj_before_xc": true,
+        "second_hi_order": null,
         "name": "N",
         "id": 1,
-        "first-hi-order": null,
-        "display-name": null,
+        "first_hi_order": null,
+        "display_name": null,
         "date": "2018-03-12",
         "championship": false,
-        "show-id": 1
+        "show_id": 1,
+        "class_category_id": 1,
+        "source_id": "abc123"
       }
     }
   ]
@@ -916,14 +932,17 @@ curl -XGET
     },
     "id": "1",
     "attributes": {
-      "sj-before-xc": true,
-      "second-hi-order": null,
+      "sj_before_xc": true,
+      "second_hi_order": null,
       "name": "N",
       "id": 1,
-      "first-hi-order": null,
-      "display-name": null,
+      "first_hi_order": null,
+      "display_name": null,
       "date": "2018-03-12",
-      "championship": false
+      "championship": false,
+      "show_id": 1,
+      "class_category_id": 1,
+      "source_id": "abc123"
     }
   }
 }
@@ -971,7 +990,10 @@ curl -XPOST
          "date": "2018-03-12",
          "class_category_id": 1465,
          "championship": false,
-         "display_name": null
+         "show_id": 1,
+         "class_category_id": 1,
+         "display_name": null,
+         "source_id": "abc123"
        }
      }'
      'https://eventing.api.equiratings.com/v1/competitions'
@@ -991,14 +1013,17 @@ curl -XPOST
     },
     "id": "1",
     "attributes": {
-      "sj-before-xc": true,
-      "second-hi-order": null,
+      "sj_before_xc": true,
+      "second_hi_order": null,
       "name": "N",
       "id": 1,
-      "first-hi-order": null,
-      "display-name": null,
+      "first_hi_order": null,
+      "display_name": null,
       "date": "2018-03-12",
-      "championship": false
+      "championship": false,
+      "show_id": 1,
+      "class_category_id": 1,
+      "source_id": "abc123"
     }
   }
 }
@@ -1016,13 +1041,14 @@ Create a competition for the supplied data.
 | ----------------- | --------------------------------------------------------------------------------- |
 | name              | The name of the competition                                                       |
 | date              | The date that the competition started                                             |
-| sj-before-xc      | If SJ is before XC this will be true, otherwise false                             |
-| first-hi-order    | If a 1st Horse Inspection takes place and if so before which phase the HI happens |
-| second-hi-order   | If a 2nd Horse Inspection takes place and if so before which phase the HI happens |
-| display-name      | The display name of the competition if different to the competition name          |
+| sj_before_xc      | If SJ is before XC this will be true, otherwise false                             |
+| first_hi_order    | If a 1st Horse Inspection takes place and if so before which phase the HI happens |
+| second_hi_order   | If a 2nd Horse Inspection takes place and if so before which phase the HI happens |
+| display_name      | The display name of the competition if different to the competition name          |
 | championship      | Is the competition a championship competition                                     |
 | results           | These are the results for the compeition                                          |
 | class_category_id | This is the class level for the competition                                       |
+| source_id         | The ID that the Provider uses locally on their own system                         |
 
 ### Query Parameters
 
@@ -1052,14 +1078,17 @@ curl -XPUT
     },
     "id": "1",
     "attributes": {
-      "sj-before-xc": true,
-      "second-hi-order": null,
+      "sj_before_xc": true,
+      "second_hi_order": null,
       "name": "Updated name",
       "id": 1,
-      "first-hi-order": null,
-      "display-name": null,
+      "first_hi_order": null,
+      "display_name": null,
       "date": "2018-03-12",
-      "championship": false
+      "championship": false,
+      "show_id": 1
+      "class_category_id": 1,
+      "source_id": "abc123"
     }
   }
 }
@@ -1077,13 +1106,14 @@ Update a competition for the supplied data.
 | ----------------- | --------------------------------------------------------------------------------- |
 | name              | The name of the competition                                                       |
 | date              | The date that the competition started                                             |
-| sj-before-xc      | If SJ is before XC this will be true, otherwise false                             |
-| first-hi-order    | If a 1st Horse Inspection takes place and if so before which phase the HI happens |
-| second-hi-order   | If a 2nd Horse Inspection takes place and if so before which phase the HI happens |
-| display-name      | The display name of the competition if different to the competition name          |
+| sj_before_xc      | If SJ is before XC this will be true, otherwise false                             |
+| first_hi_order    | If a 1st Horse Inspection takes place and if so before which phase the HI happens |
+| second_hi_order   | If a 2nd Horse Inspection takes place and if so before which phase the HI happens |
+| display_name      | The display name of the competition if different to the competition name          |
 | championship      | Is the competition a championship competition                                     |
 | results           | These are the results for the compeition                                          |
 | class_category_id | This is the class level for the competition                                       |
+| source_id         | The ID that the Provider uses locally on their own system                         |
 
 ### URL Parameters
 
@@ -1149,11 +1179,10 @@ curl -XGET
       "id": "1",
       "attributes": {
         "type": "CCI",
-        "provider-id": 2822,
         "name": "CCI3*",
         "level": "3",
         "id": 1,
-        "er-level": 12
+        "er_level": 12
       }
     }
   ]
@@ -1194,11 +1223,10 @@ curl -XGET
     "id": "1",
     "attributes": {
       "type": "CCI",
-      "provider-id": 2822,
       "name": "CCI3*",
       "level": "3",
       "id": 1,
-      "er-level": 12
+      "er_level": 12
     }
   }
 }
@@ -1246,11 +1274,10 @@ curl -XPOST
     "id": "1",
     "attributes": {
       "type": "CCI",
-      "provider-id": 2818,
       "name": "CCI3*",
       "level": "3",
       "id": 1,
-      "er-level": 12
+      "er_level": 12
     }
   }
 }
@@ -1264,13 +1291,12 @@ Create a class_category for the supplied data.
 
 ### Attributes
 
-| Parameter   | Description                         |
-| ----------- | ----------------------------------- |
-| type        | The type of the class               |
-| name        | The full name of the class          |
-| level       | The level of the class              |
-| er-level    | The equiraitings level of the class |
-| provider_id | The id of the provider ??????????   |
+| Parameter | Description                         |
+| --------- | ----------------------------------- |
+| type      | The type of the class               |
+| name      | The full name of the class          |
+| level     | The level of the class              |
+| er_level  | The equiraitings level of the class |
 
 ### Query Parameters
 
@@ -1301,11 +1327,10 @@ curl -XPUT
     "id": "1",
     "attributes": {
       "type": "CCI",
-      "provider-id": 2821,
       "name": "Updated name",
       "level": "3",
       "id": 1,
-      "er-level": 12
+      "er_level": 12
     }
   }
 }
@@ -1319,13 +1344,12 @@ Update a class_category for the supplied data.
 
 ### Attributes
 
-| Parameter   | Description                         |
-| ----------- | ----------------------------------- |
-| type        | The type of the class               |
-| name        | The full name of the class          |
-| level       | The level of the class              |
-| er-level    | The equiraitings level of the class |
-| provider_id | The id of the provider ??????????   |
+| Parameter | Description                         |
+| --------- | ----------------------------------- |
+| type      | The type of the class               |
+| name      | The full name of the class          |
+| level     | The level of the class              |
+| er_level  | The equiraitings level of the class |
 
 ### URL Parameters
 
@@ -1390,32 +1414,33 @@ curl -XGET
       },
       "id": "1",
       "attributes": {
-        "xc-time": null,
-        "xc-status": "EL",
-        "xc-jump": "0",
-        "xc-comment": null,
-        "xc-code": "FH",
-        "sj-time": null,
-        "sj-status": "NS",
-        "sj-jump": null,
-        "sj-code": null,
-        "second-hi-status": null,
+        "xc_time": null,
+        "xc_status": "EL",
+        "xc_jump": "0",
+        "xc_comment": null,
+        "xc_code": "FH",
+        "sj_time": null,
+        "sj_status": "NS",
+        "sj_jump": null,
+        "sj_code": null,
+        "second_hi_status": null,
         "id": 1,
-        "horse-id": 1102,
-        "first-hi-status": null,
-        "final-status": "EL",
-        "final-score": null,
-        "final-position": null,
-        "final-comment": null,
-        "final-code": null,
-        "dr-status": "OK",
-        "dr-score": null,
-        "dr-percentage": null,
-        "dr-comment": null,
-        "dr-code": null,
-        "disqualification-code": null,
-        "competition-id": 2183,
-        "athlete-id": 1117
+        "horse_id": 1102,
+        "first_hi_status": null,
+        "final_status": "EL",
+        "final_score": null,
+        "final_position": null,
+        "final_comment": null,
+        "final_code": null,
+        "dr_status": "OK",
+        "dr_score": null,
+        "dr_percentage": null,
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 2183,
+        "athlete_id": 1117,
+        "source_id": "abc123"
       }
     }
   ]
@@ -1455,32 +1480,33 @@ curl -XGET
     },
     "id": "1",
     "attributes": {
-      "xc-time": null,
-      "xc-status": "EL",
-      "xc-jump": "0",
-      "xc-comment": null,
-      "xc-code": "FH",
-      "sj-time": null,
-      "sj-status": "NS",
-      "sj-jump": null,
-      "sj-code": null,
-      "second-hi-status": null,
+      "xc_time": null,
+      "xc_status": "EL",
+      "xc_jump": "0",
+      "xc_comment": null,
+      "xc_code": "FH",
+      "sj_time": null,
+      "sj_status": "NS",
+      "sj_jump": null,
+      "sj_code": null,
+      "second_hi_status": null,
       "id": 1,
-      "horse-id": 1102,
-      "first-hi-status": null,
-      "final-status": "EL",
-      "final-score": null,
-      "final-position": null,
-      "final-comment": null,
-      "final-code": null,
-      "dr-status": "OK",
-      "dr-score": null,
-      "dr-percentage": null,
-      "dr-comment": null,
-      "dr-code": null,
-      "disqualification-code": null,
-      "competition-id": 2183,
-      "athlete-id": 1117
+      "horse_id": 1102,
+      "first_hi_status": null,
+      "final_status": "EL",
+      "final_score": null,
+      "final_position": null,
+      "final_comment": null,
+      "final_code": null,
+      "dr_status": "OK",
+      "dr_score": null,
+      "dr_percentage": null,
+      "dr_comment": null,
+      "dr_code": null,
+      "disqualification_code": null,
+      "competition_id": 2183,
+      "athlete_id": 1117,
+      "source_id": "abc123"
     }
   }
 }
@@ -1532,11 +1558,12 @@ curl -XGET
         "nationality": "Irish",
         "id": 1,
         "gender": "Male",
-        "first-name": "Sam",
-        "fei-id": 10007367,
-        "federation-id": 3041,
+        "first_name": "Sam",
+        "fei_id": 10007367,
+        "federation_id": 3041,
         "dob": "1982-01-14",
-        "display-name": null
+        "display_name": null,
+        "source_id": "abc123"
       }
     }
   ]
@@ -1580,11 +1607,12 @@ curl -XGET
       "nationality": "Irish",
       "id": 1,
       "gender": "Male",
-      "first-name": "Sam",
-      "fei-id": 10007367,
-      "federation-id": 3041,
+      "first_name": "Sam",
+      "fei_id": 10007367,
+      "federation_id": 3041,
       "dob": "1982-01-14",
-      "display-name": null
+      "display_name": null,
+      "source_id": "abc123"
     }
   }
 }
@@ -1634,11 +1662,12 @@ curl -XPOST
       "nationality": "Irish",
       "id": 1,
       "gender": "Male",
-      "first-name": "Sam",
-      "fei-id": 10007367,
-      "federation-id": null,
+      "first_name": "Sam",
+      "fei_id": 10007367,
+      "federation_id": null,
       "dob": "1982-01-14",
-      "display-name": null
+      "display_name": null,
+      "source_id": "abc123"
     }
   }
 }
@@ -1659,9 +1688,10 @@ Create a athlete for the supplied data.
 | gender        | The gender of the athlete                                                   |
 | nationality   | The nationality of the athlete                                              |
 | dob           | The date of birth of the athlete                                            |
-| display-name  | The name that is displayed for the athlete if it is different to their name |
-| fei-id        | The fei-id of the athlete                                                   |
-| federation-id | The id of the federation the athlete belongs to                             |
+| display_name  | The name that is displayed for the athlete if it is different to their name |
+| fei_id        | The fei_id of the athlete                                                   |
+| federation_id | The id of the federation the athlete belongs to                             |
+| source_id     | The ID that the Provider uses locally on their own system                   |
 
 ### Query Parameters
 
@@ -1695,11 +1725,12 @@ curl -XPUT
       "nationality": "Irish",
       "id": 1,
       "gender": "Male",
-      "first-name": "Updated name",
-      "fei-id": 10007367,
-      "federation-id": 3040,
+      "first_name": "Updated name",
+      "fei_id": 10007367,
+      "federation_id": 3040,
       "dob": "1982-01-14",
-      "display-name": null
+      "display_name": null,
+      "source_id": "abc123"
     }
   }
 }
@@ -1720,9 +1751,10 @@ Update a athlete for the supplied data.
 | gender        | The gender of the athlete                                                   |
 | nationality   | The nationality of the athlete                                              |
 | dob           | The date of birth of the athlete                                            |
-| display-name  | The name that is displayed for the athlete if it is different to their name |
-| fei-id        | The fei-id of the athlete                                                   |
-| federation-id | The id of the federation the athlete belongs to                             |
+| display_name  | The name that is displayed for the athlete if it is different to their name |
+| fei_id        | The fei_id of the athlete                                                   |
+| federation_id | The id of the federation the athlete belongs to                             |
+| source_id     | The ID that the Provider uses locally on their own system                   |
 
 ### URL Parameters
 
@@ -1788,13 +1820,14 @@ curl -XGET
       "id": "1",
       "attributes": {
         "ueln": null,
-        "risk-data": [],
+        "risk_data": [],
         "name": "Horseware Bushman",
         "id": 1,
         "gender": "Gelding",
-        "fei-id": "IRL03630",
+        "fei_id": "IRL03630",
         "dob": "1999-05-24",
-        "display-name": null
+        "display_name": null,
+        "source_id": "abc123"
       }
     }
   ]
@@ -1835,13 +1868,14 @@ curl -XGET
     "id": "1",
     "attributes": {
       "ueln": null,
-      "risk-data": [],
+      "risk_data": [],
       "name": "Horseware Bushman",
       "id": 1,
       "gender": "Gelding",
-      "fei-id": "IRL03630",
+      "fei_id": "IRL03630",
       "dob": "1999-05-24",
-      "display-name": null
+      "display_name": null,
+      "source_id": "abc123"
     }
   }
 }
@@ -1888,13 +1922,14 @@ curl -XPOST
     "id": "1",
     "attributes": {
       "ueln": null,
-      "risk-data": [],
+      "risk_data": [],
       "name": "Horseware Bushman",
       "id": 1,
       "gender": "Gelding",
-      "fei-id": "IRL03630",
+      "fei_id": "IRL03630",
       "dob": "1999-05-24",
-      "display-name": null
+      "display_name": null,
+      "source_id": "abc123"
     }
   }
 }
@@ -1908,14 +1943,15 @@ Create a horse for the supplied data.
 
 ### Attributes
 
-| Parameter    | Description                                              |
-| ------------ | -------------------------------------------------------- |
-| name         | The name of the horse                                    |
-| gender       | The gender of the horse                                  |
-| dob          | The date of birth of the horse                           |
-| fei-id       | The fei id for the horse                                 |
-| ueln         | The unique equine life number of the horse               |
-| display-name | The display name of the horse if different from the name |
+| Parameter    | Description                                               |
+| ------------ | --------------------------------------------------------- |
+| name         | The name of the horse                                     |
+| gender       | The gender of the horse                                   |
+| dob          | The date of birth of the horse                            |
+| fei_id       | The fei id for the horse                                  |
+| ueln         | The unique equine life number of the horse                |
+| display_name | The display name of the horse if different from the name  |
+| source_id    | The ID that the Provider uses locally on their own system |
 
 ### Query Parameters
 
@@ -1946,13 +1982,14 @@ curl -XPUT
     "id": "1",
     "attributes": {
       "ueln": null,
-      "risk-data": [],
+      "risk_data": [],
       "name": "Updated name",
       "id": 1,
       "gender": "Gelding",
-      "fei-id": "IRL03630",
+      "fei_id": "IRL03630",
       "dob": "1999-05-24",
-      "display-name": null
+      "display_name": null,
+      "source_id": "abc123"
     }
   }
 }
@@ -1966,14 +2003,15 @@ Update a horse for the supplied data.
 
 ### Attributes
 
-| Parameter    | Description                                              |
-| ------------ | -------------------------------------------------------- |
-| name         | The name of the horse                                    |
-| gender       | The gender of the horse                                  |
-| dob          | The date of birth of the horse                           |
-| fei-id       | The fei id for the horse                                 |
-| ueln         | The unique equine life number of the horse               |
-| display-name | The display name of the horse if different from the name |
+| Parameter    | Description                                               |
+| ------------ | --------------------------------------------------------- |
+| name         | The name of the horse                                     |
+| gender       | The gender of the horse                                   |
+| dob          | The date of birth of the horse                            |
+| fei_id       | The fei id for the horse                                  |
+| ueln         | The unique equine life number of the horse                |
+| display_name | The display name of the horse if different from the name  |
+| source_id    | The ID that the Provider uses locally on their own system |
 
 ### URL Parameters
 
@@ -2103,372 +2141,3 @@ Returns a federation for the supplied ID parameter.
 ### Query Parameters
 
 This endpoint does not support query parameters.
-
-## Create a Federation
-
-```shell
-curl -XPOST
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     -d '{"federation": {"name": "British Eventing", "code": "GBR"}}'
-     'https://eventing.api.equiratings.com/v1/federations/'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "federation",
-    "links": {
-      "self": "/federations/1"
-    },
-    "id": "1",
-    "attributes": {
-      "name": "British Eventing",
-      "id": 1,
-      "code": "GBR"
-    }
-  }
-}
-```
-
-Create a federation for the supplied data.
-
-### HTTP Request
-
-`POST https://eventing.api.equiratings.com/v1/federations/`
-
-### Attributes
-
-| Parameter | Description                         |
-| --------- | ----------------------------------- |
-| name      | The name of the federation          |
-| code      | The country code for the federation |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Update a Federation
-
-```shell
-curl -XPUT
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     -d '{"federation": {"name": "Updated name"}}'
-     'https://eventing.api.equiratings.com/v1/federations/1'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "federation",
-    "links": {
-      "self": "/federations/1"
-    },
-    "id": "1",
-    "attributes": {
-      "name": "Updated name",
-      "id": 1,
-      "code": "GBR"
-    }
-  }
-}
-```
-
-Update a federation for the supplied data.
-
-### HTTP Request
-
-`PUT https://eventing.api.equiratings.com/v1/federations/:id`
-
-### Attributes
-
-| Parameter | Description                         |
-| --------- | ----------------------------------- |
-| name      | The name of the federation          |
-| code      | The country code for the federation |
-
-### URL Parameters
-
-| Parameter | Description                          |
-| --------- | ------------------------------------ |
-| ID        | The ID of the federation to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Delete a Federation
-
-```shell
-curl -XDELETE
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/federations/1'
-```
-
-> DELETE request will return a 204 HTTP status code, with no json payload
-
-Deletes a federation with the supplied id.
-
-### HTTP Request
-
-`DELETE https://eventing.api.equiratings.com/v1/federations/:id`
-
-### URL Parameters
-
-| Parameter | Description                          |
-| --------- | ------------------------------------ |
-| ID        | The ID of the federation to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-<!-- This endpoint retrieves all kittens. -->
-
-<!--  -->
-
-<!-- ### HTTP Request -->
-
-<!--  -->
-
-<!-- `GET http://example.com/api/kittens` -->
-
-<!--  -->
-
-<!-- ### Query Parameters -->
-
-<!--  -->
-
-<!-- | Parameter    | Default | Description                                                                      | -->
-
-<!-- | ------------ | ------- | -------------------------------------------------------------------------------- | -->
-
-<!-- | include_cats | false   | If set to true, the result will also include cats.                               | -->
-
-<!-- | available    | true    | If set to false, the result will include kittens that have already been adopted. | -->
-
-<!--  -->
-
-<!-- <aside class="success"> -->
-
-<!-- Remember — a happy kitten is an authenticated kitten! -->
-
-<!-- </aside> -->
-
-<!-- ## Get a Specific Kitten -->
-
-<!--  -->
-
-<!-- ```ruby -->
-
-<!-- require 'kittn' -->
-
-<!--  -->
-
-<!-- api = Kittn::APIClient.authorize!('meowmeowmeow') -->
-
-<!-- api.kittens.get(2) -->
-
-<!-- ``` -->
-
-<!--  -->
-
-<!-- ```python -->
-
-<!-- import kittn -->
-
-<!--  -->
-
-<!-- api = kittn.authorize('meowmeowmeow') -->
-
-<!-- api.kittens.get(2) -->
-
-<!-- ``` -->
-
-<!--  -->
-
-<!-- ```shell -->
-
-<!-- curl "http://example.com/api/kittens/2" -->
-
-<!--   -H "Authorization: meowmeowmeow" -->
-
-<!-- ``` -->
-
-<!--  -->
-
-<!-- ```javascript -->
-
-<!-- const kittn = require('kittn'); -->
-
-<!--  -->
-
-<!-- let api = kittn.authorize('meowmeowmeow'); -->
-
-<!-- let max = api.kittens.get(2); -->
-
-<!-- ``` -->
-
-<!--  -->
-
-<!-- > The above command returns JSON structured like this: -->
-
-<!--  -->
-
-<!-- ```json -->
-
-<!-- { -->
-
-<!--   "id": 2, -->
-
-<!--   "name": "Max", -->
-
-<!--   "breed": "unknown", -->
-
-<!--   "fluffiness": 5, -->
-
-<!--   "cuteness": 10 -->
-
-<!-- } -->
-
-<!-- ``` -->
-
-<!--  -->
-
-<!-- This endpoint retrieves a specific kitten. -->
-
-<!--  -->
-
-<!-- <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside> -->
-
-<!--  -->
-
-<!-- ### HTTP Request -->
-
-<!--  -->
-
-<!-- `GET http://example.com/kittens/<ID>` -->
-
-<!--  -->
-
-<!-- ### URL Parameters -->
-
-<!--  -->
-
-<!-- | Parameter | Description                      | -->
-
-<!-- | --------- | -------------------------------- | -->
-
-<!-- | ID        | The ID of the kitten to retrieve | -->
-
-<!--  -->
-
-<!-- ## Delete a Specific Kitten -->
-
-<!--  -->
-
-<!-- ```ruby -->
-
-<!-- require 'kittn' -->
-
-<!--  -->
-
-<!-- api = Kittn::APIClient.authorize!('meowmeowmeow') -->
-
-<!-- api.kittens.delete(2) -->
-
-<!-- ``` -->
-
-<!--  -->
-
-<!-- ```python -->
-
-<!-- import kittn -->
-
-<!--  -->
-
-<!-- api = kittn.authorize('meowmeowmeow') -->
-
-<!-- api.kittens.delete(2) -->
-
-<!-- ``` -->
-
-<!--  -->
-
-<!-- ```shell -->
-
-<!-- curl "http://example.com/api/kittens/2" -->
-
-<!--   -X DELETE -->
-
-<!--   -H "Authorization: meowmeowmeow" -->
-
-<!-- ``` -->
-
-<!--  -->
-
-<!-- ```javascript -->
-
-<!-- const kittn = require('kittn'); -->
-
-<!--  -->
-
-<!-- let api = kittn.authorize('meowmeowmeow'); -->
-
-<!-- let max = api.kittens.delete(2); -->
-
-<!-- ``` -->
-
-<!--  -->
-
-<!-- > The above command returns JSON structured like this: -->
-
-<!--  -->
-
-<!-- ```json -->
-
-<!-- { -->
-
-<!--   "id": 2, -->
-
-<!--   "deleted": ":(" -->
-
-<!-- } -->
-
-<!-- ``` -->
-
-<!--  -->
-
-<!-- This endpoint deletes a specific kitten. -->
-
-<!--  -->
-
-<!-- ### HTTP Request -->
-
-<!--  -->
-
-<!-- `DELETE http://example.com/kittens/<ID>` -->
-
-<!--  -->
-
-<!-- ### URL Parameters -->
-
-<!--  -->
-
-<!-- | Parameter | Description                    | -->
-
-<!-- | --------- | ------------------------------ | -->
-
-<!-- | ID        | The ID of the kitten to delete | -->
