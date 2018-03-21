@@ -874,28 +874,74 @@ curl -XGET
   "jsonapi": {
     "version": "1.0"
   },
-  "data": [
+  "included": [
     {
-      "type": "competition",
+      "type": "result",
       "links": {
-        "self": "/competitions/1"
+        "self": "/v1/results/5624"
       },
-      "id": "1",
+      "id": "5624",
       "attributes": {
-        "sj_before_xc": true,
-        "second_hi_order": null,
-        "name": "N",
-        "id": 1,
-        "first_hi_order": null,
-        "display_name": null,
-        "date": "2018-03-12",
-        "championship": false,
-        "show_id": 1,
-        "class_category_id": 1,
-        "source_id": "abc123"
+        "xc_time": null,
+        "xc_status": "EL",
+        "xc_jump": "0",
+        "xc_comment": null,
+        "xc_code": "FH",
+        "source_id": null,
+        "sj_time": null,
+        "sj_status": "NS",
+        "sj_jump": null,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 5624,
+        "horse_id": 2970,
+        "first_hi_status": null,
+        "final_status": "EL",
+        "final_score": null,
+        "final_position": null,
+        "final_comment": null,
+        "final_code": null,
+        "dr_status": "OK",
+        "dr_score": null,
+        "dr_percentage": null,
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 6076,
+        "athlete_id": 3047
       }
     }
-  ]
+  ],
+  "data": {
+    "type": "competition",
+    "relationships": {
+      "results": {
+        "data": [
+          {
+            "type": "result",
+            "id": "5624"
+          }
+        ]
+      }
+    },
+    "links": {
+      "self": "/v1/competitions/6076"
+    },
+    "id": "6076",
+    "attributes": {
+      "source_id": null,
+      "sj_before_xc": true,
+      "show_id": 2405,
+      "second_hi_order": null,
+      "name": "N",
+      "id": 6076,
+      "first_hi_order": null,
+      "display_name": null,
+      "date": "2018-03-19",
+      "class_category_id": 3855,
+      "championship": false
+    }
+  }
 }
 ```
 
@@ -925,24 +971,72 @@ curl -XGET
   "jsonapi": {
     "version": "1.0"
   },
+  "included": [
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/5624"
+      },
+      "id": "5624",
+      "attributes": {
+        "xc_time": null,
+        "xc_status": "EL",
+        "xc_jump": "0",
+        "xc_comment": null,
+        "xc_code": "FH",
+        "source_id": null,
+        "sj_time": null,
+        "sj_status": "NS",
+        "sj_jump": null,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 5624,
+        "horse_id": 2970,
+        "first_hi_status": null,
+        "final_status": "EL",
+        "final_score": null,
+        "final_position": null,
+        "final_comment": null,
+        "final_code": null,
+        "dr_status": "OK",
+        "dr_score": null,
+        "dr_percentage": null,
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 6076,
+        "athlete_id": 3047
+      }
+    }
+  ],
   "data": {
     "type": "competition",
-    "links": {
-      "self": "/competitions/1"
+    "relationships": {
+      "results": {
+        "data": [
+          {
+            "type": "result",
+            "id": "5624"
+          }
+        ]
+      }
     },
-    "id": "1",
+    "links": {
+      "self": "/v1/competitions/6076"
+    },
+    "id": "6076",
     "attributes": {
+      "source_id": null,
       "sj_before_xc": true,
+      "show_id": 2405,
       "second_hi_order": null,
       "name": "N",
-      "id": 1,
+      "id": 6076,
       "first_hi_order": null,
       "display_name": null,
-      "date": "2018-03-12",
-      "championship": false,
-      "show_id": 1,
-      "class_category_id": 1,
-      "source_id": "abc123"
+      "date": "2018-03-19",
+      "class_category_id": 3855,
+      "championship": false
     }
   }
 }
@@ -1006,24 +1100,72 @@ curl -XPOST
   "jsonapi": {
     "version": "1.0"
   },
+  "included": [
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/5624"
+      },
+      "id": "5624",
+      "attributes": {
+        "xc_time": null,
+        "xc_status": "EL",
+        "xc_jump": "0",
+        "xc_comment": null,
+        "xc_code": "FH",
+        "source_id": null,
+        "sj_time": null,
+        "sj_status": "NS",
+        "sj_jump": null,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 5624,
+        "horse_id": 2970,
+        "first_hi_status": null,
+        "final_status": "EL",
+        "final_score": null,
+        "final_position": null,
+        "final_comment": null,
+        "final_code": null,
+        "dr_status": "OK",
+        "dr_score": null,
+        "dr_percentage": null,
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 6076,
+        "athlete_id": 3047
+      }
+    }
+  ],
   "data": {
     "type": "competition",
-    "links": {
-      "self": "/competitions/1"
+    "relationships": {
+      "results": {
+        "data": [
+          {
+            "type": "result",
+            "id": "5624"
+          }
+        ]
+      }
     },
-    "id": "1",
+    "links": {
+      "self": "/v1/competitions/6076"
+    },
+    "id": "6076",
     "attributes": {
+      "source_id": null,
       "sj_before_xc": true,
+      "show_id": 2405,
       "second_hi_order": null,
       "name": "N",
-      "id": 1,
+      "id": 6076,
       "first_hi_order": null,
       "display_name": null,
-      "date": "2018-03-12",
-      "championship": false,
-      "show_id": 1,
-      "class_category_id": 1,
-      "source_id": "abc123"
+      "date": "2018-03-19",
+      "class_category_id": 3855,
+      "championship": false
     }
   }
 }
@@ -1048,6 +1190,7 @@ Create a competition for the supplied data.
 | championship      | Is the competition a championship competition                                     |
 | results           | These are the results for the compeition                                          |
 | class_category_id | This is the class level for the competition                                       |
+| show_id           | This is the ID of the show that this competition is part of.                      |
 | source_id         | The ID that the Provider uses locally on their own system                         |
 
 ### Query Parameters
@@ -1071,24 +1214,72 @@ curl -XPUT
   "jsonapi": {
     "version": "1.0"
   },
+  "included": [
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/5624"
+      },
+      "id": "5624",
+      "attributes": {
+        "xc_time": null,
+        "xc_status": "EL",
+        "xc_jump": "0",
+        "xc_comment": null,
+        "xc_code": "FH",
+        "source_id": null,
+        "sj_time": null,
+        "sj_status": "NS",
+        "sj_jump": null,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 5624,
+        "horse_id": 2970,
+        "first_hi_status": null,
+        "final_status": "EL",
+        "final_score": null,
+        "final_position": null,
+        "final_comment": null,
+        "final_code": null,
+        "dr_status": "OK",
+        "dr_score": null,
+        "dr_percentage": null,
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 6076,
+        "athlete_id": 3047
+      }
+    }
+  ],
   "data": {
     "type": "competition",
-    "links": {
-      "self": "/competitions/1"
+    "relationships": {
+      "results": {
+        "data": [
+          {
+            "type": "result",
+            "id": "5624"
+          }
+        ]
+      }
     },
-    "id": "1",
+    "links": {
+      "self": "/v1/competitions/6076"
+    },
+    "id": "6076",
     "attributes": {
+      "source_id": null,
       "sj_before_xc": true,
+      "show_id": 2405,
       "second_hi_order": null,
-      "name": "Updated name",
-      "id": 1,
+      "name": "N",
+      "id": 6076,
       "first_hi_order": null,
       "display_name": null,
-      "date": "2018-03-12",
-      "championship": false,
-      "show_id": 1
-      "class_category_id": 1,
-      "source_id": "abc123"
+      "date": "2018-03-19",
+      "class_category_id": 3855,
+      "championship": false
     }
   }
 }
@@ -1868,7 +2059,21 @@ curl -XGET
     "id": "1",
     "attributes": {
       "ueln": null,
-      "risk_data": [],
+      "risk_data": [
+        {"er_level": "1", "erqi": "0.95"}
+        {"er_level": "2", "erqi": "0.90"}
+        {"er_level": "3", "erqi": "0.85"}
+        {"er_level": "4", "erqi": "0.80"}
+        {"er_level": "5", "erqi": "0.706"}
+        {"er_level": "6", "erqi": "0.656"}
+        {"er_level": "7", "erqi": "0.5"}
+        {"er_level": "8", "erqi": "0.606"}
+        {"er_level": "9", "erqi": "0.506"}
+        {"er_level": "10", "erqi": "0.35"}
+        {"er_level": "11", "erqi": "0.419"}
+        {"er_level": "12", "erqi": "0.354"}
+        {"er_level": "13", "erqi": "0.228"}
+      ],
       "name": "Horseware Bushman",
       "id": 1,
       "gender": "Gelding",
