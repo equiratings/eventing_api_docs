@@ -68,7 +68,8 @@ curl -H "Content-type: application/json"
     },
     "id": "",
     "attributes": {
-      "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9"
+      "refresh_token": "jsdlka;fjl;kfjaljfslkjfslkjflkjoiwejwi232434$#%##"
+      "access_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9"
     }
   }
 }
@@ -127,6 +128,48 @@ Gets the user information for the supplied authorization token.
 ### HTTP Request
 
 `GET https://eventing.api.equiratings.com/v1/sessions`
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+# Token
+
+## Create a token
+
+```shell
+curl -H "Content-type: application/json"
+     -d '{"refresh_token": "jsdlka;fjl;kfjaljfslkjfslkjflkjoiwejwi232434$#%##"}'
+		 'https://eventing.api.equiratings.com/v1/tokens'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "token",
+    "links": {
+      "self": "/v1/tokens"
+    },
+    "id": "",
+    "attributes": {
+      "refresh_token": "jsdlka;fjl;kfjaljfslkjfslkjflkjoiwejwi232434$#%##"
+      "access_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9"
+    }
+  }
+}
+```
+
+Provided the refresh token has not expired. It will be used to generate a new
+access token.
+
+### HTTP Request
+
+`POST https://eventing.api.equiratings.com/v1/tokens`
 
 ### Query Parameters
 
