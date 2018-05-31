@@ -15,19 +15,19 @@ search: true
 # Introduction
 
 Welcome to EquiRatings API for Eventing. You can use this API to upload and
-management all aspects of you're eventing records. Through the Eventing API
+manage all aspects of your eventing records. Through the Eventing API
 endpoints you can upload and get ERQI information.
 
-Currently our API support's REST Https calls which you can consume using cURL or
+Currently our API supports REST Https calls which you can consume using cURL or
 directly using whatever HTTP wrapper your language of choice supports.
 
 Currently the API is in Beta, and it is subject to change. Don't worry we will
-inform our partner's about any change's long before we deploy.
+inform our partners about any changes long before we deploy.
 
 # Authentication
 
-The Eventing API uses JWT token's for authentication. Please contact EquiRatings
-in order to get setup on our system. Once you have been assigned user for your
+The Eventing API uses JWT tokens for authentication. Please contact EquiRatings
+in order to get set-up on our system. Once you have been assigned a user for your
 provider account, you will be able to login to the API using the Sessions
 endpoint.
 
@@ -50,7 +50,7 @@ Your token will be valid for two weeks from when you create a new session.
 
 ```shell
 curl -H "Content-type: application/json"
-     -d '{"email": "user@domain.com", "password": "abc123"}'
+     -d '{"email": "user@domain.com", "password": "abcd1234"}'
 		 'https://eventing.api.equiratings.com/v1/sessions'
 ```
 
@@ -68,7 +68,7 @@ curl -H "Content-type: application/json"
     },
     "id": "",
     "attributes": {
-      "refresh_token": "jsdlka;fjl;kfjaljfslkjfslkjflkjoiwejwi232434$#%##"
+      "refresh_token": "jsdlka;fjl;kfjaljfslkjfslkjflkjoiwejwi232434$#%##",
       "access_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9"
     }
   }
@@ -157,7 +157,7 @@ curl -H "Content-type: application/json"
     },
     "id": "",
     "attributes": {
-      "refresh_token": "jsdlka;fjl;kfjaljfslkjfslkjflkjoiwejwi232434$#%##"
+      "refresh_token": "jsdlka;fjl;kfjaljfslkjfslkjflkjoiwejwi232434$#%##",
       "access_token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9"
     }
   }
@@ -210,14 +210,14 @@ curl -XGET
         "role": "provider_admin",
         "id": 90,
         "first_name": "First",
-        "email": "email7@domain.com"
+        "email": "email90@domain.com"
       }
     }
   ]
 }
 ```
 
-Returns all user for the current user's organization.
+Returns all users for the current user's organization.
 
 ### HTTP Request
 
@@ -273,9 +273,9 @@ Returns a user for the supplied ID parameter.
 
 ### URL Parameters
 
-| Parameter | Description                    |
-| --------- | ------------------------------ |
-| ID        | The ID of the user to retrieve |
+| Parameter | Description                                              |
+| --------- | -------------------------------------------------------- |
+| ID        | **Integer (required)**<br>The ID of the user to retrieve |
 
 ### Query Parameters
 
@@ -287,7 +287,7 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"user": {"first_name": "Sam", "surname": "Watson", "email": "user@domain.com", "password": "abc123", role:"provider_admin"}}'
+     -d '{"user": {"first_name": "New", "surname": "User", "email": "user@domain.com", "password": "abcd1234", "role": "provider_user"}}'
      'https://eventing.api.equiratings.com/v1/users'
 ```
 
@@ -295,24 +295,28 @@ curl -XPOST
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "user",
-    "relationships": {},
-    "links": {
-      "self": "/users/1"
+    "jsonapi": {
+        "version": "1.0"
     },
-    "id": "1",
-    "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 1,
-      "first_name": "Sam",
-      "email": "user@domain.com"
+    "data": {
+        "type": "user",
+        "relationships": {
+            "token": {
+                "data": null
+            }
+        },
+        "links": {
+            "self": "/users/11"
+        },
+        "id": "11",
+        "attributes": {
+            "surname": "User",
+            "role": "provider_user",
+            "id": 11,
+            "first_name": "New",
+            "email": "new_user@domain.com"
+        }
     }
-  }
 }
 ```
 
@@ -324,13 +328,13 @@ Create a user for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                    |
-| ---------- | ------------------------------------------------------------------------------ |
-| first_name | The first name of the user                                                     |
-| surname    | The surname of the user                                                        |
-| email      | The email of the user                                                          |
-| password   | The password of the user                                                       |
-| roles      | The user role, valid roles are as follows: ["provider_admin", "provider_user"] |
+| Parameter  | Description                                                                                             |
+| ---------- | ------------------------------------------------------------------------------------------------------- |
+| first_name | **String (required)**<br>The first name of the user                                                     |
+| surname    | **String (required)**<br>The surname of the user                                                        |
+| email      | **String (required)**<br>The email of the user                                                          |
+| password   | **String (required)**<br>The password of the user, must be at least 8 characters                        |
+| roles      | **String (required)**<br>The user role, valid roles are as follows: ["provider_admin", "provider_user"] |
 
 ### Query Parameters
 
@@ -342,7 +346,7 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"user": {"first_name": "Sam", "surname": "Watson", "email": "user@domain.com", "password": "abc123", role:"provider_admin"}}'
+     -d '{"user": {"first_name": "Sam", "surname": "Watson", "email": "user@domain.com", "password": "abcd1234", "role": "provider_admin"}}'
      'https://eventing.api.equiratings.com/v1/users/1'
 ```
 
@@ -384,14 +388,14 @@ Update a user for the supplied data.
 | first_name | The first name of the user                                                     |
 | surname    | The surname of the user                                                        |
 | email      | The email of the user                                                          |
-| password   | The password of the user                                                       |
+| password   | The password of the user, must be at least 8 characters                        |
 | roles      | The user role, valid roles are as follows: ["provider_admin", "provider_user"] |
 
 ### URL Parameters
 
 | Parameter | Description                    |
 | --------- | ------------------------------ |
-| ID        | The ID of the user to retrieve |
+| ID        | The ID of the user to update   |
 
 ### Query Parameters
 
@@ -418,7 +422,7 @@ Deletes a user with the supplied id.
 
 | Parameter | Description                    |
 | --------- | ------------------------------ |
-| ID        | The ID of the user to retrieve |
+| ID        | The ID of the user to delete   |
 
 ### Query Parameters
 
@@ -460,7 +464,7 @@ curl -XGET
 }
 ```
 
-Returns all venue for the current user's organization.
+Returns all venues for the current user's organization.
 
 ### HTTP Request
 
@@ -524,7 +528,7 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"venue": {"name": Chatsworth}}'
+     -d '{"venue": {"name": "New Venue", "federation_id": "177", "source_id": "007"}}'
      'https://eventing.api.equiratings.com/v1/venues'
 ```
 
@@ -532,22 +536,22 @@ curl -XPOST
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "venue",
-    "links": {
-      "self": "/venues/1"
+    "jsonapi": {
+        "version": "1.0"
     },
-    "id": "1",
-    "attributes": {
-      "name": "Chatsworth",
-      "id": 1,
-      "federation_id": 1,
-      "source_id": "abc123"
+    "data": {
+        "type": "venue",
+        "links": {
+            "self": "/v1/venues/914"
+        },
+        "id": "914",
+        "attributes": {
+            "source_id": "007",
+            "name": "New Venue",
+            "id": 914,
+            "federation_id": 177
+        }
     }
-  }
 }
 ```
 
@@ -575,7 +579,7 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"venue": {"name": :Updated name}}'
+     -d '{"venue": {"name": "Updated Venue"}}'
      'https://eventing.api.equiratings.com/v1/venues/1'
 ```
 
@@ -583,23 +587,22 @@ curl -XPUT
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "venue",
-    "relationships": {},
-    "links": {
-      "self": "/venues/1"
+    "jsonapi": {
+        "version": "1.0"
     },
-    "id": "1",
-    "attributes": {
-      "name": "Updated name",
-      "id": 1,
-      "federation_id": 1,
-      "source_id": "abc123"
+    "data": {
+        "type": "venue",
+        "links": {
+            "self": "/v1/venues/914"
+        },
+        "id": "914",
+        "attributes": {
+            "source_id": "007",
+            "name": "Updated Venue",
+            "id": 914,
+            "federation_id": 177
+        }
     }
-  }
 }
 ```
 
@@ -613,7 +616,7 @@ Update a venue for the supplied data.
 
 | Parameter     | Description                                               |
 | ------------- | --------------------------------------------------------- |
-| name          | The name of the venue                                     |
+| name          | **String (optional)**<br>The name of the venue                                     |
 | federation_id | The ID of the Federation where the venue is located       |
 | source_id     | The ID that the Provider uses locally on their own system |
 
@@ -648,7 +651,7 @@ Deletes a venue with the supplied id.
 
 | Parameter | Description                     |
 | --------- | ------------------------------- |
-| ID        | The ID of the venue to retrieve |
+| ID        | The ID of the venue to delete   |
 
 ### Query Parameters
 
