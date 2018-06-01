@@ -49,7 +49,8 @@ Your token will be valid for two weeks from when you create a new session.
 ## Create a session
 
 ```shell
-curl -H "Content-type: application/json"
+curl -XPOST
+     -H "Content-type: application/json"
      -d '{"email": "user@domain.com", "password": "abcd1234"}'
 		 'https://eventing.api.equiratings.com/v1/sessions'
 ```
@@ -138,7 +139,8 @@ This endpoint does not support query parameters.
 ## Create a token
 
 ```shell
-curl -H "Content-type: application/json"
+curl -XPOST
+     -H "Content-type: application/json"
      -d '{"refresh_token": "jsdlka;fjl;kfjaljfslkjfslkjflkjoiwejwi232434$#%##"}'
 		 'https://eventing.api.equiratings.com/v1/tokens'
 ```
@@ -275,7 +277,7 @@ Returns a user for the supplied ID parameter.
 
 | Parameter | Description                                              |
 | --------- | -------------------------------------------------------- |
-| ID        | **Integer (required)**<br>The ID of the user to retrieve |
+| ID        | **Integer (required)**<br>The internal EquiRatings API ID of the user to retrieve |
 
 ### Query Parameters
 
@@ -287,7 +289,7 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"user": {"first_name": "New", "surname": "User", "email": "user@domain.com", "password": "abcd1234", "role": "provider_user"}}'
+     -d '{"user": {"first_name": "New", "surname": "User", "email": "new_user@domain.com", "password": "abcd1234", "role": "provider_user"}}'
      'https://eventing.api.equiratings.com/v1/users'
 ```
 
@@ -346,32 +348,36 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"user": {"first_name": "Sam", "surname": "Watson", "email": "user@domain.com", "password": "abcd1234", "role": "provider_admin"}}'
-     'https://eventing.api.equiratings.com/v1/users/1'
+     -d '{"user": {"first_name": "Updated", "password": "abcd1234"}}'
+     'https://eventing.api.equiratings.com/v1/users/11'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "user",
-    "relationships": {},
-    "links": {
-      "self": "/users/1"
+    "jsonapi": {
+        "version": "1.0"
     },
-    "id": "1",
-    "attributes": {
-      "surname": "Watson",
-      "role": "provider_admin",
-      "id": 1,
-      "first_name": "Sam",
-      "email": "user@domain.com"
+    "data": {
+        "type": "user",
+        "relationships": {
+            "token": {
+                "data": null
+            }
+        },
+        "links": {
+            "self": "/users/11"
+        },
+        "id": "11",
+        "attributes": {
+            "surname": "User",
+            "role": "provider_user",
+            "id": 11,
+            "first_name": "Updated",
+            "email": "new_user@domain.com"
+        }
     }
-  }
 }
 ```
 
@@ -383,19 +389,19 @@ Update a user for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                    |
-| ---------- | ------------------------------------------------------------------------------ |
-| first_name | The first name of the user                                                     |
-| surname    | The surname of the user                                                        |
-| email      | The email of the user                                                          |
-| password   | The password of the user, must be at least 8 characters                        |
-| roles      | The user role, valid roles are as follows: ["provider_admin", "provider_user"] |
+| Parameter  | Description                                                                                  |
+| ---------- | -------------------------------------------------------------------------------------------- |
+| first_name | **String**<br>The first name of the user                                                     |
+| surname    | **String**<br>The surname of the user                                                        |
+| email      | **String**<br>The email of the user                                                          |
+| password   | **String (required)**<br>The password of the user, must be at least 8 characters             |
+| roles      | **String**<br>The user role, valid roles are as follows: ["provider_admin", "provider_user"] |
 
 ### URL Parameters
 
 | Parameter | Description                    |
 | --------- | ------------------------------ |
-| ID        | The ID of the user to update   |
+| ID        | The internal EquiRatings API ID of the user to update   |
 
 ### Query Parameters
 
@@ -407,7 +413,7 @@ This endpoint does not support query parameters.
 curl -XDELETE
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/users/1'
+     'https://eventing.api.equiratings.com/v1/users/11'
 ```
 
 > DELETE request will return a 204 HTTP status code, with no json payload
@@ -422,7 +428,926 @@ Deletes a user with the supplied id.
 
 | Parameter | Description                    |
 | --------- | ------------------------------ |
-| ID        | The ID of the user to delete   |
+| ID        | The internal EquiRatings API ID of the user to delete   |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+# Federations
+
+## Get all Federations
+
+```shell
+curl -XGET
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/federations'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": [
+		{
+			"type": "federation",
+			"links": {
+				"self": "/federations/188"
+			},
+			"id": "188",
+			"attributes": {
+				"name": "HORSE SPORT IRELAND",
+				"id": 188,
+				"code": "IRL"
+			}
+		},
+		{
+			"type": "federation",
+			"links": {
+				"self": "/federations/176"
+			},
+			"id": "176",
+			"attributes": {
+				"name": "BRITISH EQUESTRIAN FEDERATION",
+				"id": 176,
+				"code": "GBR"
+			}
+		}
+	]
+}
+```
+
+Returns all federation for the current user's organization.
+
+### HTTP Request
+
+`GET https://eventing.api.equiratings.com/v1/federations`
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Get a Specific Federation
+
+```shell
+curl -XGET
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/federations/188'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "type": "federation",
+        "links": {
+            "self": "/federations/188"
+        },
+        "id": "188",
+        "attributes": {
+            "name": "HORSE SPORT IRELAND",
+            "id": 188,
+            "code": "IRL"
+        }
+    }
+}
+```
+
+Returns a federation for the supplied ID parameter.
+
+### HTTP Request
+
+`GET https://eventing.api.equiratings.com/v1/federations/:id`
+
+### URL Parameters
+
+| Parameter | Description                          |
+| --------- | ------------------------------------ |
+| ID        | The internal EquiRatings API ID of the federation to retrieve |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+# Athletes
+
+## Get all Athletes
+
+```shell
+curl -XGET
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/athletes'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "links": {
+        "self": "/v1/athletes?page[page]=1&page[page_size]=50"
+    },
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": [
+        {
+            "type": "athlete",
+            "links": {
+                "self": "/v1/athletes/27996"
+            },
+            "id": "27996",
+            "attributes": {
+                "surname": "Taylor",
+                "source_id": "002",
+                "nationality": "GBR",
+                "id": 27996,
+                "gender": "female",
+                "first_name": "Isabelle",
+                "fei_id": 10004377,
+                "federation_id": 176,
+                "dob": "1983-06-11",
+                "display_name": "Izzy Taylor"
+            }
+        },
+        {
+            "type": "athlete",
+            "links": {
+                "self": "/v1/athletes/27995"
+            },
+            "id": "27995",
+            "attributes": {
+                "surname": "Watson",
+                "source_id": "001",
+                "nationality": "IRL",
+                "id": 27995,
+                "gender": "male",
+                "first_name": "Sam",
+                "fei_id": 10007367,
+                "federation_id": 188,
+                "dob": "1982-01-14",
+                "display_name": "Sam Watson"
+            }
+        }
+    ]
+}
+```
+
+Returns all athlete for the current user's organization.
+
+### HTTP Request
+
+`GET https://eventing.api.equiratings.com/v1/athletes`
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Get a Specific Athlete
+
+```shell
+curl -XGET
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/athletes/27995'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "type": "athlete",
+        "links": {
+            "self": "/v1/athletes/27995"
+        },
+        "id": "27995",
+        "attributes": {
+            "surname": "Watson",
+            "source_id": "001",
+            "nationality": "IRL",
+            "id": 27995,
+            "gender": "male",
+            "first_name": "Sam",
+            "fei_id": 10007367,
+            "federation_id": 188,
+            "dob": "1982-01-14",
+            "display_name": "Sam Watson"
+        }
+    }
+}
+```
+
+Returns a athlete for the supplied ID parameter.
+
+### HTTP Request
+
+`GET https://eventing.api.equiratings.com/v1/athletes/:id`
+
+### URL Parameters
+
+| Parameter | Description                       |
+| --------- | --------------------------------- |
+| ID        | The internal EquiRatings API ID of the athlete to retrieve |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Create a Athlete
+
+```shell
+curl -XPOST
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     -d '{"athlete": {"surname": "Athlete", "nationality": "IRL", "gender": "non binary", "first_name": "New", "fei_id": 12345678, "dob": "1900-01-01", "source_id": "003", "display_name": "New Athlete", "federation_id": "188"}}'
+     'https://eventing.api.equiratings.com/v1/athletes'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "type": "athlete",
+        "links": {
+            "self": "/v1/athletes/27997"
+        },
+        "id": "27997",
+        "attributes": {
+            "surname": "Athlete",
+            "source_id": "003",
+            "nationality": "IRL",
+            "id": 27997,
+            "gender": "non binary",
+            "first_name": "New",
+            "fei_id": 12345678,
+            "federation_id": 188,
+            "dob": "1900-01-01",
+            "display_name": "New Athlete"
+        }
+    }
+}
+```
+
+Create a athlete for the supplied data.
+
+### HTTP Request
+
+`POST https://eventing.api.equiratings.com/v1/athletes/`
+
+### Attributes
+
+| Parameter     | Description                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| first_name    | **String (required)**<br>The first name of the athlete                                        |
+| surname       | **String (required)**<br>The surname of the athlete                                           |
+| gender        | **String (required)**<br>The gender of the athlete                                            |
+| nationality   | **String (required)**<br>The nationality of the athlete (ISO country code)                    |
+| dob           | **Date**<br>The date of birth of the athlete (YYYY-MM-DD)                                     |
+| display_name  | **String**<br>The name that is displayed for the athlete if it is different to their name     |
+| fei_id        | **Integer**<br>The fei_id of the athlete                                                      |
+| federation_id | **Integer**<br>The internal EquiRatings API ID of the federation the athlete belongs to       |
+| source_id     | **String (required)**<br>The ID that the Provider uses locally on their own system            |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Update a Athlete
+
+```shell
+curl -XPUT
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     -d '{"athlete": {"display_name": "Updated Athlete"}'
+     'https://eventing.api.equiratings.com/v1/athletes/27997'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "type": "athlete",
+        "links": {
+            "self": "/v1/athletes/27997"
+        },
+        "id": "27997",
+        "attributes": {
+            "surname": "Athlete",
+            "source_id": "003",
+            "nationality": "IRL",
+            "id": 27997,
+            "gender": "non binary",
+            "first_name": "New",
+            "fei_id": 12345678,
+            "federation_id": 188,
+            "dob": "1900-01-01",
+            "display_name": "Updated Athlete"
+        }
+    }
+}
+```
+
+Update a athlete for the supplied data.
+
+### HTTP Request
+
+`PUT https://eventing.api.equiratings.com/v1/athletes/:id`
+
+### Attributes
+
+| Parameter     | Description                                                                                   |
+| ------------- | --------------------------------------------------------------------------------------------- |
+| first_name    | **String**<br>The first name of the athlete                                                   |
+| surname       | **String**<br>The surname of the athlete                                                      |
+| gender        | **String**<br>The gender of the athlete                                                       |
+| nationality   | **String**<br>The nationality of the athlete (ISO country code)                               |
+| dob           | **Date**<br>The date of birth of the athlete (YYYY-MM-DD)                                     |
+| display_name  | **String**<br>The name that is displayed for the athlete if it is different to their name     |
+| fei_id        | **Integer**<br>The fei_id of the athlete                                                      |
+| federation_id | **Integer**<br>The internal EquiRatings API ID of the federation the athlete belongs to       |
+| source_id     | **String**<br>The ID that the Provider uses locally on their own system                       |
+
+### URL Parameters
+
+| Parameter | Description                       |
+| --------- | --------------------------------- |
+| ID        | The internal EquiRatings API ID of the athlete to retrieve |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Delete a Athlete
+
+```shell
+curl -XDELETE
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/athletes/27997'
+```
+
+> DELETE request will return a 204 HTTP status code, with no json payload
+
+Deletes a athlete with the supplied id.
+
+### HTTP Request
+
+`DELETE https://eventing.api.equiratings.com/v1/athletes/:id`
+
+### URL Parameters
+
+| Parameter | Description                       |
+| --------- | --------------------------------- |
+| ID        | The internal EquiRatings API ID of the athlete to retrieve |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+# Horses
+
+## Get all Horses
+
+```shell
+curl -XGET
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/horses'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "links": {
+        "self": "/v1/horses?page[page]=1&page[page_size]=50"
+    },
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": [
+        {
+            "type": "horse",
+            "links": {
+                "self": "/v1/horses/54738"
+            },
+            "id": "54738",
+            "attributes": {
+                "ueln": null,
+                "source_id": "001",
+                "risk_data": [],
+                "name": "Horseware Bushman",
+                "id": 54738,
+                "gender": "Gelding",
+                "fei_id": "IRL03630",
+                "dob": "1999-05-24",
+                "display_name": "Horseware Bushman"
+            }
+        },
+        {
+            "type": "horse",
+            "links": {
+                "self": "/v1/horses/54739"
+            },
+            "id": "54739",
+            "attributes": {
+                "ueln": null,
+                "source_id": "002",
+                "risk_data": [],
+                "name": "Mr Bass",
+                "id": 54739,
+                "gender": "Gelding",
+                "fei_id": "104KA86",
+                "dob": "2008-06-19",
+                "display_name": "Mr Bass"
+            }
+        }
+    ]
+}
+```
+
+Returns all horse for the current user's organization.
+
+### HTTP Request
+
+`GET https://eventing.api.equiratings.com/v1/horses`
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Get a Specific Horse
+
+```shell
+curl -XGET
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/horses/54738'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "type": "horse",
+        "links": {
+            "self": "/v1/horses/54738"
+        },
+        "id": "54738",
+        "attributes": {
+            "ueln": null,
+            "source_id": "001",
+            "risk_data": [],
+            "name": "Horseware Bushman",
+            "id": 54738,
+            "gender": "Gelding",
+            "fei_id": "IRL03630",
+            "dob": "1999-05-24",
+            "display_name": "Horseware Bushman"
+        }
+    }
+}
+```
+
+Returns a horse for the supplied ID parameter.
+
+### HTTP Request
+
+`GET https://eventing.api.equiratings.com/v1/horses/:id`
+
+### URL Parameters
+
+| Parameter | Description                     |
+| --------- | ------------------------------- |
+| ID        | The internal EquiRatings API ID of the horse to retrieve |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Create a Horse
+
+```shell
+curl -XPOST
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     -d '{"horse": {"name": "New Horse", "gender": "Gelding", "fei_id": "", "dob": "1900-01-01", "ueln": "", "source_id": "003", "display_name": "New Horse"}}'
+     'https://eventing.api.equiratings.com/v1/horses'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "type": "horse",
+        "links": {
+            "self": "/v1/horses/54740"
+        },
+        "id": "54740",
+        "attributes": {
+            "ueln": null,
+            "source_id": "003",
+            "risk_data": [],
+            "name": "New Horse",
+            "id": 54740,
+            "gender": "Gelding",
+            "fei_id": null,
+            "dob": "1900-01-01",
+            "display_name": "New Horse"
+        }
+    }
+}
+```
+
+Create a horse for the supplied data.
+
+### HTTP Request
+
+`POST https://eventing.api.equiratings.com/v1/horses/`
+
+### Attributes
+
+| Parameter    | Description                                                                        |
+| ------------ | ---------------------------------------------------------------------------------- |
+| name         | **String (required)**<br>The name of the horse                                     |
+| gender       | **String (required)**<br>The gender of the horse                                   |
+| dob          | **Date (required)**<br>The date of birth of the horse (YYYY-MM-DD)                 |
+| fei_id       | **String**<br>The fei id for the horse                                             |
+| ueln         | **String**<br>The unique equine life number of the horse                           |
+| display_name | **String**<br>The display name of the horse if different from the name             |
+| source_id    | **String (required)**<br>The ID that the Provider uses locally on their own system |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Update a Horse
+
+```shell
+curl -XPUT
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     -d '{"horse": {"display_name": "Updated Horse"}}'
+     'https://eventing.api.equiratings.com/v1/horses/54740'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "type": "horse",
+        "links": {
+            "self": "/v1/horses/54740"
+        },
+        "id": "54740",
+        "attributes": {
+            "ueln": null,
+            "source_id": "003",
+            "risk_data": [],
+            "name": "New Horse",
+            "id": 54740,
+            "gender": "Gelding",
+            "fei_id": null,
+            "dob": "1900-01-01",
+            "display_name": "Updated Horse"
+        }
+    }
+}
+```
+
+Update a horse for the supplied data.
+
+### HTTP Request
+
+`PUT https://eventing.api.equiratings.com/v1/horses/:id`
+
+### Attributes
+
+| Parameter    | Description                                                             |
+| ------------ | ----------------------------------------------------------------------- |
+| name         | **String**<br>The name of the horse                                     |
+| gender       | **String**<br>The gender of the horse                                   |
+| dob          | **Date**<br>The date of birth of the horse (YYYY-MM-DD)                 |
+| fei_id       | **String**<br>The fei id for the horse                                  |
+| ueln         | **String**<br>The unique equine life number of the horse                |
+| display_name | **String**<br>The display name of the horse if different from the name  |
+| source_id    | **String**<br>The ID that the Provider uses locally on their own system |
+
+### URL Parameters
+
+| Parameter | Description                     |
+| --------- | ------------------------------- |
+| ID        | The internal EquiRatings API ID of the horse to retrieve |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Delete a Horse
+
+```shell
+curl -XDELETE
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/horses/54740'
+```
+
+> DELETE request will return a 204 HTTP status code, with no json payload
+
+Deletes a horse with the supplied id.
+
+### HTTP Request
+
+`DELETE https://eventing.api.equiratings.com/v1/horses/:id`
+
+### URL Parameters
+
+| Parameter | Description                     |
+| --------- | ------------------------------- |
+| ID        | The internal EquiRatings API ID of the horse to retrieve |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+# Class Categories
+
+## Get all Class Categories
+
+```shell
+curl -XGET
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/class_categories'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "links": {
+        "self": "/v1/class_categories?page[page]=1&page[page_size]=50"
+    },
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": [
+        {
+            "type": "CCI",
+            "links": {
+                "self": "/v1/class_categories/146"
+            },
+            "id": "146",
+            "attributes": {
+                "type": "CCI",
+                "name": "CCI1*",
+                "level": "1",
+                "id": 146,
+                "er_level": 6
+            }
+        },
+        {
+            "type": "CCI",
+            "links": {
+                "self": "/v1/class_categories/147"
+            },
+            "id": "147",
+            "attributes": {
+                "type": "CCI",
+                "name": "CCI2*",
+                "level": "2",
+                "id": 147,
+                "er_level": 9
+            }
+        }
+    ]
+}
+```
+
+Returns all class_category records for the current user's organization.
+
+### HTTP Request
+
+`GET https://eventing.api.equiratings.com/v1/class_categories`
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Get a Specific ClassCategory
+
+```shell
+curl -XGET
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/class_categories/146'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "type": "CCI",
+        "links": {
+            "self": "/v1/class_categories/146"
+        },
+        "id": "146",
+        "attributes": {
+            "type": "CCI",
+            "name": "CCI1*",
+            "level": "1",
+            "id": 146,
+            "er_level": 6
+        }
+    }
+}
+```
+
+Returns a class_category for the supplied ID parameter.
+
+### HTTP Request
+
+`GET https://eventing.api.equiratings.com/v1/class_categories/:id`
+
+### URL Parameters
+
+| Parameter | Description                                                       |
+| --------- | ----------------------------------------------------------------- |
+| ID        | The internal EquiRatings API ID of the class_category to retrieve |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Create a ClassCategory
+
+```shell
+curl -XPOST
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     -d '{"class_category": {"type": "CCI", "name": "CCI3*", "level": "3"}}'
+     'https://eventing.api.equiratings.com/v1/class_categories'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "type": "CCI",
+        "links": {
+            "self": "/v1/class_categories/148"
+        },
+        "id": "148",
+        "attributes": {
+            "type": "CCI",
+            "name": "CCI3*",
+            "level": "3",
+            "id": 148,
+            "er_level": 12
+        }
+    }
+}
+```
+
+Create a class_category for the supplied data.
+
+### HTTP Request
+
+`POST https://eventing.api.equiratings.com/v1/class_categories/`
+
+### Attributes
+
+| Parameter | Description                                                   |
+| --------- | ------------------------------------------------------------- |
+| type      | **String (required)**<br>The type of the class category       |
+| name      | **String (required)**<br>The full name of the class category  |
+| level     | **String (required)**<br>The level of the class category      |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Update a ClassCategory
+
+```shell
+curl -XPUT
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     -d '{"class_category": {"name": "Updated CCI3*"}}'
+     'https://eventing.api.equiratings.com/v1/class_categories/148'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": {
+        "type": "CCI",
+        "links": {
+            "self": "/v1/class_categories/148"
+        },
+        "id": "148",
+        "attributes": {
+            "type": "CCI",
+            "name": "Updated CCI3*",
+            "level": "3",
+            "id": 148,
+            "er_level": 12
+        }
+    }
+}
+```
+
+Update a class_category for the supplied data.
+
+### HTTP Request
+
+`PUT https://eventing.api.equiratings.com/v1/class_categories/:id`
+
+### Attributes
+
+| Parameter | Description                                        |
+| --------- | -------------------------------------------------- |
+| type      | **String**<br>The type of the class category       |
+| name      | **String**<br>The full name of the class category  |
+| level     | **String**<br>The level of the class category      |
+
+### URL Parameters
+
+| Parameter | Description                                                       |
+| --------- | ----------------------------------------------------------------- |
+| ID        | The internal EquiRatings API ID of the class_category to retrieve |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+## Delete a ClassCategory
+
+```shell
+curl -XDELETE
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/class_categories/146'
+```
+
+> DELETE request will return a 204 HTTP status code, with no json payload
+
+Deletes a class_category with the supplied id.
+
+### HTTP Request
+
+`DELETE https://eventing.api.equiratings.com/v1/class_categories/:id`
+
+### URL Parameters
+
+| Parameter | Description                              |
+| --------- | ---------------------------------------- |
+| ID        | The internal EquiRatings API ID of the class_category to retrieve |
 
 ### Query Parameters
 
@@ -443,24 +1368,40 @@ curl -XGET
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": [
-    {
-      "type": "venue",
-      "links": {
-        "self": "/venues/1"
-      },
-      "id": "1",
-      "attributes": {
-        "name": "Chatsworth",
-        "id": 1,
-        "federation_id": 1,
-        "source_id": "abc123"
-      }
-    }
-  ]
+    "links": {
+        "self": "/v1/venues?page[page]=1&page[page_size]=50"
+    },
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": [
+        {
+            "type": "venue",
+            "links": {
+                "self": "/v1/venues/1"
+            },
+            "id": "1",
+            "attributes": {
+                "source_id": "001",
+                "name": "First Venue",
+                "id": 1,
+                "federation_id": 176
+            }
+        },
+        {
+            "type": "venue",
+            "links": {
+                "self": "/v1/venues/2"
+            },
+            "id": "2",
+            "attributes": {
+                "source_id": "002",
+                "name": "Second Venue",
+                "id": 2,
+                "federation_id": 176
+            }
+        }
+    ]
 }
 ```
 
@@ -487,22 +1428,22 @@ curl -XGET
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "venue",
-    "links": {
-      "self": "/venues/1"
+    "jsonapi": {
+        "version": "1.0"
     },
-    "id": "1",
-    "attributes": {
-      "name": "Chatsworth",
-      "id": 1,
-      "federation_id": 1,
-      "source_id": "abc123"
+    "data": {
+        "type": "venue",
+        "links": {
+            "self": "/v1/venues/1"
+        },
+        "id": "1",
+        "attributes": {
+            "source_id": "001",
+            "name": "First Venue",
+            "id": 1,
+            "federation_id": 176
+        }
     }
-  }
 }
 ```
 
@@ -514,9 +1455,9 @@ Returns a venue for the supplied ID parameter.
 
 ### URL Parameters
 
-| Parameter | Description                     |
-| --------- | ------------------------------- |
-| ID        | The ID of the venue to retrieve |
+| Parameter | Description                                           |
+| --------- | ----------------------------------------------------- |
+| ID        | The internal Eventing API ID of the venue to retrieve |
 
 ### Query Parameters
 
@@ -528,7 +1469,7 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"venue": {"name": "New Venue", "federation_id": "177", "source_id": "007"}}'
+     -d '{"venue": {"name": "New Venue", "federation_id": "176", "source_id": "007"}}'
      'https://eventing.api.equiratings.com/v1/venues'
 ```
 
@@ -542,14 +1483,14 @@ curl -XPOST
     "data": {
         "type": "venue",
         "links": {
-            "self": "/v1/venues/914"
+            "self": "/v1/venues/7"
         },
-        "id": "914",
+        "id": "7",
         "attributes": {
             "source_id": "007",
             "name": "New Venue",
-            "id": 914,
-            "federation_id": 177
+            "id": 7,
+            "federation_id": 176
         }
     }
 }
@@ -563,11 +1504,11 @@ Create a venue for the supplied data.
 
 ### Attributes
 
-| Parameter     | Description                                               |
-| ------------- | --------------------------------------------------------- |
-| name          | The name of the Venue                                     |
-| federation_id | The ID of the Federation where the venue is located       |
-| source_id     | The ID that the Provider uses locally on their own system |
+| Parameter     | Description                                                                        |
+| ------------- | ---------------------------------------------------------------------------------- |
+| name          | **String (required)**<br>The name of the Venue                                     |
+| federation_id | **String (required)**<br>The internal EquiRatings API ID of the Federation where the venue is located       |
+| source_id     | **String (required)**<br>The ID that the Provider uses locally on their own system |
 
 ### Query Parameters
 
@@ -580,7 +1521,7 @@ curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
      -d '{"venue": {"name": "Updated Venue"}}'
-     'https://eventing.api.equiratings.com/v1/venues/1'
+     'https://eventing.api.equiratings.com/v1/venues/7'
 ```
 
 > The above command returns JSON structured like this:
@@ -593,14 +1534,14 @@ curl -XPUT
     "data": {
         "type": "venue",
         "links": {
-            "self": "/v1/venues/914"
+            "self": "/v1/venues/7"
         },
-        "id": "914",
+        "id": "7",
         "attributes": {
             "source_id": "007",
             "name": "Updated Venue",
-            "id": 914,
-            "federation_id": 177
+            "id": 7,
+            "federation_id": 176
         }
     }
 }
@@ -614,17 +1555,17 @@ Update a venue for the supplied data.
 
 ### Attributes
 
-| Parameter     | Description                                               |
-| ------------- | --------------------------------------------------------- |
-| name          | **String (optional)**<br>The name of the venue                                     |
-| federation_id | The ID of the Federation where the venue is located       |
-| source_id     | The ID that the Provider uses locally on their own system |
+| Parameter     | Description                                                             |
+| ------------- | ----------------------------------------------------------------------- |
+| name          | **String**<br>The name of the venue                                     |
+| federation_id | **Integer**<br>The internal EquiRatings API ID of the Federation where the venue is located      |
+| source_id     | **String**<br>The ID that the Provider uses locally on their own system |
 
 ### URL Parameters
 
 | Parameter | Description                     |
 | --------- | ------------------------------- |
-| ID        | The ID of the venue to retrieve |
+| ID        | The internal EquiRatings API ID of the venue to retrieve |
 
 ### Query Parameters
 
@@ -636,7 +1577,7 @@ This endpoint does not support query parameters.
 curl -XDELETE
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/venues/1'
+     'https://eventing.api.equiratings.com/v1/venues/7'
 ```
 
 > DELETE request will return a 204 HTTP status code, with no json payload
@@ -649,9 +1590,9 @@ Deletes a venue with the supplied id.
 
 ### URL Parameters
 
-| Parameter | Description                     |
-| --------- | ------------------------------- |
-| ID        | The ID of the venue to delete   |
+| Parameter | Description                                              |
+| --------- | -------------------------------------------------------- |
+| ID        | The internal EquiRatings API ID of the venue to delete   |
 
 ### Query Parameters
 
@@ -672,31 +1613,48 @@ curl -XGET
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": [
-    {
-      "type": "show",
-      "links": {
-        "self": "/shows/1"
-      },
-      "id": "1",
-      "attributes": {
-        "venue_id": 1,
-        "start_date": "2018-03-12",
-        "source_id": null,
-        "provider_id": 1,
-        "name": "Chatsworth International",
-        "id": 1,
-        "end_date": "2018-03-15"
-      }
-    }
-  ]
+    "links": {
+        "self": "/v1/shows?page[page]=1&page[page_size]=50"
+    },
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": [
+        {
+            "type": "show",
+            "links": {
+                "self": "/v1/shows/4975"
+            },
+            "id": "4975",
+            "attributes": {
+                "venue_id": 1,
+                "start_date": "2018-03-12",
+                "source_id": "show_001",
+                "name": "First Show",
+                "id": 4975,
+                "end_date": "2018-03-15"
+            }
+        },
+        {
+            "type": "show",
+            "links": {
+                "self": "/v1/shows/4976"
+            },
+            "id": "4976",
+            "attributes": {
+                "venue_id": 1,
+                "start_date": "2018-03-19",
+                "source_id": "show_002",
+                "name": "Second Show",
+                "id": 4976,
+                "end_date": "2018-03-22"
+            }
+        }
+    ]
 }
 ```
 
-Returns all show for the current users's organization.
+Returns all show for the current user's organization.
 
 ### HTTP Request
 
@@ -712,32 +1670,31 @@ This endpoint does not support query parameters.
 curl -XGET
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/shows/1'
+     'https://eventing.api.equiratings.com/v1/shows/4975'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "show",
-    "links": {
-      "self": "/shows/1"
+    "jsonapi": {
+        "version": "1.0"
     },
-    "id": "1",
-    "attributes": {
-      "venue_id": 1,
-      "start_date": "2018-03-12",
-      "source_id": null,
-      "provider_id": 1,
-      "name": "Chatsworth International",
-      "id": 1,
-      "end_date": "2018-03-15"
+    "data": {
+        "type": "show",
+        "links": {
+            "self": "/v1/shows/4975"
+        },
+        "id": "4975",
+        "attributes": {
+            "venue_id": 1,
+            "start_date": "2018-03-12",
+            "source_id": "show_001",
+            "name": "First Show",
+            "id": 4975,
+            "end_date": "2018-03-15"
+        }
     }
-  }
 }
 ```
 
@@ -749,9 +1706,9 @@ Returns a show for the supplied ID parameter.
 
 ### URL Parameters
 
-| Parameter | Description                    |
-| --------- | ------------------------------ |
-| ID        | The ID of the show to retrieve |
+| Parameter | Description                                             |
+| --------- | ------------------------------------------------------- |
+| ID        | The internal EquiRatings API ID of the show to retrieve |
 
 ### Query Parameters
 
@@ -763,7 +1720,7 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"show": { "start_date": "2018-03-12", "name": "Chatsworth International", "end_date": "2018-03-15", "venue_id": 1}}'
+     -d '{"show": {"venue_id": 1, "start_date": "2018-03-26", "source_id": "show_003", "name": "New Show", "end_date": "2018-03-29"}}'
      'https://eventing.api.equiratings.com/v1/shows'
 ```
 
@@ -771,25 +1728,24 @@ curl -XPOST
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "show",
-    "links": {
-      "self": "/shows/1"
+    "jsonapi": {
+        "version": "1.0"
     },
-    "id": "1",
-    "attributes": {
-      "venue_id": 1,
-      "start_date": "2018-03-12",
-      "source_id": null,
-      "provider_id": 1,
-      "name": "Chatsworth International",
-      "id": 1,
-      "end_date": "2018-03-15"
+    "data": {
+        "type": "show",
+        "links": {
+            "self": "/v1/shows/4977"
+        },
+        "id": "4977",
+        "attributes": {
+            "venue_id": 1,
+            "start_date": "2018-03-26",
+            "source_id": "show_003",
+            "name": "New Show",
+            "id": 4977,
+            "end_date": "2018-03-29"
+        }
     }
-  }
 }
 ```
 
@@ -801,13 +1757,13 @@ Create a show for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                               |
-| ---------- | --------------------------------------------------------- |
-| name       | The name of the show                                      |
-| start_date | The start_date of the show                                |
-| end_date   | The end_date of the show                                  |
-| venue_id   | The venue id for the venue of the show                    |
-| source_id  | The ID that the Provider uses locally on their own system |
+| Parameter  | Description                                                                            |
+| ---------- | -------------------------------------------------------------------------------------- |
+| name       | **String (required)**<br>The name of the show                                          |
+| start_date | **Date (required)**<br>The start_date of the show (YYYY-MM-DD)                         |
+| end_date   | **Date (required)**<br>The end_date of the show (YYYY-MM-DD)                           |
+| venue_id   | **Integer (required)**<br>The internal EquiRatings API ID for the venue of the show    |
+| source_id  | **String (required)**<br>The ID that the Provider uses locally on their own system     |
 
 ### Query Parameters
 
@@ -819,33 +1775,32 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"show": {"name": "Updated name"}}'
-     'https://eventing.api.equiratings.com/v1/shows/1'
+     -d '{"show": {"name": "Updated Show"}}'
+     'https://eventing.api.equiratings.com/v1/shows/4977'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "show",
-    "links": {
-      "self": "/shows/1"
+    "jsonapi": {
+        "version": "1.0"
     },
-    "id": "1",
-    "attributes": {
-      "venue_id": 1,
-      "start_date": "2018-03-12",
-      "source_id": null,
-      "provider_id": 1,
-      "name": "Chatsworth International",
-      "id": 1,
-      "end_date": "2018-03-15"
+    "data": {
+        "type": "show",
+        "links": {
+            "self": "/v1/shows/4977"
+        },
+        "id": "4977",
+        "attributes": {
+            "venue_id": 1,
+            "start_date": "2018-03-26",
+            "source_id": "show_003",
+            "name": "Updated Show",
+            "id": 4977,
+            "end_date": "2018-03-29"
+        }
     }
-  }
 }
 ```
 
@@ -857,19 +1812,19 @@ Update a show for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                               |
-| ---------- | --------------------------------------------------------- |
-| start_date | The start_date of the show                                |
-| name       | The name of the show                                      |
-| end_date   | The end_date of the show                                  |
-| venue_id   | The venue id for the venue of the show                    |
-| source_id  | The ID that the Provider uses locally on their own system |
+| Parameter  | Description                                                                 |
+| ---------- | --------------------------------------------------------------------------- |
+| name       | **String**<br>The name of the show                                          |
+| start_date | **Date**<br>The start_date of the show (YYYY-MM-DD)                         |
+| end_date   | **Date**<br>The end_date of the show (YYYY-MM-DD)                           |
+| venue_id   | **Integer**<br>The internal EquiRatings API ID for the venue of the show    |
+| source_id  | **String**<br>The ID that the Provider uses locally on their own system     |
 
 ### URL Parameters
 
 | Parameter | Description                    |
 | --------- | ------------------------------ |
-| ID        | The ID of the show to retrieve |
+| ID        | The internal EquiRatings API ID of the show to retrieve |
 
 ### Query Parameters
 
@@ -881,7 +1836,7 @@ This endpoint does not support query parameters.
 curl -XDELETE
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/shows/1'
+     'https://eventing.api.equiratings.com/v1/shows/4977'
 ```
 
 > DELETE request will return a 204 HTTP status code, with no json payload
@@ -896,7 +1851,7 @@ Deletes a show with the supplied id.
 
 | Parameter | Description                    |
 | --------- | ------------------------------ |
-| ID        | The ID of the show to retrieve |
+| ID        | The internal EquiRatings API ID of the show to retrieve |
 
 ### Query Parameters
 
@@ -917,77 +1872,122 @@ curl -XGET
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "included": [
-    {
-      "type": "result",
-      "links": {
-        "self": "/v1/results/5624"
-      },
-      "id": "5624",
-      "attributes": {
-        "xc_time": null,
-        "xc_status": "EL",
-        "xc_jump": "0",
-        "xc_comment": null,
-        "xc_code": "FH",
-        "source_id": null,
-        "sj_time": null,
-        "sj_status": "NS",
-        "sj_jump": null,
-        "sj_code": null,
-        "second_hi_status": null,
-        "id": 5624,
-        "horse_id": 2970,
-        "first_hi_status": null,
-        "final_status": "EL",
-        "final_score": null,
-        "final_position": null,
-        "final_comment": null,
-        "final_code": null,
-        "dr_status": "OK",
-        "dr_score": null,
-        "dr_percentage": null,
-        "dr_comment": null,
-        "dr_code": null,
-        "disqualification_code": null,
-        "competition_id": 6076,
-        "athlete_id": 3047
-      }
-    }
-  ],
-  "data": {
-    "type": "competition",
-    "relationships": {
-      "results": {
-        "data": [
-          {
-            "type": "result",
-            "id": "5624"
-          }
-        ]
-      }
-    },
     "links": {
-      "self": "/v1/competitions/6076"
+        "self": "/v1/competitions?page[page]=1&page[page_size]=50"
     },
-    "id": "6076",
-    "attributes": {
-      "source_id": null,
-      "sj_before_xc": true,
-      "show_id": 2405,
-      "second_hi_order": null,
-      "name": "N",
-      "id": 6076,
-      "first_hi_order": null,
-      "display_name": null,
-      "date": "2018-03-19",
-      "class_category_id": 3855,
-      "championship": false
-    }
-  }
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "included": [
+        {
+            "type": "result",
+            "links": {
+                "self": "/v1/results/335818"
+            },
+            "id": "335818",
+            "attributes": {
+                "xc_time": null,
+                "xc_status": "EL",
+                "xc_jump": 0,
+                "xc_comment": null,
+                "xc_code": "FH",
+                "source_id": "001",
+                "sj_time": null,
+                "sj_status": "NS",
+                "sj_jump": null,
+                "sj_code": null,
+                "second_hi_status": null,
+                "id": 335818,
+                "horse_id": 54739,
+                "first_hi_status": "OK",
+                "final_status": "EL",
+                "final_score": null,
+                "final_position": null,
+                "final_comment": null,
+                "final_code": "XC",
+                "dr_status": "OK",
+                "dr_score": "33.2",
+                "dr_percentage": "66.8",
+                "dr_comment": null,
+                "dr_code": null,
+                "disqualification_code": null,
+                "competition_id": 10650,
+                "athlete_id": 27996
+            }
+        },
+        {
+            "type": "result",
+            "links": {
+                "self": "/v1/results/335819"
+            },
+            "id": "335819",
+            "attributes": {
+                "xc_time": "0",
+                "xc_status": "OK",
+                "xc_jump": 0,
+                "xc_comment": null,
+                "xc_code": null,
+                "source_id": "002",
+                "sj_time": 0,
+                "sj_status": "OK",
+                "sj_jump": 0,
+                "sj_code": null,
+                "second_hi_status": null,
+                "id": 335819,
+                "horse_id": 54738,
+                "first_hi_status": "OK",
+                "final_status": "OK",
+                "final_score": "30.2",
+                "final_position": 1,
+                "final_comment": null,
+                "final_code": null,
+                "dr_status": "OK",
+                "dr_score": "30.2",
+                "dr_percentage": "69.8",
+                "dr_comment": null,
+                "dr_code": null,
+                "disqualification_code": null,
+                "competition_id": 10650,
+                "athlete_id": 27995
+            }
+        }
+    ],
+    "data": [
+        {
+            "type": "competition",
+            "relationships": {
+                "results": {
+                    "data": [
+                        {
+                            "type": "result",
+                            "id": "335819"
+                        },
+                        {
+                            "type": "result",
+                            "id": "335818"
+                        }
+                    ]
+                }
+            },
+            "links": {
+                "self": "/v1/competitions/10650"
+            },
+            "id": "10650",
+            "attributes": {
+                "source_id": "001",
+                "sj_before_xc": false,
+                "show_id": 4975,
+                "second_hi_order": "Before_SJ",
+                "name": "Competition 1",
+                "id": 10650,
+                "first_hi_order": "Before_DR",
+                "display_name": "First Competition",
+                "date": "2018-03-12",
+                "class_category_id": 148,
+                "championship": false
+            }
+        }
+    ]
 }
 ```
 
@@ -1007,84 +2007,124 @@ This endpoint does not support query parameters.
 curl -XGET
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/competitions/1'
+     'https://eventing.api.equiratings.com/v1/competitions/10650'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "included": [
-    {
-      "type": "result",
-      "links": {
-        "self": "/v1/results/5624"
-      },
-      "id": "5624",
-      "attributes": {
-        "xc_time": null,
-        "xc_status": "EL",
-        "xc_jump": "0",
-        "xc_comment": null,
-        "xc_code": "FH",
-        "source_id": null,
-        "sj_time": null,
-        "sj_status": "NS",
-        "sj_jump": null,
-        "sj_code": null,
-        "second_hi_status": null,
-        "id": 5624,
-        "horse_id": 2970,
-        "first_hi_status": null,
-        "final_status": "EL",
-        "final_score": null,
-        "final_position": null,
-        "final_comment": null,
-        "final_code": null,
-        "dr_status": "OK",
-        "dr_score": null,
-        "dr_percentage": null,
-        "dr_comment": null,
-        "dr_code": null,
-        "disqualification_code": null,
-        "competition_id": 6076,
-        "athlete_id": 3047
-      }
-    }
-  ],
-  "data": {
-    "type": "competition",
-    "relationships": {
-      "results": {
-        "data": [
-          {
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "included": [
+        {
             "type": "result",
-            "id": "5624"
-          }
-        ]
-      }
-    },
-    "links": {
-      "self": "/v1/competitions/6076"
-    },
-    "id": "6076",
-    "attributes": {
-      "source_id": null,
-      "sj_before_xc": true,
-      "show_id": 2405,
-      "second_hi_order": null,
-      "name": "N",
-      "id": 6076,
-      "first_hi_order": null,
-      "display_name": null,
-      "date": "2018-03-19",
-      "class_category_id": 3855,
-      "championship": false
+            "links": {
+                "self": "/v1/results/335818"
+            },
+            "id": "335818",
+            "attributes": {
+                "xc_time": null,
+                "xc_status": "EL",
+                "xc_jump": 0,
+                "xc_comment": null,
+                "xc_code": "FH",
+                "source_id": "001",
+                "sj_time": null,
+                "sj_status": "NS",
+                "sj_jump": null,
+                "sj_code": null,
+                "second_hi_status": null,
+                "id": 335818,
+                "horse_id": 54739,
+                "first_hi_status": "OK",
+                "final_status": "EL",
+                "final_score": null,
+                "final_position": null,
+                "final_comment": null,
+                "final_code": "XC",
+                "dr_status": "OK",
+                "dr_score": "33.2",
+                "dr_percentage": "66.8",
+                "dr_comment": null,
+                "dr_code": null,
+                "disqualification_code": null,
+                "competition_id": 10650,
+                "athlete_id": 27996
+            }
+        },
+        {
+            "type": "result",
+            "links": {
+                "self": "/v1/results/335819"
+            },
+            "id": "335819",
+            "attributes": {
+                "xc_time": "0",
+                "xc_status": "OK",
+                "xc_jump": 0,
+                "xc_comment": null,
+                "xc_code": null,
+                "source_id": "002",
+                "sj_time": 0,
+                "sj_status": "OK",
+                "sj_jump": 0,
+                "sj_code": null,
+                "second_hi_status": null,
+                "id": 335819,
+                "horse_id": 54738,
+                "first_hi_status": "OK",
+                "final_status": "OK",
+                "final_score": "30.2",
+                "final_position": 1,
+                "final_comment": null,
+                "final_code": null,
+                "dr_status": "OK",
+                "dr_score": "30.2",
+                "dr_percentage": "69.8",
+                "dr_comment": null,
+                "dr_code": null,
+                "disqualification_code": null,
+                "competition_id": 10650,
+                "athlete_id": 27995
+            }
+        }
+    ],
+    "data": {
+        "type": "competition",
+        "relationships": {
+            "results": {
+                "data": [
+                    {
+                        "type": "result",
+                        "id": "335819"
+                    },
+                    {
+                        "type": "result",
+                        "id": "335818"
+                    }
+                ]
+            }
+        },
+        "links": {
+            "self": "/v1/competitions/10650"
+        },
+        "id": "10650",
+        "attributes": {
+            "source_id": "001",
+            "sj_before_xc": false,
+            "show_id": 4975,
+            "second_hi_order": "Before_SJ",
+            "name": "Competition 1",
+            "id": 10650,
+            "first_hi_order": "Before_DR",
+            "display_name": "First Competition",
+            "date": "2018-03-12",
+            "class_category_id": 148,
+            "championship": false
+        }
     }
-  }
 }
 ```
 
@@ -1096,9 +2136,9 @@ Returns a competition for the supplied ID parameter.
 
 ### URL Parameters
 
-| Parameter | Description                           |
-| --------- | ------------------------------------- |
-| ID        | The ID of the competition to retrieve |
+| Parameter | Description                                                    |
+| --------- | -------------------------------------------------------------- |
+| ID        | The internal EquiRatings API ID of the competition to retrieve |
 
 ### Query Parameters
 
@@ -1111,30 +2151,74 @@ curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
      -d '{
-       "competition": {
-         "sj_before_xc": true,
-         "results": [
-           {
-             "xc_status": "EL",
-             "xc_jump": 0,
-             "xc_code": "FH",
-             "sj_status": "NS",
-             "provider_id": 2812,
-             "horse_id": 1108,
-             "final_status": "EL",
-             "dr_status": "OK",
-             "athlete_id": 1120
-           }
-         ],
-         "name": "N",
-         "date": "2018-03-12",
-         "class_category_id": 1465,
-         "championship": false,
-         "show_id": 1,
-         "class_category_id": 1,
-         "display_name": null,
-         "source_id": "abc123"
-       }
+         "competition": {
+             "source_id": "002",
+             "sj_before_xc": false,
+             "show_id": 4975,
+             "second_hi_order": "Before_SJ",
+             "name": "Competition 2",
+             "first_hi_order": "Before_DR",
+             "display_name": "Second Competition",
+             "date": "2018-03-13",
+             "class_category_id": 147,
+             "championship": false,
+             "results": [
+                 {
+                     "xc_time": null,
+                     "xc_status": "EL",
+                     "xc_jump": 0,
+                     "xc_comment": null,
+                     "xc_code": "FH",
+                     "source_id": "003",
+                     "sj_time": null,
+                     "sj_status": "NS",
+                     "sj_jump": null,
+                     "sj_code": null,
+                     "second_hi_status": null,
+                     "horse_id": 54739,
+                     "first_hi_status": "OK",
+                     "final_status": "EL",
+                     "final_score": null,
+                     "final_position": null,
+                     "final_comment": null,
+                     "final_code": "XC",
+                     "dr_status": "OK",
+                     "dr_score": 33.2,
+                     "dr_percentage": 66.8,
+                     "dr_comment": null,
+                     "dr_code": "",
+                     "disqualification_code": null,
+                     "athlete_id": 27996
+                },
+                {
+                     "xc_time": 0,
+                     "xc_status": "OK",
+                     "xc_jump": 0,
+                     "xc_comment": null,
+                     "xc_code": "",
+                     "source_id": "004",
+                     "sj_time": 0,
+                     "sj_status": "OK",
+                     "sj_jump": 0,
+                     "sj_code": "",
+                     "second_hi_status": null,
+                     "horse_id": 54738,
+                     "first_hi_status": "OK",
+                     "final_status": "OK",
+                     "final_score": 30.2,
+                     "final_position": 1,
+                     "final_comment": "",
+                     "final_code": "",
+                     "dr_status": "OK",
+                     "dr_score": 30.2,
+                     "dr_percentage": 69.8,
+                     "dr_comment": "",
+                     "dr_code": "",
+                     "disqualification_code": "",
+                     "athlete_id": 27995
+                }
+             ]
+         }
      }'
      'https://eventing.api.equiratings.com/v1/competitions'
 ```
@@ -1143,77 +2227,117 @@ curl -XPOST
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "included": [
-    {
-      "type": "result",
-      "links": {
-        "self": "/v1/results/5624"
-      },
-      "id": "5624",
-      "attributes": {
-        "xc_time": null,
-        "xc_status": "EL",
-        "xc_jump": "0",
-        "xc_comment": null,
-        "xc_code": "FH",
-        "source_id": null,
-        "sj_time": null,
-        "sj_status": "NS",
-        "sj_jump": null,
-        "sj_code": null,
-        "second_hi_status": null,
-        "id": 5624,
-        "horse_id": 2970,
-        "first_hi_status": null,
-        "final_status": "EL",
-        "final_score": null,
-        "final_position": null,
-        "final_comment": null,
-        "final_code": null,
-        "dr_status": "OK",
-        "dr_score": null,
-        "dr_percentage": null,
-        "dr_comment": null,
-        "dr_code": null,
-        "disqualification_code": null,
-        "competition_id": 6076,
-        "athlete_id": 3047
-      }
-    }
-  ],
-  "data": {
-    "type": "competition",
-    "relationships": {
-      "results": {
-        "data": [
-          {
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "included": [
+        {
             "type": "result",
-            "id": "5624"
-          }
-        ]
-      }
-    },
-    "links": {
-      "self": "/v1/competitions/6076"
-    },
-    "id": "6076",
-    "attributes": {
-      "source_id": null,
-      "sj_before_xc": true,
-      "show_id": 2405,
-      "second_hi_order": null,
-      "name": "N",
-      "id": 6076,
-      "first_hi_order": null,
-      "display_name": null,
-      "date": "2018-03-19",
-      "class_category_id": 3855,
-      "championship": false
+            "links": {
+                "self": "/v1/results/335821"
+            },
+            "id": "335821",
+            "attributes": {
+                "xc_time": null,
+                "xc_status": "EL",
+                "xc_jump": 0,
+                "xc_comment": null,
+                "xc_code": "FH",
+                "source_id": "003",
+                "sj_time": null,
+                "sj_status": "NS",
+                "sj_jump": null,
+                "sj_code": null,
+                "second_hi_status": null,
+                "id": 335821,
+                "horse_id": 54739,
+                "first_hi_status": "OK",
+                "final_status": "EL",
+                "final_score": null,
+                "final_position": null,
+                "final_comment": null,
+                "final_code": "XC",
+                "dr_status": "OK",
+                "dr_score": "33.2",
+                "dr_percentage": "66.8",
+                "dr_comment": null,
+                "dr_code": null,
+                "disqualification_code": null,
+                "competition_id": 10652,
+                "athlete_id": 27996
+            }
+        },
+        {
+            "type": "result",
+            "links": {
+                "self": "/v1/results/335822"
+            },
+            "id": "335822",
+            "attributes": {
+                "xc_time": "0",
+                "xc_status": "OK",
+                "xc_jump": 0,
+                "xc_comment": null,
+                "xc_code": null,
+                "source_id": "004",
+                "sj_time": 0,
+                "sj_status": "OK",
+                "sj_jump": 0,
+                "sj_code": null,
+                "second_hi_status": null,
+                "id": 335822,
+                "horse_id": 54738,
+                "first_hi_status": "OK",
+                "final_status": "OK",
+                "final_score": "30.2",
+                "final_position": 1,
+                "final_comment": null,
+                "final_code": null,
+                "dr_status": "OK",
+                "dr_score": "30.2",
+                "dr_percentage": "69.8",
+                "dr_comment": null,
+                "dr_code": null,
+                "disqualification_code": null,
+                "competition_id": 10652,
+                "athlete_id": 27995
+            }
+        }
+    ],
+    "data": {
+        "type": "competition",
+        "relationships": {
+            "results": {
+                "data": [
+                    {
+                        "type": "result",
+                        "id": "335821"
+                    },
+                    {
+                        "type": "result",
+                        "id": "335822"
+                    }
+                ]
+            }
+        },
+        "links": {
+            "self": "/v1/competitions/10652"
+        },
+        "id": "10652",
+        "attributes": {
+            "source_id": "002",
+            "sj_before_xc": false,
+            "show_id": 4975,
+            "second_hi_order": "Before_SJ",
+            "name": "Competition 2",
+            "id": 10652,
+            "first_hi_order": "Before_DR",
+            "display_name": "Second Competition",
+            "date": "2018-03-13",
+            "class_category_id": 147,
+            "championship": false
+        }
     }
-  }
 }
 ```
 
@@ -1225,19 +2349,19 @@ Create a competition for the supplied data.
 
 ### Attributes
 
-| Parameter         | Description                                                                       |
-| ----------------- | --------------------------------------------------------------------------------- |
-| name              | The name of the competition                                                       |
-| date              | The date that the competition started                                             |
-| sj_before_xc      | If SJ is before XC this will be true, otherwise false                             |
-| first_hi_order    | If a 1st Horse Inspection takes place and if so before which phase the HI happens |
-| second_hi_order   | If a 2nd Horse Inspection takes place and if so before which phase the HI happens |
-| display_name      | The display name of the competition if different to the competition name          |
-| championship      | Is the competition a championship competition                                     |
-| results           | These are the results for the compeition                                          |
-| class_category_id | This is the class level for the competition                                       |
-| show_id           | This is the ID of the show that this competition is part of.                      |
-| source_id         | The ID that the Provider uses locally on their own system                         |
+| Parameter         | Description                                                                                                       |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------- |
+| name              | **String (required)**<br>The name of the competition                                                       		|
+| date              | **Date (required)**<br>The date that the competition started                                             			|
+| sj_before_xc      | **Boolean (required)**<br>If SJ is before XC this will be true, otherwise false                             		|
+| first_hi_order    | **String**<br>If a 1st Horse Inspection takes place and if so before which phase the HI happens 					|
+| second_hi_order   | **String**<br>If a 2nd Horse Inspection takes place and if so before which phase the HI happens 					|
+| display_name      | **String**<br>The display name of the competition if different to the competition name          					|
+| championship      | **Boolean**<br>Is the competition a championship competition                                    					|
+| results           | **Results (required)**<br>These are the results for the compeition                                          		|
+| class_category_id | **Integer (required)**<br>This is the internal EquiRatings API ID for the class category of this competition 		|
+| show_id           | **Integer (required)**<br>This is the internal EquiRatings API ID of the show that this competition is part of.   |
+| source_id         | **String**<br>The ID that the Provider uses locally on their own system                         					|
 
 ### Query Parameters
 
@@ -1249,85 +2373,125 @@ This endpoint does not support query parameters.
 curl -XPUT
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"competition": {"name": "Updated name"}}'
-     'https://eventing.api.equiratings.com/v1/competitions/1'
+     -d '{"competition": {"display_name": "Updated Second Competition"}}'
+     'https://eventing.api.equiratings.com/v1/competitions/10652'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "included": [
-    {
-      "type": "result",
-      "links": {
-        "self": "/v1/results/5624"
-      },
-      "id": "5624",
-      "attributes": {
-        "xc_time": null,
-        "xc_status": "EL",
-        "xc_jump": "0",
-        "xc_comment": null,
-        "xc_code": "FH",
-        "source_id": null,
-        "sj_time": null,
-        "sj_status": "NS",
-        "sj_jump": null,
-        "sj_code": null,
-        "second_hi_status": null,
-        "id": 5624,
-        "horse_id": 2970,
-        "first_hi_status": null,
-        "final_status": "EL",
-        "final_score": null,
-        "final_position": null,
-        "final_comment": null,
-        "final_code": null,
-        "dr_status": "OK",
-        "dr_score": null,
-        "dr_percentage": null,
-        "dr_comment": null,
-        "dr_code": null,
-        "disqualification_code": null,
-        "competition_id": 6076,
-        "athlete_id": 3047
-      }
-    }
-  ],
-  "data": {
-    "type": "competition",
-    "relationships": {
-      "results": {
-        "data": [
-          {
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "included": [
+        {
             "type": "result",
-            "id": "5624"
-          }
-        ]
-      }
-    },
-    "links": {
-      "self": "/v1/competitions/6076"
-    },
-    "id": "6076",
-    "attributes": {
-      "source_id": null,
-      "sj_before_xc": true,
-      "show_id": 2405,
-      "second_hi_order": null,
-      "name": "N",
-      "id": 6076,
-      "first_hi_order": null,
-      "display_name": null,
-      "date": "2018-03-19",
-      "class_category_id": 3855,
-      "championship": false
+            "links": {
+                "self": "/v1/results/335821"
+            },
+            "id": "335821",
+            "attributes": {
+                "xc_time": null,
+                "xc_status": "EL",
+                "xc_jump": 0,
+                "xc_comment": null,
+                "xc_code": "FH",
+                "source_id": "003",
+                "sj_time": null,
+                "sj_status": "NS",
+                "sj_jump": null,
+                "sj_code": null,
+                "second_hi_status": null,
+                "id": 335821,
+                "horse_id": 54739,
+                "first_hi_status": "OK",
+                "final_status": "EL",
+                "final_score": null,
+                "final_position": null,
+                "final_comment": null,
+                "final_code": "XC",
+                "dr_status": "OK",
+                "dr_score": "33.2",
+                "dr_percentage": "66.8",
+                "dr_comment": null,
+                "dr_code": null,
+                "disqualification_code": null,
+                "competition_id": 10652,
+                "athlete_id": 27996
+            }
+        },
+        {
+            "type": "result",
+            "links": {
+                "self": "/v1/results/335822"
+            },
+            "id": "335822",
+            "attributes": {
+                "xc_time": "0",
+                "xc_status": "OK",
+                "xc_jump": 0,
+                "xc_comment": null,
+                "xc_code": null,
+                "source_id": "004",
+                "sj_time": 0,
+                "sj_status": "OK",
+                "sj_jump": 0,
+                "sj_code": null,
+                "second_hi_status": null,
+                "id": 335822,
+                "horse_id": 54738,
+                "first_hi_status": "OK",
+                "final_status": "OK",
+                "final_score": "30.2",
+                "final_position": 1,
+                "final_comment": null,
+                "final_code": null,
+                "dr_status": "OK",
+                "dr_score": "30.2",
+                "dr_percentage": "69.8",
+                "dr_comment": null,
+                "dr_code": null,
+                "disqualification_code": null,
+                "competition_id": 10652,
+                "athlete_id": 27995
+            }
+        }
+    ],
+    "data": {
+        "type": "competition",
+        "relationships": {
+            "results": {
+                "data": [
+                    {
+                        "type": "result",
+                        "id": "335822"
+                    },
+                    {
+                        "type": "result",
+                        "id": "335821"
+                    }
+                ]
+            }
+        },
+        "links": {
+            "self": "/v1/competitions/10652"
+        },
+        "id": "10652",
+        "attributes": {
+            "source_id": "002",
+            "sj_before_xc": false,
+            "show_id": 4975,
+            "second_hi_order": "Before_SJ",
+            "name": "Competition 2",
+            "id": 10652,
+            "first_hi_order": "Before_DR",
+            "display_name": "Updated Second Competition",
+            "date": "2018-03-13",
+            "class_category_id": 147,
+            "championship": false
+        }
     }
-  }
 }
 ```
 
@@ -1339,24 +2503,25 @@ Update a competition for the supplied data.
 
 ### Attributes
 
-| Parameter         | Description                                                                       |
-| ----------------- | --------------------------------------------------------------------------------- |
-| name              | The name of the competition                                                       |
-| date              | The date that the competition started                                             |
-| sj_before_xc      | If SJ is before XC this will be true, otherwise false                             |
-| first_hi_order    | If a 1st Horse Inspection takes place and if so before which phase the HI happens |
-| second_hi_order   | If a 2nd Horse Inspection takes place and if so before which phase the HI happens |
-| display_name      | The display name of the competition if different to the competition name          |
-| championship      | Is the competition a championship competition                                     |
-| results           | These are the results for the compeition                                          |
-| class_category_id | This is the class level for the competition                                       |
-| source_id         | The ID that the Provider uses locally on their own system                         |
+| Parameter         | Description                                                                                           |
+| ----------------- | ----------------------------------------------------------------------------------------------------- |
+| name              | **String**<br>The name of the competition                                                       		|
+| date              | **Date**<br>The date that the competition started                                             		|
+| sj_before_xc      | **Boolean**<br>If SJ is before XC this will be true, otherwise false                             		|
+| first_hi_order    | **String**<br>If a 1st Horse Inspection takes place and if so before which phase the HI happens 		|
+| second_hi_order   | **String**<br>If a 2nd Horse Inspection takes place and if so before which phase the HI happens 		|
+| display_name      | **String**<br>The display name of the competition if different to the competition name          		|
+| championship      | **Boolean**<br>Is the competition a championship competition                                    		|
+| results           | **Results**<br>These are the results for the compeition                                          		|
+| class_category_id | **Integer**<br>This is the internal EquiRatings API ID for the class category of this competition 	|
+| show_id           | **Integer**<br>This is the internal EquiRatings API ID of the show that this competition is part of.  |
+| source_id         | **String**<br>The ID that the Provider uses locally on their own system                         	    |
 
 ### URL Parameters
 
-| Parameter | Description                           |
-| --------- | ------------------------------------- |
-| ID        | The ID of the competition to retrieve |
+| Parameter | Description                                                    |
+| --------- | -------------------------------------------------------------- |
+| ID        | the internal EquiRatings API ID of the competition to retrieve |
 
 ### Query Parameters
 
@@ -1368,7 +2533,7 @@ This endpoint does not support query parameters.
 curl -XDELETE
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/competitions/1'
+     'https://eventing.api.equiratings.com/v1/competitions/10652'
 ```
 
 > DELETE request will return a 204 HTTP status code, with no json payload
@@ -1383,243 +2548,7 @@ Deletes a competition with the supplied id.
 
 | Parameter | Description                           |
 | --------- | ------------------------------------- |
-| ID        | The ID of the competition to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-# ClassCategories
-
-## Get all ClassCategories
-
-```shell
-curl -XGET
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/class_categories'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": [
-    {
-      "type": "CCI",
-      "links": {
-        "self": "/class_categories/1"
-      },
-      "id": "1",
-      "attributes": {
-        "type": "CCI",
-        "name": "CCI3*",
-        "level": "3",
-        "id": 1,
-        "er_level": 12
-      }
-    }
-  ]
-}
-```
-
-Returns all class_category for the current user's organization.
-
-### HTTP Request
-
-`GET https://eventing.api.equiratings.com/v1/class_categories`
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Get a Specific ClassCategory
-
-```shell
-curl -XGET
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/class_categories/1'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "CCI",
-    "links": {
-      "self": "/class_categories/1"
-    },
-    "id": "1",
-    "attributes": {
-      "type": "CCI",
-      "name": "CCI3*",
-      "level": "3",
-      "id": 1,
-      "er_level": 12
-    }
-  }
-}
-```
-
-Returns a class_category for the supplied ID parameter.
-
-### HTTP Request
-
-`GET https://eventing.api.equiratings.com/v1/class_categories/:id`
-
-### URL Parameters
-
-| Parameter | Description                              |
-| --------- | ---------------------------------------- |
-| ID        | The ID of the class_category to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Create a ClassCategory
-
-```shell
-curl -XPOST
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     -d '{"class_category": {
-       "type": "CCI", "provider_id": 2818, "name": "CCI3*", "level": "3", "er_level": 12}}'
-     'https://eventing.api.equiratings.com/v1/class_categories'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "CCI",
-    "links": {
-      "self": "/class_categories/1"
-    },
-    "id": "1",
-    "attributes": {
-      "type": "CCI",
-      "name": "CCI3*",
-      "level": "3",
-      "id": 1,
-      "er_level": 12
-    }
-  }
-}
-```
-
-Create a class_category for the supplied data.
-
-### HTTP Request
-
-`POST https://eventing.api.equiratings.com/v1/class_categories/`
-
-### Attributes
-
-| Parameter | Description                         |
-| --------- | ----------------------------------- |
-| type      | The type of the class               |
-| name      | The full name of the class          |
-| level     | The level of the class              |
-| er_level  | The equiraitings level of the class |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Update a ClassCategory
-
-```shell
-curl -XPUT
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     -d '{"class_category": {"name": "Updated name"}}'
-     'https://eventing.api.equiratings.com/v1/class_categories/1'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "CCI",
-    "links": {
-      "self": "/class_categories/1"
-    },
-    "id": "1",
-    "attributes": {
-      "type": "CCI",
-      "name": "Updated name",
-      "level": "3",
-      "id": 1,
-      "er_level": 12
-    }
-  }
-}
-```
-
-Update a class_category for the supplied data.
-
-### HTTP Request
-
-`PUT https://eventing.api.equiratings.com/v1/class_categories/:id`
-
-### Attributes
-
-| Parameter | Description                         |
-| --------- | ----------------------------------- |
-| type      | The type of the class               |
-| name      | The full name of the class          |
-| level     | The level of the class              |
-| er_level  | The equiraitings level of the class |
-
-### URL Parameters
-
-| Parameter | Description                              |
-| --------- | ---------------------------------------- |
-| ID        | The ID of the class_category to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Delete a ClassCategory
-
-```shell
-curl -XDELETE
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/class_categories/1'
-```
-
-> DELETE request will return a 204 HTTP status code, with no json payload
-
-Deletes a class_category with the supplied id.
-
-### HTTP Request
-
-`DELETE https://eventing.api.equiratings.com/v1/class_categories/:id`
-
-### URL Parameters
-
-| Parameter | Description                              |
-| --------- | ---------------------------------------- |
-| ID        | The ID of the class_category to retrieve |
+| ID        | The internal EquiRatings API ID of the competition to retrieve |
 
 ### Query Parameters
 
@@ -1640,51 +2569,90 @@ curl -XGET
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": [
-    {
-      "type": "result",
-      "links": {
-        "self": "/results/1"
-      },
-      "id": "1",
-      "attributes": {
-        "xc_time": null,
-        "xc_status": "EL",
-        "xc_jump": "0",
-        "xc_comment": null,
-        "xc_code": "FH",
-        "sj_time": null,
-        "sj_status": "NS",
-        "sj_jump": null,
-        "sj_code": null,
-        "second_hi_status": null,
-        "id": 1,
-        "horse_id": 1102,
-        "first_hi_status": null,
-        "final_status": "EL",
-        "final_score": null,
-        "final_position": null,
-        "final_comment": null,
-        "final_code": null,
-        "dr_status": "OK",
-        "dr_score": null,
-        "dr_percentage": null,
-        "dr_comment": null,
-        "dr_code": null,
-        "disqualification_code": null,
-        "competition_id": 2183,
-        "athlete_id": 1117,
-        "source_id": "abc123"
-      }
-    }
-  ]
+    "links": {
+        "self": "/v1/results?page[page]=1&page[page_size]=50"
+    },
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": [
+        {
+            "type": "result",
+            "links": {
+                "self": "/v1/results/335818"
+            },
+            "id": "335818",
+            "attributes": {
+                "xc_time": null,
+                "xc_status": "EL",
+                "xc_jump": 0,
+                "xc_comment": null,
+                "xc_code": "FH",
+                "source_id": "001",
+                "sj_time": null,
+                "sj_status": "NS",
+                "sj_jump": null,
+                "sj_code": null,
+                "second_hi_status": null,
+                "id": 335818,
+                "horse_id": 54739,
+                "first_hi_status": "OK",
+                "final_status": "EL",
+                "final_score": null,
+                "final_position": null,
+                "final_comment": null,
+                "final_code": "XC",
+                "dr_status": "OK",
+                "dr_score": "33.2",
+                "dr_percentage": "66.8",
+                "dr_comment": null,
+                "dr_code": null,
+                "disqualification_code": null,
+                "competition_id": 10650,
+                "athlete_id": 27996
+            }
+        },
+        {
+            "type": "result",
+            "links": {
+                "self": "/v1/results/335819"
+            },
+            "id": "335819",
+            "attributes": {
+                "xc_time": "0",
+                "xc_status": "OK",
+                "xc_jump": 0,
+                "xc_comment": null,
+                "xc_code": null,
+                "source_id": "002",
+                "sj_time": 0,
+                "sj_status": "OK",
+                "sj_jump": 0,
+                "sj_code": null,
+                "second_hi_status": null,
+                "id": 335819,
+                "horse_id": 54738,
+                "first_hi_status": "OK",
+                "final_status": "OK",
+                "final_score": "30.2",
+                "final_position": 1,
+                "final_comment": null,
+                "final_code": null,
+                "dr_status": "OK",
+                "dr_score": "30.2",
+                "dr_percentage": "69.8",
+                "dr_comment": null,
+                "dr_code": null,
+                "disqualification_code": null,
+                "competition_id": 10650,
+                "athlete_id": 27995
+            }
+        }
+    ]
 }
 ```
 
-Returns all result for the current users's organization.
+Returns all result for the current user's organization.
 
 ### HTTP Request
 
@@ -1700,52 +2668,52 @@ This endpoint does not support query parameters.
 curl -XGET
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/results/1'
+     'https://eventing.api.equiratings.com/v1/results/335818'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "result",
-    "links": {
-      "self": "/results/1"
+    "jsonapi": {
+        "version": "1.0"
     },
-    "id": "1",
-    "attributes": {
-      "xc_time": null,
-      "xc_status": "EL",
-      "xc_jump": "0",
-      "xc_comment": null,
-      "xc_code": "FH",
-      "sj_time": null,
-      "sj_status": "NS",
-      "sj_jump": null,
-      "sj_code": null,
-      "second_hi_status": null,
-      "id": 1,
-      "horse_id": 1102,
-      "first_hi_status": null,
-      "final_status": "EL",
-      "final_score": null,
-      "final_position": null,
-      "final_comment": null,
-      "final_code": null,
-      "dr_status": "OK",
-      "dr_score": null,
-      "dr_percentage": null,
-      "dr_comment": null,
-      "dr_code": null,
-      "disqualification_code": null,
-      "competition_id": 2183,
-      "athlete_id": 1117,
-      "source_id": "abc123"
+    "data": {
+        "type": "result",
+        "links": {
+            "self": "/v1/results/335818"
+        },
+        "id": "335818",
+        "attributes": {
+            "xc_time": null,
+            "xc_status": "EL",
+            "xc_jump": 0,
+            "xc_comment": null,
+            "xc_code": "FH",
+            "source_id": "001",
+            "sj_time": null,
+            "sj_status": "NS",
+            "sj_jump": null,
+            "sj_code": null,
+            "second_hi_status": null,
+            "id": 335818,
+            "horse_id": 54739,
+            "first_hi_status": "OK",
+            "final_status": "EL",
+            "final_score": null,
+            "final_position": null,
+            "final_comment": null,
+            "final_code": "XC",
+            "dr_status": "OK",
+            "dr_score": "33.2",
+            "dr_percentage": "66.8",
+            "dr_comment": null,
+            "dr_code": null,
+            "disqualification_code": null,
+            "competition_id": 10650,
+            "athlete_id": 27996
+        }
     }
-  }
 }
 ```
 
@@ -1757,637 +2725,9 @@ Returns a result for the supplied ID parameter.
 
 ### URL Parameters
 
-| Parameter | Description                      |
-| --------- | -------------------------------- |
-| ID        | The ID of the result to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-# Athletes
-
-## Get all Athletes
-
-```shell
-curl -XGET
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/athletes'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": [
-    {
-      "type": "athlete",
-      "links": {
-        "self": "/athletes/1"
-      },
-      "id": "1",
-      "attributes": {
-        "surname": "Watson",
-        "nationality": "Irish",
-        "id": 1,
-        "gender": "Male",
-        "first_name": "Sam",
-        "fei_id": 10007367,
-        "federation_id": 3041,
-        "dob": "1982-01-14",
-        "display_name": null,
-        "source_id": "abc123"
-      }
-    }
-  ]
-}
-```
-
-Returns all athlete for the current user's organization.
-
-### HTTP Request
-
-`GET https://eventing.api.equiratings.com/v1/athletes`
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Get a Specific Athlete
-
-```shell
-curl -XGET
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/athletes/1'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "athlete",
-    "links": {
-      "self": "/athletes/1"
-    },
-    "id": "1",
-    "attributes": {
-      "surname": "Watson",
-      "nationality": "Irish",
-      "id": 1,
-      "gender": "Male",
-      "first_name": "Sam",
-      "fei_id": 10007367,
-      "federation_id": 3041,
-      "dob": "1982-01-14",
-      "display_name": null,
-      "source_id": "abc123"
-    }
-  }
-}
-```
-
-Returns a athlete for the supplied ID parameter.
-
-### HTTP Request
-
-`GET https://eventing.api.equiratings.com/v1/athletes/:id`
-
-### URL Parameters
-
-| Parameter | Description                       |
-| --------- | --------------------------------- |
-| ID        | The ID of the athlete to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Create a Athlete
-
-```shell
-curl -XPOST
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     -d '{"athlete": {"surname": "Watson", "nationality": "Irish", "gender": "Male", "first_name": "Sam", "fei_id": 10007367, "dob": "1982-01-14"}}'
-     'https://eventing.api.equiratings.com/v1/athletes'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "athlete",
-    "links": {
-      "self": "/athletes/1"
-    },
-    "id": "1",
-    "attributes": {
-      "surname": "Watson",
-      "nationality": "Irish",
-      "id": 1,
-      "gender": "Male",
-      "first_name": "Sam",
-      "fei_id": 10007367,
-      "federation_id": null,
-      "dob": "1982-01-14",
-      "display_name": null,
-      "source_id": "abc123"
-    }
-  }
-}
-```
-
-Create a athlete for the supplied data.
-
-### HTTP Request
-
-`POST https://eventing.api.equiratings.com/v1/athletes/`
-
-### Attributes
-
-| Parameter     | Description                                                                 |
-| ------------- | --------------------------------------------------------------------------- |
-| first_name    | The first name of the athlete                                               |
-| surname       | The surname of the athlete                                                  |
-| gender        | The gender of the athlete                                                   |
-| nationality   | The nationality of the athlete                                              |
-| dob           | The date of birth of the athlete                                            |
-| display_name  | The name that is displayed for the athlete if it is different to their name |
-| fei_id        | The fei_id of the athlete                                                   |
-| federation_id | The id of the federation the athlete belongs to                             |
-| source_id     | The ID that the Provider uses locally on their own system                   |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Update a Athlete
-
-```shell
-curl -XPUT
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     -d '{"athlete": {"first_name": "Updated name"}'
-     'https://eventing.api.equiratings.com/v1/athletes/1'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "athlete",
-    "links": {
-      "self": "/athletes/1125"
-    },
-    "id": "1",
-    "attributes": {
-      "surname": "Watson",
-      "nationality": "Irish",
-      "id": 1,
-      "gender": "Male",
-      "first_name": "Updated name",
-      "fei_id": 10007367,
-      "federation_id": 3040,
-      "dob": "1982-01-14",
-      "display_name": null,
-      "source_id": "abc123"
-    }
-  }
-}
-```
-
-Update a athlete for the supplied data.
-
-### HTTP Request
-
-`PUT https://eventing.api.equiratings.com/v1/athletes/:id`
-
-### Attributes
-
-| Parameter     | Description                                                                 |
-| ------------- | --------------------------------------------------------------------------- |
-| first_name    | The first name of the athlete                                               |
-| surname       | The surname of the athlete                                                  |
-| gender        | The gender of the athlete                                                   |
-| nationality   | The nationality of the athlete                                              |
-| dob           | The date of birth of the athlete                                            |
-| display_name  | The name that is displayed for the athlete if it is different to their name |
-| fei_id        | The fei_id of the athlete                                                   |
-| federation_id | The id of the federation the athlete belongs to                             |
-| source_id     | The ID that the Provider uses locally on their own system                   |
-
-### URL Parameters
-
-| Parameter | Description                       |
-| --------- | --------------------------------- |
-| ID        | The ID of the athlete to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Delete a Athlete
-
-```shell
-curl -XDELETE
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/athletes/1'
-```
-
-> DELETE request will return a 204 HTTP status code, with no json payload
-
-Deletes a athlete with the supplied id.
-
-### HTTP Request
-
-`DELETE https://eventing.api.equiratings.com/v1/athletes/:id`
-
-### URL Parameters
-
-| Parameter | Description                       |
-| --------- | --------------------------------- |
-| ID        | The ID of the athlete to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-# Horses
-
-## Get all Horses
-
-```shell
-curl -XGET
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/horses'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": [
-    {
-      "type": "horse",
-      "links": {
-        "self": "/horses/1"
-      },
-      "id": "1",
-      "attributes": {
-        "ueln": null,
-        "risk_data": [],
-        "name": "Horseware Bushman",
-        "id": 1,
-        "gender": "Gelding",
-        "fei_id": "IRL03630",
-        "dob": "1999-05-24",
-        "display_name": null,
-        "source_id": "abc123"
-      }
-    }
-  ]
-}
-```
-
-Returns all horse for the current user's organization.
-
-### HTTP Request
-
-`GET https://eventing.api.equiratings.com/v1/horses`
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Get a Specific Horse
-
-```shell
-curl -XGET
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/horses/1'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "horse",
-    "links": {
-      "self": "/horses/1"
-    },
-    "id": "1",
-    "attributes": {
-      "ueln": null,
-      "risk_data": [
-        {"er_level": "1", "erqi": "0.95"}
-        {"er_level": "2", "erqi": "0.90"}
-        {"er_level": "3", "erqi": "0.85"}
-        {"er_level": "4", "erqi": "0.80"}
-        {"er_level": "5", "erqi": "0.706"}
-        {"er_level": "6", "erqi": "0.656"}
-        {"er_level": "7", "erqi": "0.5"}
-        {"er_level": "8", "erqi": "0.606"}
-        {"er_level": "9", "erqi": "0.506"}
-        {"er_level": "10", "erqi": "0.35"}
-        {"er_level": "11", "erqi": "0.419"}
-        {"er_level": "12", "erqi": "0.354"}
-        {"er_level": "13", "erqi": "0.228"}
-      ],
-      "name": "Horseware Bushman",
-      "id": 1,
-      "gender": "Gelding",
-      "fei_id": "IRL03630",
-      "dob": "1999-05-24",
-      "display_name": null,
-      "source_id": "abc123"
-    }
-  }
-}
-```
-
-Returns a horse for the supplied ID parameter.
-
-### HTTP Request
-
-`GET https://eventing.api.equiratings.com/v1/horses/:id`
-
-### URL Parameters
-
-| Parameter | Description                     |
-| --------- | ------------------------------- |
-| ID        | The ID of the horse to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Create a Horse
-
-```shell
-curl -XPOST
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     -d '{"horse": {"provider_id": 2794, "name": "Horseware Bushman", "gender": "Gelding", "fei_id": "IRL03630", "dob": "1999-05-24"}}'
-     'https://eventing.api.equiratings.com/v1/horses'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "horse",
-    "links": {
-      "self": "/horses/1"
-    },
-    "id": "1",
-    "attributes": {
-      "ueln": null,
-      "risk_data": [],
-      "name": "Horseware Bushman",
-      "id": 1,
-      "gender": "Gelding",
-      "fei_id": "IRL03630",
-      "dob": "1999-05-24",
-      "display_name": null,
-      "source_id": "abc123"
-    }
-  }
-}
-```
-
-Create a horse for the supplied data.
-
-### HTTP Request
-
-`POST https://eventing.api.equiratings.com/v1/horses/`
-
-### Attributes
-
-| Parameter    | Description                                               |
-| ------------ | --------------------------------------------------------- |
-| name         | The name of the horse                                     |
-| gender       | The gender of the horse                                   |
-| dob          | The date of birth of the horse                            |
-| fei_id       | The fei id for the horse                                  |
-| ueln         | The unique equine life number of the horse                |
-| display_name | The display name of the horse if different from the name  |
-| source_id    | The ID that the Provider uses locally on their own system |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Update a Horse
-
-```shell
-curl -XPUT
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     -d '{"horse": {"name": "Update name"}}'
-     'https://eventing.api.equiratings.com/v1/horses/1'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "horse",
-    "links": {
-      "self": "/horses/1"
-    },
-    "id": "1",
-    "attributes": {
-      "ueln": null,
-      "risk_data": [],
-      "name": "Updated name",
-      "id": 1,
-      "gender": "Gelding",
-      "fei_id": "IRL03630",
-      "dob": "1999-05-24",
-      "display_name": null,
-      "source_id": "abc123"
-    }
-  }
-}
-```
-
-Update a horse for the supplied data.
-
-### HTTP Request
-
-`PUT https://eventing.api.equiratings.com/v1/horses/:id`
-
-### Attributes
-
-| Parameter    | Description                                               |
-| ------------ | --------------------------------------------------------- |
-| name         | The name of the horse                                     |
-| gender       | The gender of the horse                                   |
-| dob          | The date of birth of the horse                            |
-| fei_id       | The fei id for the horse                                  |
-| ueln         | The unique equine life number of the horse                |
-| display_name | The display name of the horse if different from the name  |
-| source_id    | The ID that the Provider uses locally on their own system |
-
-### URL Parameters
-
-| Parameter | Description                     |
-| --------- | ------------------------------- |
-| ID        | The ID of the horse to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Delete a Horse
-
-```shell
-curl -XDELETE
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/horses/1'
-```
-
-> DELETE request will return a 204 HTTP status code, with no json payload
-
-Deletes a horse with the supplied id.
-
-### HTTP Request
-
-`DELETE https://eventing.api.equiratings.com/v1/horses/:id`
-
-### URL Parameters
-
-| Parameter | Description                     |
-| --------- | ------------------------------- |
-| ID        | The ID of the horse to retrieve |
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-# Federations
-
-## Get all Federations
-
-```shell
-curl -XGET
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/federations'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": [
-    {
-      "type": "federation",
-      "links": {
-        "self": "/federations/1"
-      },
-      "id": "1",
-      "attributes": {
-        "name": "British Eventing",
-        "id": 1,
-        "code": "GBR"
-      }
-    }
-  ]
-}
-```
-
-Returns all federation for the current user's organization.
-
-### HTTP Request
-
-`GET https://eventing.api.equiratings.com/v1/federations`
-
-### Query Parameters
-
-This endpoint does not support query parameters.
-
-## Get a Specific Federation
-
-```shell
-curl -XGET
-     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
-     -H "Content-type: application/json"
-     'https://eventing.api.equiratings.com/v1/federations/1'
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "jsonapi": {
-    "version": "1.0"
-  },
-  "data": {
-    "type": "federation",
-    "links": {
-      "self": "/federations/1"
-    },
-    "id": "1",
-    "attributes": {
-      "name": "British Eventing",
-      "id": 1,
-      "code": "GBR"
-    }
-  }
-}
-```
-
-Returns a federation for the supplied ID parameter.
-
-### HTTP Request
-
-`GET https://eventing.api.equiratings.com/v1/federations/:id`
-
-### URL Parameters
-
-| Parameter | Description                          |
-| --------- | ------------------------------------ |
-| ID        | The ID of the federation to retrieve |
+| Parameter | Description                                               |
+| --------- | --------------------------------------------------------- |
+| ID        | The internal EquiRatings API ID of the result to retrieve |
 
 ### Query Parameters
 
