@@ -192,6 +192,9 @@ curl -XGET
 
 ```json
 {
+  "links": {
+    "self": "/v1/users?page[page]=1&page[page_size]=50"
+  },
   "jsonapi": {
     "version": "1.0"
   },
@@ -227,7 +230,14 @@ Returns all users for the current user's organization.
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+This endpoint supports query parameters for paging:
+
+| Parameter         | Description                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
+| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+
+Predefined paging URLs are also returned within the json payload.
 
 ## Get a Specific User
 
@@ -449,6 +459,11 @@ curl -XGET
 
 ```json
 {
+    "links": {
+        "self": "/v1/federations?page[page]=1&page[page_size]=50",
+        "next": "/v1/federations?page[page]=2&page[page_size]=50",
+        "last": "/v1/federations?page[page]=3&page[page_size]=50"
+    },
     "jsonapi": {
         "version": "1.0"
     },
@@ -489,7 +504,14 @@ Returns all federation for the current user's organization.
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+This endpoint supports query parameters for paging:
+
+| Parameter         | Description                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
+| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+
+Predefined paging URLs are also returned within the json payload.
 
 ## Get a Specific Federation
 
@@ -610,7 +632,14 @@ Returns all athlete for the current user's organization.
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+This endpoint supports query parameters for paging:
+
+| Parameter         | Description                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
+| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+
+Predefined paging URLs are also returned within the json payload.
 
 ## Get a Specific Athlete
 
@@ -729,7 +758,7 @@ Create a athlete for the supplied data.
 
 This endpoint does not support query parameters.
 
-## Update a Athlete
+## Update an Athlete
 
 ```shell
 curl -XPUT
@@ -895,7 +924,14 @@ Returns all horse for the current user's organization.
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+This endpoint supports query parameters for paging:
+
+| Parameter         | Description                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
+| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+
+Predefined paging URLs are also returned within the json payload.
 
 ## Get a Specific Horse
 
@@ -1165,7 +1201,14 @@ Returns all class_category records for the current user's organization.
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+This endpoint supports query parameters for paging:
+
+| Parameter         | Description                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
+| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+
+Predefined paging URLs are also returned within the json payload.
 
 ## Get a Specific ClassCategory
 
@@ -1413,7 +1456,14 @@ Returns all venues for the current user's organization.
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+This endpoint supports query parameters for paging:
+
+| Parameter         | Description                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
+| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+
+Predefined paging URLs are also returned within the json payload.
 
 ## Get a Specific Venue
 
@@ -1662,7 +1712,14 @@ Returns all show for the current user's organization.
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+This endpoint supports query parameters for paging:
+
+| Parameter         | Description                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
+| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+
+Predefined paging URLs are also returned within the json payload.
 
 ## Get a Specific Show
 
@@ -1999,7 +2056,14 @@ Returns all competition for the current user's organization.
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+This endpoint supports query parameters for paging:
+
+| Parameter         | Description                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
+| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+
+Predefined paging URLs are also returned within the json payload.
 
 ## Get a Specific Competition
 
@@ -2660,7 +2724,14 @@ Returns all result for the current user's organization.
 
 ### Query Parameters
 
-This endpoint does not support query parameters.
+This endpoint supports query parameters for paging:
+
+| Parameter         | Description                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------- |
+| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
+| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+
+Predefined paging URLs are also returned within the json payload.
 
 ## Get a Specific Result
 
