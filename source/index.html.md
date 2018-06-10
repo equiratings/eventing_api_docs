@@ -1139,6 +1139,29 @@ Deletes a horse with the supplied id.
 
 This endpoint does not support query parameters.
 
+## Risk data
+
+### Returned values
+When risk data is returned you will find an ERQI for each of the 13 er_levels, these each link to a competition level. Below is a list of what level each number represents:
+
+ ER Level	| Competition Level
+ --- | ----
+1	| Competitions where the XC Course max fixed height is 80cm or 90cm
+2	| Competitions where the XC Course max fixed height is 95cm or 100cm
+3	| Competitions where the XC Course max fixed height is 105cm
+4	| National competitions where the XC course max fixed height is 110cm
+5	| CIC1* and FEI Introductory level
+6	| CCI1*
+7	| National competitions where the XC Course max fixed height is 115cm
+8	| CIC2*
+9	| CCI2*
+10	| National competitions where the XC Course max fixed height is 120cm
+11	| CIC3*
+12 |	CCI3*
+13 |	CCI4*
+
+
+
 # Class Categories
 
 ## Get all Class Categories
@@ -2619,6 +2642,97 @@ Deletes a competition with the supplied id.
 This endpoint does not support query parameters.
 
 # Results
+
+##Result fields
+
+Here you will find support for results:
+
+* List of fields in results
+* Descriptions of each field
+* Allowed values for fields
+
+### Key Term's Explained
+
+* Phase Status: Shows if a combination is Eliminated or Retires in this phase, does not start the phase or completes the phase
+* Phase Code: A code to represent the reason for a given status
+* Phase comment: Used to give further context for a given status, and code combination
+
+### Result fields
+
+| Field | Definition |
+|-----| ------- |
+|dr_status	| Dressage Phase Status (Allowed Phase Statuses) |
+|dr_code |	Dressage Phase Code (Allowed Phase Codes) |
+|dr_score	| Dressage score in penalty points (1 decimal point) |
+|dr_percentage |	The percentage of good marks |
+|dr_comment	| Dressage Phase Comment |
+|xc_status	| Cross Country Phase Status (Allowed Phase Statuses) |
+|xc_code	| Cross Country Phase Code (Allowed Phase Codes) |
+|xc_jump	| Cross Country Obstacle penalties (integer) |
+|xc_time	| Cross country time penalties (only multiples of 0.4) |
+|xc_comment |	Cross Country Phase Comment |
+|sj_status |	Show Jumping Phase Status (Allowed Phase Statuses) |
+|sj_code |	Show Jumping Phase Code (Allowed Phase Codes) |
+|sj_jump |	Show Jumping obstacle penalties (integer) |
+|sj_time |	Show Jumping time penalties (integer) |
+|sj_comment |	Show Jumping Phase Comment |
+|final_status	| The outcome of the combination in the competition (Allowed Final Statuses) |
+|final_code |	When final_status is not OK, explains at which phase the final_status applies to. (e.g. XC-FR would be a final_code of XC) |
+|final_comment |	The final comment |
+|final_score	| The final score of the combination (only when final_status is OK or DSQ) |
+|final_position	| The final position of the combination (only when final_status is OK) |
+|first_hi_status	| First Horse Inspection Phase Status (Allowed Phase Statuses) |
+|second_hi_status	| Second Horse Inspection Phase Status (Allowed Phase Statuses) |
+|disqualification_code	| Codes for dangerous riding |
+
+### Allowed Statuses and Codes
+
+#### Phase Statuses
+* OK – Completed the phase
+* EL – Eliminated in the phase
+* RET – Retired in the phase
+*	NS – Did not start the phase
+
+#### Phase Codes
+
+|Code| Description |
+|---|-----|
+|3E	| 3 errors of course (dressage) |
+|AH	| abuse of horse |
+|AR	| Accumulated Refusals (British Eventing) |
+|CR	| compulsory retirement |
+|DR	| dangerous riding |
+|F2	| rider unseated twice (national federation specific) |
+|FH	| fall of horse |
+|FOF	|fall on the flat |
+|FR	| fall of rider |
+|MJ	| missed jump |
+|OT	| other |
+|R	| multiple refusals |
+|TH	| trapped horse |
+|nil	| when no code is required |
+
+#### Final Statuses
+
+* OK – Completed the competition
+* EL- Eliminated in the competition
+* RET – Retired in the competition
+* WD – Withdrew from the competition
+* DSQ – Disqualified from the competition
+
+#### Final Codes
+
+*	H1 – 1st Horse Inspection
+*	H2 – 2nd Horse Inspection
+*	DR – Dressage
+* XC – Cross Country
+* SJ – Show Jumping
+
+#### Disqualification Codes
+
+* Warning_DR – a warning given for dangerous riding
+* Minor_DR – a minor dangerous riding
+* Major_DR – a major dangerous riding fault
 
 ## Get all Results
 
