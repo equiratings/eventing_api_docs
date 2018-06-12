@@ -2445,10 +2445,10 @@ Create a competition for the supplied data.
 | second_hi_order   | **String**<br>If a 2nd Horse Inspection takes place and if so before which phase the HI happens 					|
 | display_name      | **String**<br>The display name of the competition if different to the competition name          					|
 | championship      | **Boolean**<br>Is the competition a championship competition                                    					|
-| results           | **Results (required)**<br>These are the results for the compeition                                          		|
+| results           | **Results (required)**<br>These are the results for the competition                                          		|
 | class_category_id | **Integer (required)**<br>This is the internal EquiRatings API ID for the class category of this competition 		|
 | show_id           | **Integer (required)**<br>This is the internal EquiRatings API ID of the show that this competition is part of.   |
-| source_id         | **String**<br>The ID that the Provider uses locally on their own system                         					|
+| source_id         | **String (required)**<br>The ID that the Provider uses locally on their own system                         					|
 
 ### Query Parameters
 
@@ -2625,7 +2625,7 @@ curl -XDELETE
 
 > DELETE request will return a 204 HTTP status code, with no json payload
 
-Deletes a competition with the supplied id.
+Deletes a competition with the supplied id. Also deletes all results from that competition and there respective ERQIs.
 
 ### HTTP Request
 
