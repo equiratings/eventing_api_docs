@@ -1326,9 +1326,42 @@ Create a class_category for the supplied data.
 
 | Parameter | Description                                                   |
 | --------- | ------------------------------------------------------------- |
-| type      | **String (required)**<br>The type of the class category       |
+| type      | **String (required)**<br>The type of the class category (Allowed Class Types)      |
 | name      | **String (required)**<br>The full name of the class category  |
-| level     | **String (required)**<br>The level of the class category      |
+| level     | **String (required)**<br>The level of the class category (Allowed Class Levels)     |
+
+### Allowed Types and Levels
+
+#### Allowed Class Types
+* CCI - International 3-day
+* CIC - International 1-day
+* CCN - National 3-day
+* CNC - National 1-day
+
+#### Allowed Class Levels
+This is the level of the competition, expressed as either height of jumps or FEI level.
+* 4
+* 3
+* 2
+* 1
+* 0
+* Introductory
+* 105
+* 100
+* 95
+* 90
+* 80
+
+#### Examples
+| Class | name | type | level |
+| --- | --- | --- | --- |
+|CCI4* | CCI4 | CCI | 4 |
+|CIC3* | CIC3 | CIC | 3 |
+| CCI Introductory | CCI Introductory | CCI | Introductory |
+| Advanced | Advanced | CNC | 3 |
+| Preliminary | Preliminary | CNC | 1 |
+| CNC1 | CNC1| CNC | 1 |
+| EvA95 | EvA95 | CNC | 95 |
 
 ### Query Parameters
 
@@ -2677,7 +2710,7 @@ Here you will find support for results:
 |sj_time |	Show Jumping time penalties (integer) |
 |sj_comment |	Show Jumping Phase Comment |
 |final_status	| The outcome of the combination in the competition (Allowed Final Statuses) |
-|final_code |	When final_status is not OK, explains at which phase the final_status applies to. (e.g. XC-FR would be a final_code of XC) |
+|final_code |	When final_status is not OK, explains at which phase the final_status applies to. (e.g. XC-FR would be a final_code of XC) (Allowed Final Codes) |
 |final_comment |	The final comment |
 |final_score	| The final score of the combination (only when final_status is OK or DSQ) |
 |final_position	| The final position of the combination (only when final_status is OK) |
