@@ -1344,6 +1344,8 @@ This is the level of the competition, expressed as either height of jumps or FEI
 * 3
 * 2
 * 1
+* 0
+* Introductory
 * 105
 * 100
 * 95
@@ -1355,6 +1357,7 @@ This is the level of the competition, expressed as either height of jumps or FEI
 | --- | --- | --- | --- |
 |CCI4* | CCI4 | CCI | 4 |
 |CIC3* | CIC3 | CIC | 3 |
+| FEI Introductory | FEI Introductory | CCI | Introductory |
 | Advanced | Advanced | CNC | 3 |
 | Preliminary | Preliminary | CNC | 1 |
 | CNC1 | CNC1| CNC | 1 |
