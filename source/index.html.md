@@ -1328,17 +1328,17 @@ Create a class_category for the supplied data.
 | --------- | ------------------------------------------------------------- |
 | type      | **String (required)**<br>The type of the class category (Allowed Class Types)      |
 | name      | **String (required)**<br>The full name of the class category  |
-| level     | **String (required)**<br>The level of the class category      |
+| level     | **String (required)**<br>The level of the class category (Allowed Class Levels)     |
 
 ### Allowed Types and Levels
 
-#### Class Types
+#### Allowed Class Types
 * CCI - International 3-day
 * CIC - International 1-day
 * CCN - National 3-day
 * CNC - National 1-day
 
-#### Class Levels
+#### Allowed Class Levels
 This is the level of the competition, expressed as either height of jumps or FEI level.
 * 4
 * 3
@@ -1347,6 +1347,8 @@ This is the level of the competition, expressed as either height of jumps or FEI
 * 105
 * 100
 * 95
+* 90
+* 80
 
 #### Examples
 | Class | name | type | level |
