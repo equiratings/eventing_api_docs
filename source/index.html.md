@@ -2768,7 +2768,7 @@ Here you will find support for results:
 * Major_DR – a major dangerous riding fault
 
 ## Constraints on Result data
-Rules have been implemented around results to insure the continued quality of data received around results, these rules have been laid out below:
+Rules have been implemented around results to insure the continued quality of data received, these rules have been laid out below:
 
 ### Phase Statuses
 ##### When phase status = OK
@@ -2827,7 +2827,7 @@ SJ phase	| sj_time must be nil
 * The xc_status will be NS when final_status=WD
 
 ##### When final_code=SJ
-* The final_status will matc sj_status when sj_status is EL or RET
+* The final_status will match sj_status when sj_status is EL or RET
 * The sj_status will be NS when final_status=WD
 
 ## Get all Results
