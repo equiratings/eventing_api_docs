@@ -2769,6 +2769,8 @@ Here you will find support for results:
 
 ## Constraints on Result data
 Rules have been implemented around results to insure the continued quality of data received around results, these rules have been laid out below:
+
+### Phase Statuses
 ##### When phase status = OK
 | | |
 |-|-|
@@ -2788,6 +2790,7 @@ SJ phase |	sj_jump must be nil <br> sj_time must be nil
 XC phase	| xc_time must be nil
 SJ phase	| sj_time must be nil
 
+### Final Status
 ##### When final_status=OK
 * Final_score must not be nil
 * Final_position must not be nil
@@ -2814,6 +2817,7 @@ SJ phase	| sj_time must be nil
 ##### When final_status=DSQ
 * No rules have been implemented around Disqualifications
 
+### Final Code
 ##### When final_code=DR
 * The final_status will match dr_status when dr_status is EL or RET
 * The dr_status will be NS when final_status=WD
