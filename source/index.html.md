@@ -2690,7 +2690,7 @@ Here you will find support for results:
 * Phase Code: A code to represent the reason for a given status
 * Phase comment: Used to give further context for a given status, and code combination
 
-### Result fields
+### Result Fields
 
 | Field | Definition |
 |-----| ------- |
@@ -2766,6 +2766,69 @@ Here you will find support for results:
 * Warning_DR – a warning given for dangerous riding
 * Minor_DR – a minor dangerous riding
 * Major_DR – a major dangerous riding fault
+
+## Constraints on Result data
+Rules have been implemented around results to insure the continued quality of data received, these rules have been laid out below:
+
+### Phase Statuses
+##### When phase status = OK
+| | |
+|-|-|
+|DR phase |	dr_score must be not nil |
+|XC phase	| xc_jump must be not nil  <br> xc_time must be not nil |
+|SJ phase |	sj_jump must not be nil <br> sj_time must not be nil |
+
+##### When phase status = NS
+| | |
+|-|-|
+XC phase	| xc_jump must be nil <br> xc_time must be nil
+SJ phase |	sj_jump must be nil <br> sj_time must be nil
+
+##### When phase status = EL or phase status = RET
+| | |
+|-|-|
+XC phase	| xc_time must be nil
+SJ phase	| sj_time must be nil
+
+### Final Status
+##### When final_status=OK
+* Final_score must not be nil
+* Final_position must not be nil
+* All Phase Statuses must be OK
+
+##### When final_status=EL
+* Final_score must be nil
+* Final_position must be nil
+* At least one phase status must be EL
+* Final code must not be nil
+
+##### When final_status=RET
+* Final_score must be nil
+* Final_position must be nil
+* At least one phase status must be RET
+* Final code must not be nil
+
+##### When final_status=WD
+* Final_score must be nil
+* Final_position must be nil
+* All phase statuses must be OK or NS, and at least one phase status must be NS
+* Final code must not be nil
+
+##### When final_status=DSQ
+* No rules have been implemented around Disqualifications
+
+### Final Code
+##### When final_code=DR
+* The final_status will match dr_status when dr_status is EL or RET
+* The dr_status will be NS when final_status=WD
+
+##### When final_code=XC
+* The final_status will match xc_status when xc_status is EL or RET
+* The xc_status will be NS when final_status=WD
+
+##### When final_code=SJ
+* The final_status will match sj_status when sj_status is EL or RET
+* The sj_status will be NS when final_status=WD
 
 ## Get all Results
 
