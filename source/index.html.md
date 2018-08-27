@@ -632,12 +632,13 @@ Returns all athlete for the current user's organization.
 
 ### Query Parameters
 
-This endpoint supports query parameters for paging:
+This endpoint supports query parameters for paging and finding by a athletes by source_id:
 
 | Parameter         | Description                                                                                             |
 | ----------------- | ------------------------------------------------------------------------------------------------------- |
 | page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
 | page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+| source_id         | The source_id of a specific athlete                                                                     |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -924,12 +925,13 @@ Returns all horse for the current user's organization.
 
 ### Query Parameters
 
-This endpoint supports query parameters for paging:
+This endpoint supports query parameters for paging and finding by a horse by source_id:
 
 | Parameter         | Description                                                                                             |
 | ----------------- | ------------------------------------------------------------------------------------------------------- |
 | page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
 | page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+| source_id         | The source_id of a specific horse                                                                       |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -1512,12 +1514,13 @@ Returns all venues for the current user's organization.
 
 ### Query Parameters
 
-This endpoint supports query parameters for paging:
+This endpoint supports query parameters for paging and finding by a venue by source_id:
 
 | Parameter         | Description                                                                                             |
 | ----------------- | ------------------------------------------------------------------------------------------------------- |
 | page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
 | page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+| source_id         | The source_id of a specific venue                                                                       |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -1768,12 +1771,13 @@ Returns all show for the current user's organization.
 
 ### Query Parameters
 
-This endpoint supports query parameters for paging:
+This endpoint supports query parameters for paging and finding by a show by source_id:
 
 | Parameter         | Description                                                                                             |
 | ----------------- | ------------------------------------------------------------------------------------------------------- |
 | page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
 | page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+| source_id         | The source_id of a specific show                                                                        |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -2112,12 +2116,13 @@ Returns all competition for the current user's organization.
 
 ### Query Parameters
 
-This endpoint supports query parameters for paging:
+This endpoint supports query parameters for paging and finding by a competition by source_id:
 
 | Parameter         | Description                                                                                             |
 | ----------------- | ------------------------------------------------------------------------------------------------------- |
 | page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
 | page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+| source_id         | The source_id of a specific competition                                                                 |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -2934,12 +2939,13 @@ Returns all result for the current user's organization.
 
 ### Query Parameters
 
-This endpoint supports query parameters for paging:
+This endpoint supports query parameters for paging and finding by a result by source_id:
 
 | Parameter         | Description                                                                                             |
 | ----------------- | ------------------------------------------------------------------------------------------------------- |
 | page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
 | page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+| source_id         | The source_id of a specific result                                                                      |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -3009,6 +3015,229 @@ Returns a result for the supplied ID parameter.
 | Parameter | Description                                               |
 | --------- | --------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the result to retrieve |
+
+### Query Parameters
+
+This endpoint does not support query parameters.
+
+# Risk Data
+
+##Get a Specific Horses Data
+
+
+```shell
+curl -XGET
+     -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
+     -H "Content-type: application/json"
+     'https://eventing.api.equiratings.com/v1/horses/:horse_id/risk_data/'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+    "jsonapi": {
+        "version": "1.0"
+    },
+    "data": [
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1000"
+            },
+            "id": "1000",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1000,
+                "horse_id": 3000,
+                "erqi": null,
+                "er_level": 1
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1001"
+            },
+            "id": "1001",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1001,
+                "horse_id": 3000,
+                "erqi": "0.82669",
+                "er_level": 2
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1002"
+            },
+            "id": "1002",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1002,
+                "horse_id": 3000,
+                "erqi": "0.78671",
+                "er_level": 3
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1003"
+            },
+            "id": "1003",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1003,
+                "horse_id": 3000,
+                "erqi": "0.733908",
+                "er_level": 4
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1004"
+            },
+            "id": "1004",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1004,
+                "horse_id": 3000,
+                "erqi": "0.7783746",
+                "er_level": 5
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1005"
+            },
+            "id": "1005",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1005,
+                "horse_id": 3000,
+                "erqi": "0.742637",
+                "er_level": 6
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1006"
+            },
+            "id": "1006",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1006,
+                "horse_id": 3000,
+                "erqi": "0.670112",
+                "er_level": 7
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1007"
+            },
+            "id": "1007",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1007,
+                "horse_id": 3000,
+                "erqi": "0.647961",
+                "er_level": 8
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1008"
+            },
+            "id": "1008",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1008,
+                "horse_id": 3000,
+                "erqi": "0.625094",
+                "er_level": 9
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1009"
+            },
+            "id": "1009",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1009,
+                "horse_id": 3000,
+                "erqi": "0.4789486666666666666666666667",
+                "er_level": 10
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1010"
+            },
+            "id": "1010",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1010,
+                "horse_id": 3000,
+                "erqi": "0.53055",
+                "er_level": 11
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1011"
+            },
+            "id": "1011",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1011,
+                "horse_id": 3000,
+                "erqi": "0.161742",
+                "er_level": 12
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1012"
+            },
+            "id": "1012",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1012,
+                "horse_id": 3000,
+                "erqi": "0.0000",
+                "er_level": 13
+            }
+        }
+    ]
+}
+```
+
+Returns a list of erqis for the given horse id. If date is provided then erqi will be on that date, otherwise erqis will be the horses current erqi. If the horse has competed on the date given the erqi will include data from that competition.
+
+### HTTP Request
+
+`GET https://eventing.api.equiratings.com/v1/horses/:horse_id/risk_data/:date`
+
+### URL Parameters
+
+| Parameter | Description                                               |
+| --------- | --------------------------------------------------------- |
+| Horse ID  | The internal EquiRatings API ID of the horse whose current erqis are to be retrieve  |
+| Date (optional)| To get a set of erqis from on a specific date. Date must be iso8601|
 
 ### Query Parameters
 
