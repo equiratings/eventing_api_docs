@@ -3242,3 +3242,63 @@ Returns a list of erqis for the given horse id. If date is provided then erqi wi
 ### Query Parameters
 
 This endpoint does not support query parameters.
+
+##ERQIs
+
+An ERQI between 0 and 1 is provided for a horse at every level from 1 to 13, if you see something other than a number between 0 and 1 it is a status code.
+
+
+
+> Below are examples of returned erqis:
+
+```json
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1000"
+            },
+            "id": "1000",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1000,
+                "horse_id": 3000,
+                "erqi": "0.587",
+                "er_level": 1
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1001"
+            },
+            "id": "1001",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1001,
+                "horse_id": 3000,
+                "erqi": 8001,
+                "er_level": 2
+            }
+        },
+        {
+            "type": "risk_data",
+            "links": {
+                "self": "/v1/horses/3000/risk_data/1002"
+            },
+            "id": "1002",
+            "attributes": {
+                "result_id": 2000,
+                "id": 1002,
+                "horse_id": 3000,
+                "erqi": null,
+                "er_level": 3
+            }
+        }
+```
+
+### ERQI Status Codes
+
+| Codes | Description                                               |
+| --------- | --------------------------------------------------------- |
+| 8001 | This means that there is insufficient data to provide an ERQI for this horse at this level |
+| null | This means that we do not provide an ERQI for this level |
