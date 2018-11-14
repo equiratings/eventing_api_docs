@@ -7,8 +7,6 @@
 - You will also need to install bundler with `gem install bundler`
 - Install middleman globally with `gem install middleman`
 - Install the dependencies with `bundle exec install`
-- Install Firebase's CLI tool with `npm install -g firebase-tools`
-- Login to Firebase using `firebase login`
 
 ## Development workflow
 
@@ -18,3 +16,4 @@
 ## Deployment
 
 - Deployment is automatic after you push to master.
+- Server is hosted on Netlify
