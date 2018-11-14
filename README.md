@@ -17,5 +17,4 @@
 
 ## Deployment
 
-- Run `middleman build` to build the production bundle.
-- Run `firebase deploy` to deploy your bundle to the Firebase server
+- Deployment is automatic after you push to master.
