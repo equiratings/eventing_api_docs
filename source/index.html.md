@@ -232,10 +232,10 @@ Returns all users for the current user's organization.
 
 This endpoint supports query parameters for paging:
 
-| Parameter         | Description                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------- |
-| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
-| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+| Parameter       | Description                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| page[page]      | **Integer**<br>The number of the page to be returned.                                                 |
+| page[page_size] | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50. |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -285,8 +285,8 @@ Returns a user for the supplied ID parameter.
 
 ### URL Parameters
 
-| Parameter | Description                                              |
-| --------- | -------------------------------------------------------- |
+| Parameter | Description                                                                       |
+| --------- | --------------------------------------------------------------------------------- |
 | ID        | **Integer (required)**<br>The internal EquiRatings API ID of the user to retrieve |
 
 ### Query Parameters
@@ -307,28 +307,28 @@ curl -XPOST
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "user",
+    "relationships": {
+      "token": {
+        "data": null
+      }
     },
-    "data": {
-        "type": "user",
-        "relationships": {
-            "token": {
-                "data": null
-            }
-        },
-        "links": {
-            "self": "/users/11"
-        },
-        "id": "11",
-        "attributes": {
-            "surname": "User",
-            "role": "provider_user",
-            "id": 11,
-            "first_name": "New",
-            "email": "new_user@domain.com"
-        }
+    "links": {
+      "self": "/users/11"
+    },
+    "id": "11",
+    "attributes": {
+      "surname": "User",
+      "role": "provider_user",
+      "id": 11,
+      "first_name": "New",
+      "email": "new_user@domain.com"
     }
+  }
 }
 ```
 
@@ -366,28 +366,28 @@ curl -XPUT
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "user",
+    "relationships": {
+      "token": {
+        "data": null
+      }
     },
-    "data": {
-        "type": "user",
-        "relationships": {
-            "token": {
-                "data": null
-            }
-        },
-        "links": {
-            "self": "/users/11"
-        },
-        "id": "11",
-        "attributes": {
-            "surname": "User",
-            "role": "provider_user",
-            "id": 11,
-            "first_name": "Updated",
-            "email": "new_user@domain.com"
-        }
+    "links": {
+      "self": "/users/11"
+    },
+    "id": "11",
+    "attributes": {
+      "surname": "User",
+      "role": "provider_user",
+      "id": 11,
+      "first_name": "Updated",
+      "email": "new_user@domain.com"
     }
+  }
 }
 ```
 
@@ -409,9 +409,9 @@ Update a user for the supplied data.
 
 ### URL Parameters
 
-| Parameter | Description                    |
-| --------- | ------------------------------ |
-| ID        | The internal EquiRatings API ID of the user to update   |
+| Parameter | Description                                           |
+| --------- | ----------------------------------------------------- |
+| ID        | The internal EquiRatings API ID of the user to update |
 
 ### Query Parameters
 
@@ -436,9 +436,9 @@ Deletes a user with the supplied id.
 
 ### URL Parameters
 
-| Parameter | Description                    |
-| --------- | ------------------------------ |
-| ID        | The internal EquiRatings API ID of the user to delete   |
+| Parameter | Description                                           |
+| --------- | ----------------------------------------------------- |
+| ID        | The internal EquiRatings API ID of the user to delete |
 
 ### Query Parameters
 
@@ -459,40 +459,40 @@ curl -XGET
 
 ```json
 {
-    "links": {
-        "self": "/v1/federations?page[page]=1&page[page_size]=50",
-        "next": "/v1/federations?page[page]=2&page[page_size]=50",
-        "last": "/v1/federations?page[page]=3&page[page_size]=50"
+  "links": {
+    "self": "/v1/federations?page[page]=1&page[page_size]=50",
+    "next": "/v1/federations?page[page]=2&page[page_size]=50",
+    "last": "/v1/federations?page[page]=3&page[page_size]=50"
+  },
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": [
+    {
+      "type": "federation",
+      "links": {
+        "self": "/federations/188"
+      },
+      "id": "188",
+      "attributes": {
+        "name": "HORSE SPORT IRELAND",
+        "id": 188,
+        "code": "IRL"
+      }
     },
-    "jsonapi": {
-        "version": "1.0"
-    },
-    "data": [
-		{
-			"type": "federation",
-			"links": {
-				"self": "/federations/188"
-			},
-			"id": "188",
-			"attributes": {
-				"name": "HORSE SPORT IRELAND",
-				"id": 188,
-				"code": "IRL"
-			}
-		},
-		{
-			"type": "federation",
-			"links": {
-				"self": "/federations/176"
-			},
-			"id": "176",
-			"attributes": {
-				"name": "BRITISH EQUESTRIAN FEDERATION",
-				"id": 176,
-				"code": "GBR"
-			}
-		}
-	]
+    {
+      "type": "federation",
+      "links": {
+        "self": "/federations/176"
+      },
+      "id": "176",
+      "attributes": {
+        "name": "BRITISH EQUESTRIAN FEDERATION",
+        "id": 176,
+        "code": "GBR"
+      }
+    }
+  ]
 }
 ```
 
@@ -506,10 +506,10 @@ Returns all federation for the current user's organization.
 
 This endpoint supports query parameters for paging:
 
-| Parameter         | Description                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------- |
-| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
-| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+| Parameter       | Description                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| page[page]      | **Integer**<br>The number of the page to be returned.                                                 |
+| page[page_size] | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50. |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -526,21 +526,21 @@ curl -XGET
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "federation",
+    "links": {
+      "self": "/federations/188"
     },
-    "data": {
-        "type": "federation",
-        "links": {
-            "self": "/federations/188"
-        },
-        "id": "188",
-        "attributes": {
-            "name": "HORSE SPORT IRELAND",
-            "id": 188,
-            "code": "IRL"
-        }
+    "id": "188",
+    "attributes": {
+      "name": "HORSE SPORT IRELAND",
+      "id": 188,
+      "code": "IRL"
     }
+  }
 }
 ```
 
@@ -552,8 +552,8 @@ Returns a federation for the supplied ID parameter.
 
 ### URL Parameters
 
-| Parameter | Description                          |
-| --------- | ------------------------------------ |
+| Parameter | Description                                                   |
+| --------- | ------------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the federation to retrieve |
 
 ### Query Parameters
@@ -575,52 +575,52 @@ curl -XGET
 
 ```json
 {
-    "links": {
-        "self": "/v1/athletes?page[page]=1&page[page_size]=50"
+  "links": {
+    "self": "/v1/athletes?page[page]=1&page[page_size]=50"
+  },
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": [
+    {
+      "type": "athlete",
+      "links": {
+        "self": "/v1/athletes/27996"
+      },
+      "id": "27996",
+      "attributes": {
+        "surname": "Taylor",
+        "source_id": "002",
+        "nationality": "GBR",
+        "id": 27996,
+        "gender": "female",
+        "first_name": "Isabelle",
+        "fei_id": 10004377,
+        "federation_id": 176,
+        "dob": "1983-06-11",
+        "display_name": "Izzy Taylor"
+      }
     },
-    "jsonapi": {
-        "version": "1.0"
-    },
-    "data": [
-        {
-            "type": "athlete",
-            "links": {
-                "self": "/v1/athletes/27996"
-            },
-            "id": "27996",
-            "attributes": {
-                "surname": "Taylor",
-                "source_id": "002",
-                "nationality": "GBR",
-                "id": 27996,
-                "gender": "female",
-                "first_name": "Isabelle",
-                "fei_id": 10004377,
-                "federation_id": 176,
-                "dob": "1983-06-11",
-                "display_name": "Izzy Taylor"
-            }
-        },
-        {
-            "type": "athlete",
-            "links": {
-                "self": "/v1/athletes/27995"
-            },
-            "id": "27995",
-            "attributes": {
-                "surname": "Watson",
-                "source_id": "001",
-                "nationality": "IRL",
-                "id": 27995,
-                "gender": "male",
-                "first_name": "Sam",
-                "fei_id": 10007367,
-                "federation_id": 188,
-                "dob": "1982-01-14",
-                "display_name": "Sam Watson"
-            }
-        }
-    ]
+    {
+      "type": "athlete",
+      "links": {
+        "self": "/v1/athletes/27995"
+      },
+      "id": "27995",
+      "attributes": {
+        "surname": "Watson",
+        "source_id": "001",
+        "nationality": "IRL",
+        "id": 27995,
+        "gender": "male",
+        "first_name": "Sam",
+        "fei_id": 10007367,
+        "federation_id": 188,
+        "dob": "1982-01-14",
+        "display_name": "Sam Watson"
+      }
+    }
+  ]
 }
 ```
 
@@ -634,11 +634,11 @@ Returns all athlete for the current user's organization.
 
 This endpoint supports query parameters for paging and finding by a athletes by source_id:
 
-| Parameter         | Description                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------- |
-| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
-| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
-| source_id         | The source_id of a specific athlete                                                                     |
+| Parameter       | Description                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| page[page]      | **Integer**<br>The number of the page to be returned.                                                 |
+| page[page_size] | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50. |
+| source_id       | The source_id of a specific athlete                                                                   |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -655,28 +655,28 @@ curl -XGET
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "athlete",
+    "links": {
+      "self": "/v1/athletes/27995"
     },
-    "data": {
-        "type": "athlete",
-        "links": {
-            "self": "/v1/athletes/27995"
-        },
-        "id": "27995",
-        "attributes": {
-            "surname": "Watson",
-            "source_id": "001",
-            "nationality": "IRL",
-            "id": 27995,
-            "gender": "male",
-            "first_name": "Sam",
-            "fei_id": 10007367,
-            "federation_id": 188,
-            "dob": "1982-01-14",
-            "display_name": "Sam Watson"
-        }
+    "id": "27995",
+    "attributes": {
+      "surname": "Watson",
+      "source_id": "001",
+      "nationality": "IRL",
+      "id": 27995,
+      "gender": "male",
+      "first_name": "Sam",
+      "fei_id": 10007367,
+      "federation_id": 188,
+      "dob": "1982-01-14",
+      "display_name": "Sam Watson"
     }
+  }
 }
 ```
 
@@ -688,8 +688,8 @@ Returns a athlete for the supplied ID parameter.
 
 ### URL Parameters
 
-| Parameter | Description                       |
-| --------- | --------------------------------- |
+| Parameter | Description                                                |
+| --------- | ---------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the athlete to retrieve |
 
 ### Query Parameters
@@ -710,28 +710,28 @@ curl -XPOST
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "athlete",
+    "links": {
+      "self": "/v1/athletes/27997"
     },
-    "data": {
-        "type": "athlete",
-        "links": {
-            "self": "/v1/athletes/27997"
-        },
-        "id": "27997",
-        "attributes": {
-            "surname": "Athlete",
-            "source_id": "003",
-            "nationality": "IRL",
-            "id": 27997,
-            "gender": "non binary",
-            "first_name": "New",
-            "fei_id": 12345678,
-            "federation_id": 188,
-            "dob": "1900-01-01",
-            "display_name": "New Athlete"
-        }
+    "id": "27997",
+    "attributes": {
+      "surname": "Athlete",
+      "source_id": "003",
+      "nationality": "IRL",
+      "id": 27997,
+      "gender": "non binary",
+      "first_name": "New",
+      "fei_id": 12345678,
+      "federation_id": 188,
+      "dob": "1900-01-01",
+      "display_name": "New Athlete"
     }
+  }
 }
 ```
 
@@ -743,17 +743,17 @@ Create a athlete for the supplied data.
 
 ### Attributes
 
-| Parameter     | Description                                                                                   |
-| ------------- | --------------------------------------------------------------------------------------------- |
-| first_name    | **String (required)**<br>The first name of the athlete                                        |
-| surname       | **String (required)**<br>The surname of the athlete                                           |
-| gender        | **String (required)**<br>The gender of the athlete                                            |
-| nationality   | **String (required)**<br>The nationality of the athlete (ISO country code)                    |
-| dob           | **Date**<br>The date of birth of the athlete (YYYY-MM-DD)                                     |
-| display_name  | **String**<br>The name that is displayed for the athlete if it is different to their name     |
-| fei_id        | **Integer**<br>The fei_id of the athlete                                                      |
-| federation_id | **Integer**<br>The internal EquiRatings API ID of the federation the athlete belongs to       |
-| source_id     | **String (required)**<br>The ID that the Provider uses locally on their own system            |
+| Parameter     | Description                                                                               |
+| ------------- | ----------------------------------------------------------------------------------------- |
+| first_name    | **String (required)**<br>The first name of the athlete                                    |
+| surname       | **String (required)**<br>The surname of the athlete                                       |
+| gender        | **String (required)**<br>The gender of the athlete                                        |
+| nationality   | **String (required)**<br>The nationality of the athlete (ISO country code)                |
+| dob           | **Date**<br>The date of birth of the athlete (YYYY-MM-DD)                                 |
+| display_name  | **String**<br>The name that is displayed for the athlete if it is different to their name |
+| fei_id        | **Integer**<br>The fei_id of the athlete                                                  |
+| federation_id | **Integer**<br>The internal EquiRatings API ID of the federation the athlete belongs to   |
+| source_id     | **String (required)**<br>The ID that the Provider uses locally on their own system        |
 
 ### Query Parameters
 
@@ -773,28 +773,28 @@ curl -XPUT
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "athlete",
+    "links": {
+      "self": "/v1/athletes/27997"
     },
-    "data": {
-        "type": "athlete",
-        "links": {
-            "self": "/v1/athletes/27997"
-        },
-        "id": "27997",
-        "attributes": {
-            "surname": "Athlete",
-            "source_id": "003",
-            "nationality": "IRL",
-            "id": 27997,
-            "gender": "non binary",
-            "first_name": "New",
-            "fei_id": 12345678,
-            "federation_id": 188,
-            "dob": "1900-01-01",
-            "display_name": "Updated Athlete"
-        }
+    "id": "27997",
+    "attributes": {
+      "surname": "Athlete",
+      "source_id": "003",
+      "nationality": "IRL",
+      "id": 27997,
+      "gender": "non binary",
+      "first_name": "New",
+      "fei_id": 12345678,
+      "federation_id": 188,
+      "dob": "1900-01-01",
+      "display_name": "Updated Athlete"
     }
+  }
 }
 ```
 
@@ -806,22 +806,22 @@ Update a athlete for the supplied data.
 
 ### Attributes
 
-| Parameter     | Description                                                                                   |
-| ------------- | --------------------------------------------------------------------------------------------- |
-| first_name    | **String**<br>The first name of the athlete                                                   |
-| surname       | **String**<br>The surname of the athlete                                                      |
-| gender        | **String**<br>The gender of the athlete                                                       |
-| nationality   | **String**<br>The nationality of the athlete (ISO country code)                               |
-| dob           | **Date**<br>The date of birth of the athlete (YYYY-MM-DD)                                     |
-| display_name  | **String**<br>The name that is displayed for the athlete if it is different to their name     |
-| fei_id        | **Integer**<br>The fei_id of the athlete                                                      |
-| federation_id | **Integer**<br>The internal EquiRatings API ID of the federation the athlete belongs to       |
-| source_id     | **String**<br>The ID that the Provider uses locally on their own system                       |
+| Parameter     | Description                                                                               |
+| ------------- | ----------------------------------------------------------------------------------------- |
+| first_name    | **String**<br>The first name of the athlete                                               |
+| surname       | **String**<br>The surname of the athlete                                                  |
+| gender        | **String**<br>The gender of the athlete                                                   |
+| nationality   | **String**<br>The nationality of the athlete (ISO country code)                           |
+| dob           | **Date**<br>The date of birth of the athlete (YYYY-MM-DD)                                 |
+| display_name  | **String**<br>The name that is displayed for the athlete if it is different to their name |
+| fei_id        | **Integer**<br>The fei_id of the athlete                                                  |
+| federation_id | **Integer**<br>The internal EquiRatings API ID of the federation the athlete belongs to   |
+| source_id     | **String**<br>The ID that the Provider uses locally on their own system                   |
 
 ### URL Parameters
 
-| Parameter | Description                       |
-| --------- | --------------------------------- |
+| Parameter | Description                                                |
+| --------- | ---------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the athlete to retrieve |
 
 ### Query Parameters
@@ -847,8 +847,8 @@ Deletes a athlete with the supplied id.
 
 ### URL Parameters
 
-| Parameter | Description                       |
-| --------- | --------------------------------- |
+| Parameter | Description                                                |
+| --------- | ---------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the athlete to retrieve |
 
 ### Query Parameters
@@ -870,50 +870,50 @@ curl -XGET
 
 ```json
 {
-    "links": {
-        "self": "/v1/horses?page[page]=1&page[page_size]=50"
+  "links": {
+    "self": "/v1/horses?page[page]=1&page[page_size]=50"
+  },
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": [
+    {
+      "type": "horse",
+      "links": {
+        "self": "/v1/horses/54738"
+      },
+      "id": "54738",
+      "attributes": {
+        "ueln": null,
+        "source_id": "001",
+        "risk_data": [],
+        "name": "Horseware Bushman",
+        "id": 54738,
+        "gender": "Gelding",
+        "fei_id": "IRL03630",
+        "dob": "1999-05-24",
+        "display_name": "Horseware Bushman"
+      }
     },
-    "jsonapi": {
-        "version": "1.0"
-    },
-    "data": [
-        {
-            "type": "horse",
-            "links": {
-                "self": "/v1/horses/54738"
-            },
-            "id": "54738",
-            "attributes": {
-                "ueln": null,
-                "source_id": "001",
-                "risk_data": [],
-                "name": "Horseware Bushman",
-                "id": 54738,
-                "gender": "Gelding",
-                "fei_id": "IRL03630",
-                "dob": "1999-05-24",
-                "display_name": "Horseware Bushman"
-            }
-        },
-        {
-            "type": "horse",
-            "links": {
-                "self": "/v1/horses/54739"
-            },
-            "id": "54739",
-            "attributes": {
-                "ueln": null,
-                "source_id": "002",
-                "risk_data": [],
-                "name": "Mr Bass",
-                "id": 54739,
-                "gender": "Gelding",
-                "fei_id": "104KA86",
-                "dob": "2008-06-19",
-                "display_name": "Mr Bass"
-            }
-        }
-    ]
+    {
+      "type": "horse",
+      "links": {
+        "self": "/v1/horses/54739"
+      },
+      "id": "54739",
+      "attributes": {
+        "ueln": null,
+        "source_id": "002",
+        "risk_data": [],
+        "name": "Mr Bass",
+        "id": 54739,
+        "gender": "Gelding",
+        "fei_id": "104KA86",
+        "dob": "2008-06-19",
+        "display_name": "Mr Bass"
+      }
+    }
+  ]
 }
 ```
 
@@ -927,11 +927,11 @@ Returns all horse for the current user's organization.
 
 This endpoint supports query parameters for paging and finding by a horse by source_id:
 
-| Parameter         | Description                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------- |
-| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
-| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
-| source_id         | The source_id of a specific horse                                                                       |
+| Parameter       | Description                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| page[page]      | **Integer**<br>The number of the page to be returned.                                                 |
+| page[page_size] | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50. |
+| source_id       | The source_id of a specific horse                                                                     |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -948,27 +948,27 @@ curl -XGET
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "horse",
+    "links": {
+      "self": "/v1/horses/54738"
     },
-    "data": {
-        "type": "horse",
-        "links": {
-            "self": "/v1/horses/54738"
-        },
-        "id": "54738",
-        "attributes": {
-            "ueln": null,
-            "source_id": "001",
-            "risk_data": [],
-            "name": "Horseware Bushman",
-            "id": 54738,
-            "gender": "Gelding",
-            "fei_id": "IRL03630",
-            "dob": "1999-05-24",
-            "display_name": "Horseware Bushman"
-        }
+    "id": "54738",
+    "attributes": {
+      "ueln": null,
+      "source_id": "001",
+      "risk_data": [],
+      "name": "Horseware Bushman",
+      "id": 54738,
+      "gender": "Gelding",
+      "fei_id": "IRL03630",
+      "dob": "1999-05-24",
+      "display_name": "Horseware Bushman"
     }
+  }
 }
 ```
 
@@ -980,8 +980,8 @@ Returns a horse for the supplied ID parameter.
 
 ### URL Parameters
 
-| Parameter | Description                     |
-| --------- | ------------------------------- |
+| Parameter | Description                                              |
+| --------- | -------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the horse to retrieve |
 
 ### Query Parameters
@@ -1002,27 +1002,27 @@ curl -XPOST
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "horse",
+    "links": {
+      "self": "/v1/horses/54740"
     },
-    "data": {
-        "type": "horse",
-        "links": {
-            "self": "/v1/horses/54740"
-        },
-        "id": "54740",
-        "attributes": {
-            "ueln": null,
-            "source_id": "003",
-            "risk_data": [],
-            "name": "New Horse",
-            "id": 54740,
-            "gender": "Gelding",
-            "fei_id": null,
-            "dob": "1900-01-01",
-            "display_name": "New Horse"
-        }
+    "id": "54740",
+    "attributes": {
+      "ueln": null,
+      "source_id": "003",
+      "risk_data": [],
+      "name": "New Horse",
+      "id": 54740,
+      "gender": "Gelding",
+      "fei_id": null,
+      "dob": "1900-01-01",
+      "display_name": "New Horse"
     }
+  }
 }
 ```
 
@@ -1062,27 +1062,27 @@ curl -XPUT
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "horse",
+    "links": {
+      "self": "/v1/horses/54740"
     },
-    "data": {
-        "type": "horse",
-        "links": {
-            "self": "/v1/horses/54740"
-        },
-        "id": "54740",
-        "attributes": {
-            "ueln": null,
-            "source_id": "003",
-            "risk_data": [],
-            "name": "New Horse",
-            "id": 54740,
-            "gender": "Gelding",
-            "fei_id": null,
-            "dob": "1900-01-01",
-            "display_name": "Updated Horse"
-        }
+    "id": "54740",
+    "attributes": {
+      "ueln": null,
+      "source_id": "003",
+      "risk_data": [],
+      "name": "New Horse",
+      "id": 54740,
+      "gender": "Gelding",
+      "fei_id": null,
+      "dob": "1900-01-01",
+      "display_name": "Updated Horse"
     }
+  }
 }
 ```
 
@@ -1106,8 +1106,8 @@ Update a horse for the supplied data.
 
 ### URL Parameters
 
-| Parameter | Description                     |
-| --------- | ------------------------------- |
+| Parameter | Description                                              |
+| --------- | -------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the horse to retrieve |
 
 ### Query Parameters
@@ -1133,8 +1133,8 @@ Deletes a horse with the supplied id.
 
 ### URL Parameters
 
-| Parameter | Description                     |
-| --------- | ------------------------------- |
+| Parameter | Description                                              |
+| --------- | -------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the horse to retrieve |
 
 ### Query Parameters
@@ -1144,25 +1144,24 @@ This endpoint does not support query parameters.
 ## Risk data
 
 ### Returned values
+
 When risk data is returned you will find an ERQI for each of the 13 er_levels, these each link to a competition level. Below is a list of what level each number represents:
 
- ER Level	| Competition Level
- --- | ----
-1	| Competitions where the XC Course max fixed height is 80cm or 90cm
-2	| Competitions where the XC Course max fixed height is 95cm or 100cm
-3	| Competitions where the XC Course max fixed height is 105cm
-4	| National competitions where the XC course max fixed height is 110cm
-5	| CIC1* and FEI Introductory level
-6	| CCI1*
-7	| National competitions where the XC Course max fixed height is 115cm
-8	| CIC2*
-9	| CCI2*
-10	| National competitions where the XC Course max fixed height is 120cm
-11	| CIC3*
-12 |	CCI3*
-13 |	CCI4*
-
-
+| ER Level | Competition Level                                                   |
+| -------- | ------------------------------------------------------------------- |
+| 1        | Competitions where the XC Course max fixed height is 80cm or 90cm   |
+| 2        | Competitions where the XC Course max fixed height is 95cm or 100cm  |
+| 3        | Competitions where the XC Course max fixed height is 105cm          |
+| 4        | National competitions where the XC course max fixed height is 110cm |
+| 5        | CIC1\* and FEI Introductory level                                   |
+| 6        | CCI1\*                                                              |
+| 7        | National competitions where the XC Course max fixed height is 115cm |
+| 8        | CIC2\*                                                              |
+| 9        | CCI2\*                                                              |
+| 10       | National competitions where the XC Course max fixed height is 120cm |
+| 11       | CIC3\*                                                              |
+| 12       | CCI3\*                                                              |
+| 13       | CCI4\*                                                              |
 
 # Class Categories
 
@@ -1179,42 +1178,42 @@ curl -XGET
 
 ```json
 {
-    "links": {
-        "self": "/v1/class_categories?page[page]=1&page[page_size]=50"
+  "links": {
+    "self": "/v1/class_categories?page[page]=1&page[page_size]=50"
+  },
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": [
+    {
+      "type": "CCI",
+      "links": {
+        "self": "/v1/class_categories/146"
+      },
+      "id": "146",
+      "attributes": {
+        "type": "CCI",
+        "name": "CCI1*",
+        "level": "1",
+        "id": 146,
+        "er_level": 6
+      }
     },
-    "jsonapi": {
-        "version": "1.0"
-    },
-    "data": [
-        {
-            "type": "CCI",
-            "links": {
-                "self": "/v1/class_categories/146"
-            },
-            "id": "146",
-            "attributes": {
-                "type": "CCI",
-                "name": "CCI1*",
-                "level": "1",
-                "id": 146,
-                "er_level": 6
-            }
-        },
-        {
-            "type": "CCI",
-            "links": {
-                "self": "/v1/class_categories/147"
-            },
-            "id": "147",
-            "attributes": {
-                "type": "CCI",
-                "name": "CCI2*",
-                "level": "2",
-                "id": 147,
-                "er_level": 9
-            }
-        }
-    ]
+    {
+      "type": "CCI",
+      "links": {
+        "self": "/v1/class_categories/147"
+      },
+      "id": "147",
+      "attributes": {
+        "type": "CCI",
+        "name": "CCI2*",
+        "level": "2",
+        "id": 147,
+        "er_level": 9
+      }
+    }
+  ]
 }
 ```
 
@@ -1228,10 +1227,10 @@ Returns all class_category records for the current user's organization.
 
 This endpoint supports query parameters for paging:
 
-| Parameter         | Description                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------- |
-| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
-| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
+| Parameter       | Description                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| page[page]      | **Integer**<br>The number of the page to be returned.                                                 |
+| page[page_size] | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50. |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -1248,23 +1247,23 @@ curl -XGET
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "CCI",
+    "links": {
+      "self": "/v1/class_categories/146"
     },
-    "data": {
-        "type": "CCI",
-        "links": {
-            "self": "/v1/class_categories/146"
-        },
-        "id": "146",
-        "attributes": {
-            "type": "CCI",
-            "name": "CCI1*",
-            "level": "1",
-            "id": 146,
-            "er_level": 6
-        }
+    "id": "146",
+    "attributes": {
+      "type": "CCI",
+      "name": "CCI1*",
+      "level": "1",
+      "id": 146,
+      "er_level": 6
     }
+  }
 }
 ```
 
@@ -1298,23 +1297,23 @@ curl -XPOST
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "CCI",
+    "links": {
+      "self": "/v1/class_categories/148"
     },
-    "data": {
-        "type": "CCI",
-        "links": {
-            "self": "/v1/class_categories/148"
-        },
-        "id": "148",
-        "attributes": {
-            "type": "CCI",
-            "name": "CCI3*",
-            "level": "3",
-            "id": 148,
-            "er_level": 12
-        }
+    "id": "148",
+    "attributes": {
+      "type": "CCI",
+      "name": "CCI3*",
+      "level": "3",
+      "id": 148,
+      "er_level": 12
     }
+  }
 }
 ```
 
@@ -1326,44 +1325,48 @@ Create a class_category for the supplied data.
 
 ### Attributes
 
-| Parameter | Description                                                   |
-| --------- | ------------------------------------------------------------- |
-| type      | **String (required)**<br>The type of the class category (Allowed Class Types)      |
-| name      | **String (required)**<br>The full name of the class category  |
-| level     | **String (required)**<br>The level of the class category (Allowed Class Levels)     |
+| Parameter | Description                                                                     |
+| --------- | ------------------------------------------------------------------------------- |
+| type      | **String (required)**<br>The type of the class category (Allowed Class Types)   |
+| name      | **String (required)**<br>The full name of the class category                    |
+| level     | **String (required)**<br>The level of the class category (Allowed Class Levels) |
 
 ### Allowed Types and Levels
 
 #### Allowed Class Types
-* CCI - International 3-day
-* CIC - International 1-day
-* CCN - National 3-day
-* CNC - National 1-day
+
+- CCI - International 3-day
+- CIC - International 1-day
+- CCN - National 3-day
+- CNC - National 1-day
 
 #### Allowed Class Levels
+
 This is the level of the competition, expressed as either height of jumps or FEI level.
-* 4
-* 3
-* 2
-* 1
-* 0
-* Introductory
-* 105
-* 100
-* 95
-* 90
-* 80
+
+- 4
+- 3
+- 2
+- 1
+- 0
+- Introductory
+- 105
+- 100
+- 95
+- 90
+- 80
 
 #### Examples
-| Class | name | type | level |
-| --- | --- | --- | --- |
-|CCI4* | CCI4 | CCI | 4 |
-|CIC3* | CIC3 | CIC | 3 |
-| CCI Introductory | CCI Introductory | CCI | Introductory |
-| Advanced | Advanced | CNC | 3 |
-| Preliminary | Preliminary | CNC | 1 |
-| CNC1 | CNC1| CNC | 1 |
-| EvA95 | EvA95 | CNC | 95 |
+
+| Class            | name             | type | level        |
+| ---------------- | ---------------- | ---- | ------------ |
+| CCI4\*           | CCI4             | CCI  | 4            |
+| CIC3\*           | CIC3             | CIC  | 3            |
+| CCI Introductory | CCI Introductory | CCI  | Introductory |
+| Advanced         | Advanced         | CNC  | 3            |
+| Preliminary      | Preliminary      | CNC  | 1            |
+| CNC1             | CNC1             | CNC  | 1            |
+| EvA95            | EvA95            | CNC  | 95           |
 
 ### Query Parameters
 
@@ -1383,23 +1386,23 @@ curl -XPUT
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "CCI",
+    "links": {
+      "self": "/v1/class_categories/148"
     },
-    "data": {
-        "type": "CCI",
-        "links": {
-            "self": "/v1/class_categories/148"
-        },
-        "id": "148",
-        "attributes": {
-            "type": "CCI",
-            "name": "Updated CCI3*",
-            "level": "3",
-            "id": 148,
-            "er_level": 12
-        }
+    "id": "148",
+    "attributes": {
+      "type": "CCI",
+      "name": "Updated CCI3*",
+      "level": "3",
+      "id": 148,
+      "er_level": 12
     }
+  }
 }
 ```
 
@@ -1411,11 +1414,11 @@ Update a class_category for the supplied data.
 
 ### Attributes
 
-| Parameter | Description                                        |
-| --------- | -------------------------------------------------- |
-| type      | **String**<br>The type of the class category       |
-| name      | **String**<br>The full name of the class category  |
-| level     | **String**<br>The level of the class category      |
+| Parameter | Description                                       |
+| --------- | ------------------------------------------------- |
+| type      | **String**<br>The type of the class category      |
+| name      | **String**<br>The full name of the class category |
+| level     | **String**<br>The level of the class category     |
 
 ### URL Parameters
 
@@ -1446,8 +1449,8 @@ Deletes a class_category with the supplied id.
 
 ### URL Parameters
 
-| Parameter | Description                              |
-| --------- | ---------------------------------------- |
+| Parameter | Description                                                       |
+| --------- | ----------------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the class_category to retrieve |
 
 ### Query Parameters
@@ -1469,40 +1472,40 @@ curl -XGET
 
 ```json
 {
-    "links": {
-        "self": "/v1/venues?page[page]=1&page[page_size]=50"
+  "links": {
+    "self": "/v1/venues?page[page]=1&page[page_size]=50"
+  },
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": [
+    {
+      "type": "venue",
+      "links": {
+        "self": "/v1/venues/1"
+      },
+      "id": "1",
+      "attributes": {
+        "source_id": "001",
+        "name": "First Venue",
+        "id": 1,
+        "federation_id": 176
+      }
     },
-    "jsonapi": {
-        "version": "1.0"
-    },
-    "data": [
-        {
-            "type": "venue",
-            "links": {
-                "self": "/v1/venues/1"
-            },
-            "id": "1",
-            "attributes": {
-                "source_id": "001",
-                "name": "First Venue",
-                "id": 1,
-                "federation_id": 176
-            }
-        },
-        {
-            "type": "venue",
-            "links": {
-                "self": "/v1/venues/2"
-            },
-            "id": "2",
-            "attributes": {
-                "source_id": "002",
-                "name": "Second Venue",
-                "id": 2,
-                "federation_id": 176
-            }
-        }
-    ]
+    {
+      "type": "venue",
+      "links": {
+        "self": "/v1/venues/2"
+      },
+      "id": "2",
+      "attributes": {
+        "source_id": "002",
+        "name": "Second Venue",
+        "id": 2,
+        "federation_id": 176
+      }
+    }
+  ]
 }
 ```
 
@@ -1516,11 +1519,11 @@ Returns all venues for the current user's organization.
 
 This endpoint supports query parameters for paging and finding by a venue by source_id:
 
-| Parameter         | Description                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------- |
-| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
-| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
-| source_id         | The source_id of a specific venue                                                                       |
+| Parameter       | Description                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| page[page]      | **Integer**<br>The number of the page to be returned.                                                 |
+| page[page_size] | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50. |
+| source_id       | The source_id of a specific venue                                                                     |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -1537,22 +1540,22 @@ curl -XGET
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "venue",
+    "links": {
+      "self": "/v1/venues/1"
     },
-    "data": {
-        "type": "venue",
-        "links": {
-            "self": "/v1/venues/1"
-        },
-        "id": "1",
-        "attributes": {
-            "source_id": "001",
-            "name": "First Venue",
-            "id": 1,
-            "federation_id": 176
-        }
+    "id": "1",
+    "attributes": {
+      "source_id": "001",
+      "name": "First Venue",
+      "id": 1,
+      "federation_id": 176
     }
+  }
 }
 ```
 
@@ -1586,22 +1589,22 @@ curl -XPOST
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "venue",
+    "links": {
+      "self": "/v1/venues/7"
     },
-    "data": {
-        "type": "venue",
-        "links": {
-            "self": "/v1/venues/7"
-        },
-        "id": "7",
-        "attributes": {
-            "source_id": "007",
-            "name": "New Venue",
-            "id": 7,
-            "federation_id": 176
-        }
+    "id": "7",
+    "attributes": {
+      "source_id": "007",
+      "name": "New Venue",
+      "id": 7,
+      "federation_id": 176
     }
+  }
 }
 ```
 
@@ -1613,11 +1616,11 @@ Create a venue for the supplied data.
 
 ### Attributes
 
-| Parameter     | Description                                                                        |
-| ------------- | ---------------------------------------------------------------------------------- |
-| name          | **String (required)**<br>The name of the Venue                                     |
-| federation_id | **String (required)**<br>The internal EquiRatings API ID of the Federation where the venue is located       |
-| source_id     | **String (required)**<br>The ID that the Provider uses locally on their own system |
+| Parameter     | Description                                                                                           |
+| ------------- | ----------------------------------------------------------------------------------------------------- |
+| name          | **String (required)**<br>The name of the Venue                                                        |
+| federation_id | **String (required)**<br>The internal EquiRatings API ID of the Federation where the venue is located |
+| source_id     | **String (required)**<br>The ID that the Provider uses locally on their own system                    |
 
 ### Query Parameters
 
@@ -1637,22 +1640,22 @@ curl -XPUT
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "venue",
+    "links": {
+      "self": "/v1/venues/7"
     },
-    "data": {
-        "type": "venue",
-        "links": {
-            "self": "/v1/venues/7"
-        },
-        "id": "7",
-        "attributes": {
-            "source_id": "007",
-            "name": "Updated Venue",
-            "id": 7,
-            "federation_id": 176
-        }
+    "id": "7",
+    "attributes": {
+      "source_id": "007",
+      "name": "Updated Venue",
+      "id": 7,
+      "federation_id": 176
     }
+  }
 }
 ```
 
@@ -1664,16 +1667,16 @@ Update a venue for the supplied data.
 
 ### Attributes
 
-| Parameter     | Description                                                             |
-| ------------- | ----------------------------------------------------------------------- |
-| name          | **String**<br>The name of the venue                                     |
-| federation_id | **Integer**<br>The internal EquiRatings API ID of the Federation where the venue is located      |
-| source_id     | **String**<br>The ID that the Provider uses locally on their own system |
+| Parameter     | Description                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------- |
+| name          | **String**<br>The name of the venue                                                         |
+| federation_id | **Integer**<br>The internal EquiRatings API ID of the Federation where the venue is located |
+| source_id     | **String**<br>The ID that the Provider uses locally on their own system                     |
 
 ### URL Parameters
 
-| Parameter | Description                     |
-| --------- | ------------------------------- |
+| Parameter | Description                                              |
+| --------- | -------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the venue to retrieve |
 
 ### Query Parameters
@@ -1699,9 +1702,9 @@ Deletes a venue with the supplied id.
 
 ### URL Parameters
 
-| Parameter | Description                                              |
-| --------- | -------------------------------------------------------- |
-| ID        | The internal EquiRatings API ID of the venue to delete   |
+| Parameter | Description                                            |
+| --------- | ------------------------------------------------------ |
+| ID        | The internal EquiRatings API ID of the venue to delete |
 
 ### Query Parameters
 
@@ -1722,44 +1725,44 @@ curl -XGET
 
 ```json
 {
-    "links": {
-        "self": "/v1/shows?page[page]=1&page[page_size]=50"
+  "links": {
+    "self": "/v1/shows?page[page]=1&page[page_size]=50"
+  },
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": [
+    {
+      "type": "show",
+      "links": {
+        "self": "/v1/shows/4975"
+      },
+      "id": "4975",
+      "attributes": {
+        "venue_id": 1,
+        "start_date": "2018-03-12",
+        "source_id": "show_001",
+        "name": "First Show",
+        "id": 4975,
+        "end_date": "2018-03-15"
+      }
     },
-    "jsonapi": {
-        "version": "1.0"
-    },
-    "data": [
-        {
-            "type": "show",
-            "links": {
-                "self": "/v1/shows/4975"
-            },
-            "id": "4975",
-            "attributes": {
-                "venue_id": 1,
-                "start_date": "2018-03-12",
-                "source_id": "show_001",
-                "name": "First Show",
-                "id": 4975,
-                "end_date": "2018-03-15"
-            }
-        },
-        {
-            "type": "show",
-            "links": {
-                "self": "/v1/shows/4976"
-            },
-            "id": "4976",
-            "attributes": {
-                "venue_id": 1,
-                "start_date": "2018-03-19",
-                "source_id": "show_002",
-                "name": "Second Show",
-                "id": 4976,
-                "end_date": "2018-03-22"
-            }
-        }
-    ]
+    {
+      "type": "show",
+      "links": {
+        "self": "/v1/shows/4976"
+      },
+      "id": "4976",
+      "attributes": {
+        "venue_id": 1,
+        "start_date": "2018-03-19",
+        "source_id": "show_002",
+        "name": "Second Show",
+        "id": 4976,
+        "end_date": "2018-03-22"
+      }
+    }
+  ]
 }
 ```
 
@@ -1773,11 +1776,11 @@ Returns all show for the current user's organization.
 
 This endpoint supports query parameters for paging and finding by a show by source_id:
 
-| Parameter         | Description                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------- |
-| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
-| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
-| source_id         | The source_id of a specific show                                                                        |
+| Parameter       | Description                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| page[page]      | **Integer**<br>The number of the page to be returned.                                                 |
+| page[page_size] | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50. |
+| source_id       | The source_id of a specific show                                                                      |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -1794,24 +1797,24 @@ curl -XGET
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "show",
+    "links": {
+      "self": "/v1/shows/4975"
     },
-    "data": {
-        "type": "show",
-        "links": {
-            "self": "/v1/shows/4975"
-        },
-        "id": "4975",
-        "attributes": {
-            "venue_id": 1,
-            "start_date": "2018-03-12",
-            "source_id": "show_001",
-            "name": "First Show",
-            "id": 4975,
-            "end_date": "2018-03-15"
-        }
+    "id": "4975",
+    "attributes": {
+      "venue_id": 1,
+      "start_date": "2018-03-12",
+      "source_id": "show_001",
+      "name": "First Show",
+      "id": 4975,
+      "end_date": "2018-03-15"
     }
+  }
 }
 ```
 
@@ -1845,24 +1848,24 @@ curl -XPOST
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "show",
+    "links": {
+      "self": "/v1/shows/4977"
     },
-    "data": {
-        "type": "show",
-        "links": {
-            "self": "/v1/shows/4977"
-        },
-        "id": "4977",
-        "attributes": {
-            "venue_id": 1,
-            "start_date": "2018-03-26",
-            "source_id": "show_003",
-            "name": "New Show",
-            "id": 4977,
-            "end_date": "2018-03-29"
-        }
+    "id": "4977",
+    "attributes": {
+      "venue_id": 1,
+      "start_date": "2018-03-26",
+      "source_id": "show_003",
+      "name": "New Show",
+      "id": 4977,
+      "end_date": "2018-03-29"
     }
+  }
 }
 ```
 
@@ -1874,13 +1877,13 @@ Create a show for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                            |
-| ---------- | -------------------------------------------------------------------------------------- |
-| name       | **String (required)**<br>The name of the show                                          |
-| start_date | **Date (required)**<br>The start_date of the show (YYYY-MM-DD)                         |
-| end_date   | **Date (required)**<br>The end_date of the show (YYYY-MM-DD)                           |
-| venue_id   | **Integer (required)**<br>The internal EquiRatings API ID for the venue of the show    |
-| source_id  | **String (required)**<br>The ID that the Provider uses locally on their own system     |
+| Parameter  | Description                                                                         |
+| ---------- | ----------------------------------------------------------------------------------- |
+| name       | **String (required)**<br>The name of the show                                       |
+| start_date | **Date (required)**<br>The start_date of the show (YYYY-MM-DD)                      |
+| end_date   | **Date (required)**<br>The end_date of the show (YYYY-MM-DD)                        |
+| venue_id   | **Integer (required)**<br>The internal EquiRatings API ID for the venue of the show |
+| source_id  | **String (required)**<br>The ID that the Provider uses locally on their own system  |
 
 ### Query Parameters
 
@@ -1900,24 +1903,24 @@ curl -XPUT
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "show",
+    "links": {
+      "self": "/v1/shows/4977"
     },
-    "data": {
-        "type": "show",
-        "links": {
-            "self": "/v1/shows/4977"
-        },
-        "id": "4977",
-        "attributes": {
-            "venue_id": 1,
-            "start_date": "2018-03-26",
-            "source_id": "show_003",
-            "name": "Updated Show",
-            "id": 4977,
-            "end_date": "2018-03-29"
-        }
+    "id": "4977",
+    "attributes": {
+      "venue_id": 1,
+      "start_date": "2018-03-26",
+      "source_id": "show_003",
+      "name": "Updated Show",
+      "id": 4977,
+      "end_date": "2018-03-29"
     }
+  }
 }
 ```
 
@@ -1929,18 +1932,18 @@ Update a show for the supplied data.
 
 ### Attributes
 
-| Parameter  | Description                                                                 |
-| ---------- | --------------------------------------------------------------------------- |
-| name       | **String**<br>The name of the show                                          |
-| start_date | **Date**<br>The start_date of the show (YYYY-MM-DD)                         |
-| end_date   | **Date**<br>The end_date of the show (YYYY-MM-DD)                           |
-| venue_id   | **Integer**<br>The internal EquiRatings API ID for the venue of the show    |
-| source_id  | **String**<br>The ID that the Provider uses locally on their own system     |
+| Parameter  | Description                                                              |
+| ---------- | ------------------------------------------------------------------------ |
+| name       | **String**<br>The name of the show                                       |
+| start_date | **Date**<br>The start_date of the show (YYYY-MM-DD)                      |
+| end_date   | **Date**<br>The end_date of the show (YYYY-MM-DD)                        |
+| venue_id   | **Integer**<br>The internal EquiRatings API ID for the venue of the show |
+| source_id  | **String**<br>The ID that the Provider uses locally on their own system  |
 
 ### URL Parameters
 
-| Parameter | Description                    |
-| --------- | ------------------------------ |
+| Parameter | Description                                             |
+| --------- | ------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the show to retrieve |
 
 ### Query Parameters
@@ -1966,8 +1969,8 @@ Deletes a show with the supplied id.
 
 ### URL Parameters
 
-| Parameter | Description                    |
-| --------- | ------------------------------ |
+| Parameter | Description                                             |
+| --------- | ------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the show to retrieve |
 
 ### Query Parameters
@@ -1989,122 +1992,122 @@ curl -XGET
 
 ```json
 {
-    "links": {
-        "self": "/v1/competitions?page[page]=1&page[page_size]=50"
+  "links": {
+    "self": "/v1/competitions?page[page]=1&page[page_size]=50"
+  },
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "included": [
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/335818"
+      },
+      "id": "335818",
+      "attributes": {
+        "xc_time": null,
+        "xc_status": "EL",
+        "xc_jump": 0,
+        "xc_comment": null,
+        "xc_code": "FH",
+        "source_id": "001",
+        "sj_time": null,
+        "sj_status": "NS",
+        "sj_jump": null,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 335818,
+        "horse_id": 54739,
+        "first_hi_status": "OK",
+        "final_status": "EL",
+        "final_score": null,
+        "final_position": null,
+        "final_comment": null,
+        "final_code": "XC",
+        "dr_status": "OK",
+        "dr_score": "33.2",
+        "dr_percentage": "66.8",
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 10650,
+        "athlete_id": 27996
+      }
     },
-    "jsonapi": {
-        "version": "1.0"
-    },
-    "included": [
-        {
-            "type": "result",
-            "links": {
-                "self": "/v1/results/335818"
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/335819"
+      },
+      "id": "335819",
+      "attributes": {
+        "xc_time": "0",
+        "xc_status": "OK",
+        "xc_jump": 0,
+        "xc_comment": null,
+        "xc_code": null,
+        "source_id": "002",
+        "sj_time": 0,
+        "sj_status": "OK",
+        "sj_jump": 0,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 335819,
+        "horse_id": 54738,
+        "first_hi_status": "OK",
+        "final_status": "OK",
+        "final_score": "30.2",
+        "final_position": 1,
+        "final_comment": null,
+        "final_code": null,
+        "dr_status": "OK",
+        "dr_score": "30.2",
+        "dr_percentage": "69.8",
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 10650,
+        "athlete_id": 27995
+      }
+    }
+  ],
+  "data": [
+    {
+      "type": "competition",
+      "relationships": {
+        "results": {
+          "data": [
+            {
+              "type": "result",
+              "id": "335819"
             },
-            "id": "335818",
-            "attributes": {
-                "xc_time": null,
-                "xc_status": "EL",
-                "xc_jump": 0,
-                "xc_comment": null,
-                "xc_code": "FH",
-                "source_id": "001",
-                "sj_time": null,
-                "sj_status": "NS",
-                "sj_jump": null,
-                "sj_code": null,
-                "second_hi_status": null,
-                "id": 335818,
-                "horse_id": 54739,
-                "first_hi_status": "OK",
-                "final_status": "EL",
-                "final_score": null,
-                "final_position": null,
-                "final_comment": null,
-                "final_code": "XC",
-                "dr_status": "OK",
-                "dr_score": "33.2",
-                "dr_percentage": "66.8",
-                "dr_comment": null,
-                "dr_code": null,
-                "disqualification_code": null,
-                "competition_id": 10650,
-                "athlete_id": 27996
+            {
+              "type": "result",
+              "id": "335818"
             }
-        },
-        {
-            "type": "result",
-            "links": {
-                "self": "/v1/results/335819"
-            },
-            "id": "335819",
-            "attributes": {
-                "xc_time": "0",
-                "xc_status": "OK",
-                "xc_jump": 0,
-                "xc_comment": null,
-                "xc_code": null,
-                "source_id": "002",
-                "sj_time": 0,
-                "sj_status": "OK",
-                "sj_jump": 0,
-                "sj_code": null,
-                "second_hi_status": null,
-                "id": 335819,
-                "horse_id": 54738,
-                "first_hi_status": "OK",
-                "final_status": "OK",
-                "final_score": "30.2",
-                "final_position": 1,
-                "final_comment": null,
-                "final_code": null,
-                "dr_status": "OK",
-                "dr_score": "30.2",
-                "dr_percentage": "69.8",
-                "dr_comment": null,
-                "dr_code": null,
-                "disqualification_code": null,
-                "competition_id": 10650,
-                "athlete_id": 27995
-            }
+          ]
         }
-    ],
-    "data": [
-        {
-            "type": "competition",
-            "relationships": {
-                "results": {
-                    "data": [
-                        {
-                            "type": "result",
-                            "id": "335819"
-                        },
-                        {
-                            "type": "result",
-                            "id": "335818"
-                        }
-                    ]
-                }
-            },
-            "links": {
-                "self": "/v1/competitions/10650"
-            },
-            "id": "10650",
-            "attributes": {
-                "source_id": "001",
-                "sj_before_xc": false,
-                "show_id": 4975,
-                "second_hi_order": "Before_SJ",
-                "name": "Competition 1",
-                "id": 10650,
-                "first_hi_order": "Before_DR",
-                "display_name": "First Competition",
-                "date": "2018-03-12",
-                "class_category_id": 148,
-                "championship": false
-            }
-        }
-    ]
+      },
+      "links": {
+        "self": "/v1/competitions/10650"
+      },
+      "id": "10650",
+      "attributes": {
+        "source_id": "001",
+        "sj_before_xc": false,
+        "show_id": 4975,
+        "second_hi_order": "Before_SJ",
+        "name": "Competition 1",
+        "id": 10650,
+        "first_hi_order": "Before_DR",
+        "display_name": "First Competition",
+        "date": "2018-03-12",
+        "class_category_id": 148,
+        "championship": false
+      }
+    }
+  ]
 }
 ```
 
@@ -2118,11 +2121,11 @@ Returns all competition for the current user's organization.
 
 This endpoint supports query parameters for paging and finding by a competition by source_id:
 
-| Parameter         | Description                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------- |
-| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
-| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
-| source_id         | The source_id of a specific competition                                                                 |
+| Parameter       | Description                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| page[page]      | **Integer**<br>The number of the page to be returned.                                                 |
+| page[page_size] | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50. |
+| source_id       | The source_id of a specific competition                                                               |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -2139,117 +2142,117 @@ curl -XGET
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "included": [
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/335818"
+      },
+      "id": "335818",
+      "attributes": {
+        "xc_time": null,
+        "xc_status": "EL",
+        "xc_jump": 0,
+        "xc_comment": null,
+        "xc_code": "FH",
+        "source_id": "001",
+        "sj_time": null,
+        "sj_status": "NS",
+        "sj_jump": null,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 335818,
+        "horse_id": 54739,
+        "first_hi_status": "OK",
+        "final_status": "EL",
+        "final_score": null,
+        "final_position": null,
+        "final_comment": null,
+        "final_code": "XC",
+        "dr_status": "OK",
+        "dr_score": "33.2",
+        "dr_percentage": "66.8",
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 10650,
+        "athlete_id": 27996
+      }
     },
-    "included": [
-        {
-            "type": "result",
-            "links": {
-                "self": "/v1/results/335818"
-            },
-            "id": "335818",
-            "attributes": {
-                "xc_time": null,
-                "xc_status": "EL",
-                "xc_jump": 0,
-                "xc_comment": null,
-                "xc_code": "FH",
-                "source_id": "001",
-                "sj_time": null,
-                "sj_status": "NS",
-                "sj_jump": null,
-                "sj_code": null,
-                "second_hi_status": null,
-                "id": 335818,
-                "horse_id": 54739,
-                "first_hi_status": "OK",
-                "final_status": "EL",
-                "final_score": null,
-                "final_position": null,
-                "final_comment": null,
-                "final_code": "XC",
-                "dr_status": "OK",
-                "dr_score": "33.2",
-                "dr_percentage": "66.8",
-                "dr_comment": null,
-                "dr_code": null,
-                "disqualification_code": null,
-                "competition_id": 10650,
-                "athlete_id": 27996
-            }
-        },
-        {
-            "type": "result",
-            "links": {
-                "self": "/v1/results/335819"
-            },
-            "id": "335819",
-            "attributes": {
-                "xc_time": "0",
-                "xc_status": "OK",
-                "xc_jump": 0,
-                "xc_comment": null,
-                "xc_code": null,
-                "source_id": "002",
-                "sj_time": 0,
-                "sj_status": "OK",
-                "sj_jump": 0,
-                "sj_code": null,
-                "second_hi_status": null,
-                "id": 335819,
-                "horse_id": 54738,
-                "first_hi_status": "OK",
-                "final_status": "OK",
-                "final_score": "30.2",
-                "final_position": 1,
-                "final_comment": null,
-                "final_code": null,
-                "dr_status": "OK",
-                "dr_score": "30.2",
-                "dr_percentage": "69.8",
-                "dr_comment": null,
-                "dr_code": null,
-                "disqualification_code": null,
-                "competition_id": 10650,
-                "athlete_id": 27995
-            }
-        }
-    ],
-    "data": {
-        "type": "competition",
-        "relationships": {
-            "results": {
-                "data": [
-                    {
-                        "type": "result",
-                        "id": "335819"
-                    },
-                    {
-                        "type": "result",
-                        "id": "335818"
-                    }
-                ]
-            }
-        },
-        "links": {
-            "self": "/v1/competitions/10650"
-        },
-        "id": "10650",
-        "attributes": {
-            "source_id": "001",
-            "sj_before_xc": false,
-            "show_id": 4975,
-            "second_hi_order": "Before_SJ",
-            "name": "Competition 1",
-            "id": 10650,
-            "first_hi_order": "Before_DR",
-            "display_name": "First Competition",
-            "date": "2018-03-12",
-            "class_category_id": 148,
-            "championship": false
-        }
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/335819"
+      },
+      "id": "335819",
+      "attributes": {
+        "xc_time": "0",
+        "xc_status": "OK",
+        "xc_jump": 0,
+        "xc_comment": null,
+        "xc_code": null,
+        "source_id": "002",
+        "sj_time": 0,
+        "sj_status": "OK",
+        "sj_jump": 0,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 335819,
+        "horse_id": 54738,
+        "first_hi_status": "OK",
+        "final_status": "OK",
+        "final_score": "30.2",
+        "final_position": 1,
+        "final_comment": null,
+        "final_code": null,
+        "dr_status": "OK",
+        "dr_score": "30.2",
+        "dr_percentage": "69.8",
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 10650,
+        "athlete_id": 27995
+      }
     }
+  ],
+  "data": {
+    "type": "competition",
+    "relationships": {
+      "results": {
+        "data": [
+          {
+            "type": "result",
+            "id": "335819"
+          },
+          {
+            "type": "result",
+            "id": "335818"
+          }
+        ]
+      }
+    },
+    "links": {
+      "self": "/v1/competitions/10650"
+    },
+    "id": "10650",
+    "attributes": {
+      "source_id": "001",
+      "sj_before_xc": false,
+      "show_id": 4975,
+      "second_hi_order": "Before_SJ",
+      "name": "Competition 1",
+      "id": 10650,
+      "first_hi_order": "Before_DR",
+      "display_name": "First Competition",
+      "date": "2018-03-12",
+      "class_category_id": 148,
+      "championship": false
+    }
+  }
 }
 ```
 
@@ -2352,117 +2355,117 @@ curl -XPOST
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "included": [
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/335821"
+      },
+      "id": "335821",
+      "attributes": {
+        "xc_time": null,
+        "xc_status": "EL",
+        "xc_jump": 0,
+        "xc_comment": null,
+        "xc_code": "FH",
+        "source_id": "003",
+        "sj_time": null,
+        "sj_status": "NS",
+        "sj_jump": null,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 335821,
+        "horse_id": 54739,
+        "first_hi_status": "OK",
+        "final_status": "EL",
+        "final_score": null,
+        "final_position": null,
+        "final_comment": null,
+        "final_code": "XC",
+        "dr_status": "OK",
+        "dr_score": "33.2",
+        "dr_percentage": "66.8",
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 10652,
+        "athlete_id": 27996
+      }
     },
-    "included": [
-        {
-            "type": "result",
-            "links": {
-                "self": "/v1/results/335821"
-            },
-            "id": "335821",
-            "attributes": {
-                "xc_time": null,
-                "xc_status": "EL",
-                "xc_jump": 0,
-                "xc_comment": null,
-                "xc_code": "FH",
-                "source_id": "003",
-                "sj_time": null,
-                "sj_status": "NS",
-                "sj_jump": null,
-                "sj_code": null,
-                "second_hi_status": null,
-                "id": 335821,
-                "horse_id": 54739,
-                "first_hi_status": "OK",
-                "final_status": "EL",
-                "final_score": null,
-                "final_position": null,
-                "final_comment": null,
-                "final_code": "XC",
-                "dr_status": "OK",
-                "dr_score": "33.2",
-                "dr_percentage": "66.8",
-                "dr_comment": null,
-                "dr_code": null,
-                "disqualification_code": null,
-                "competition_id": 10652,
-                "athlete_id": 27996
-            }
-        },
-        {
-            "type": "result",
-            "links": {
-                "self": "/v1/results/335822"
-            },
-            "id": "335822",
-            "attributes": {
-                "xc_time": "0",
-                "xc_status": "OK",
-                "xc_jump": 0,
-                "xc_comment": null,
-                "xc_code": null,
-                "source_id": "004",
-                "sj_time": 0,
-                "sj_status": "OK",
-                "sj_jump": 0,
-                "sj_code": null,
-                "second_hi_status": null,
-                "id": 335822,
-                "horse_id": 54738,
-                "first_hi_status": "OK",
-                "final_status": "OK",
-                "final_score": "30.2",
-                "final_position": 1,
-                "final_comment": null,
-                "final_code": null,
-                "dr_status": "OK",
-                "dr_score": "30.2",
-                "dr_percentage": "69.8",
-                "dr_comment": null,
-                "dr_code": null,
-                "disqualification_code": null,
-                "competition_id": 10652,
-                "athlete_id": 27995
-            }
-        }
-    ],
-    "data": {
-        "type": "competition",
-        "relationships": {
-            "results": {
-                "data": [
-                    {
-                        "type": "result",
-                        "id": "335821"
-                    },
-                    {
-                        "type": "result",
-                        "id": "335822"
-                    }
-                ]
-            }
-        },
-        "links": {
-            "self": "/v1/competitions/10652"
-        },
-        "id": "10652",
-        "attributes": {
-            "source_id": "002",
-            "sj_before_xc": false,
-            "show_id": 4975,
-            "second_hi_order": "Before_SJ",
-            "name": "Competition 2",
-            "id": 10652,
-            "first_hi_order": "Before_DR",
-            "display_name": "Second Competition",
-            "date": "2018-03-13",
-            "class_category_id": 147,
-            "championship": false
-        }
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/335822"
+      },
+      "id": "335822",
+      "attributes": {
+        "xc_time": "0",
+        "xc_status": "OK",
+        "xc_jump": 0,
+        "xc_comment": null,
+        "xc_code": null,
+        "source_id": "004",
+        "sj_time": 0,
+        "sj_status": "OK",
+        "sj_jump": 0,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 335822,
+        "horse_id": 54738,
+        "first_hi_status": "OK",
+        "final_status": "OK",
+        "final_score": "30.2",
+        "final_position": 1,
+        "final_comment": null,
+        "final_code": null,
+        "dr_status": "OK",
+        "dr_score": "30.2",
+        "dr_percentage": "69.8",
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 10652,
+        "athlete_id": 27995
+      }
     }
+  ],
+  "data": {
+    "type": "competition",
+    "relationships": {
+      "results": {
+        "data": [
+          {
+            "type": "result",
+            "id": "335821"
+          },
+          {
+            "type": "result",
+            "id": "335822"
+          }
+        ]
+      }
+    },
+    "links": {
+      "self": "/v1/competitions/10652"
+    },
+    "id": "10652",
+    "attributes": {
+      "source_id": "002",
+      "sj_before_xc": false,
+      "show_id": 4975,
+      "second_hi_order": "Before_SJ",
+      "name": "Competition 2",
+      "id": 10652,
+      "first_hi_order": "Before_DR",
+      "display_name": "Second Competition",
+      "date": "2018-03-13",
+      "class_category_id": 147,
+      "championship": false
+    }
+  }
 }
 ```
 
@@ -2474,19 +2477,19 @@ Create a competition for the supplied data.
 
 ### Attributes
 
-| Parameter         | Description                                                                                                       |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------- |
-| name              | **String (required)**<br>The name of the competition                                                       		|
-| date              | **Date (required)**<br>The date that the competition started                                             			|
-| sj_before_xc      | **Boolean (required)**<br>If SJ is before XC this will be true, otherwise false                             		|
-| first_hi_order    | **String**<br>If a 1st Horse Inspection takes place and if so before which phase the HI happens 					|
-| second_hi_order   | **String**<br>If a 2nd Horse Inspection takes place and if so before which phase the HI happens 					|
-| display_name      | **String**<br>The display name of the competition if different to the competition name          					|
-| championship      | **Boolean**<br>Is the competition a championship competition                                    					|
-| results           | **Results (required)**<br>These are the results for the competition                                          		|
-| class_category_id | **Integer (required)**<br>This is the internal EquiRatings API ID for the class category of this competition 		|
-| show_id           | **Integer (required)**<br>This is the internal EquiRatings API ID of the show that this competition is part of.   |
-| source_id         | **String (required)**<br>The ID that the Provider uses locally on their own system                         					|
+| Parameter         | Description                                                                                                     |
+| ----------------- | --------------------------------------------------------------------------------------------------------------- |
+| name              | **String (required)**<br>The name of the competition                                                            |
+| date              | **Date (required)**<br>The date that the competition started                                                    |
+| sj_before_xc      | **Boolean (required)**<br>If SJ is before XC this will be true, otherwise false                                 |
+| first_hi_order    | **String**<br>If a 1st Horse Inspection takes place and if so before which phase the HI happens                 |
+| second_hi_order   | **String**<br>If a 2nd Horse Inspection takes place and if so before which phase the HI happens                 |
+| display_name      | **String**<br>The display name of the competition if different to the competition name                          |
+| championship      | **Boolean**<br>Is the competition a championship competition                                                    |
+| results           | **Results (required)**<br>These are the results for the competition                                             |
+| class_category_id | **Integer (required)**<br>This is the internal EquiRatings API ID for the class category of this competition    |
+| show_id           | **Integer (required)**<br>This is the internal EquiRatings API ID of the show that this competition is part of. |
+| source_id         | **String (required)**<br>The ID that the Provider uses locally on their own system                              |
 
 ### Query Parameters
 
@@ -2506,121 +2509,133 @@ curl -XPUT
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "included": [
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/335821"
+      },
+      "id": "335821",
+      "attributes": {
+        "xc_time": null,
+        "xc_status": "EL",
+        "xc_jump": 0,
+        "xc_comment": null,
+        "xc_code": "FH",
+        "source_id": "003",
+        "sj_time": null,
+        "sj_status": "NS",
+        "sj_jump": null,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 335821,
+        "horse_id": 54739,
+        "first_hi_status": "OK",
+        "final_status": "EL",
+        "final_score": null,
+        "final_position": null,
+        "final_comment": null,
+        "final_code": "XC",
+        "dr_status": "OK",
+        "dr_score": "33.2",
+        "dr_percentage": "66.8",
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 10652,
+        "athlete_id": 27996
+      }
     },
-    "included": [
-        {
-            "type": "result",
-            "links": {
-                "self": "/v1/results/335821"
-            },
-            "id": "335821",
-            "attributes": {
-                "xc_time": null,
-                "xc_status": "EL",
-                "xc_jump": 0,
-                "xc_comment": null,
-                "xc_code": "FH",
-                "source_id": "003",
-                "sj_time": null,
-                "sj_status": "NS",
-                "sj_jump": null,
-                "sj_code": null,
-                "second_hi_status": null,
-                "id": 335821,
-                "horse_id": 54739,
-                "first_hi_status": "OK",
-                "final_status": "EL",
-                "final_score": null,
-                "final_position": null,
-                "final_comment": null,
-                "final_code": "XC",
-                "dr_status": "OK",
-                "dr_score": "33.2",
-                "dr_percentage": "66.8",
-                "dr_comment": null,
-                "dr_code": null,
-                "disqualification_code": null,
-                "competition_id": 10652,
-                "athlete_id": 27996
-            }
-        },
-        {
-            "type": "result",
-            "links": {
-                "self": "/v1/results/335822"
-            },
-            "id": "335822",
-            "attributes": {
-                "xc_time": "0",
-                "xc_status": "OK",
-                "xc_jump": 0,
-                "xc_comment": null,
-                "xc_code": null,
-                "source_id": "004",
-                "sj_time": 0,
-                "sj_status": "OK",
-                "sj_jump": 0,
-                "sj_code": null,
-                "second_hi_status": null,
-                "id": 335822,
-                "horse_id": 54738,
-                "first_hi_status": "OK",
-                "final_status": "OK",
-                "final_score": "30.2",
-                "final_position": 1,
-                "final_comment": null,
-                "final_code": null,
-                "dr_status": "OK",
-                "dr_score": "30.2",
-                "dr_percentage": "69.8",
-                "dr_comment": null,
-                "dr_code": null,
-                "disqualification_code": null,
-                "competition_id": 10652,
-                "athlete_id": 27995
-            }
-        }
-    ],
-    "data": {
-        "type": "competition",
-        "relationships": {
-            "results": {
-                "data": [
-                    {
-                        "type": "result",
-                        "id": "335822"
-                    },
-                    {
-                        "type": "result",
-                        "id": "335821"
-                    }
-                ]
-            }
-        },
-        "links": {
-            "self": "/v1/competitions/10652"
-        },
-        "id": "10652",
-        "attributes": {
-            "source_id": "002",
-            "sj_before_xc": false,
-            "show_id": 4975,
-            "second_hi_order": "Before_SJ",
-            "name": "Competition 2",
-            "id": 10652,
-            "first_hi_order": "Before_DR",
-            "display_name": "Updated Second Competition",
-            "date": "2018-03-13",
-            "class_category_id": 147,
-            "championship": false
-        }
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/335822"
+      },
+      "id": "335822",
+      "attributes": {
+        "xc_time": "0",
+        "xc_status": "OK",
+        "xc_jump": 0,
+        "xc_comment": null,
+        "xc_code": null,
+        "source_id": "004",
+        "sj_time": 0,
+        "sj_status": "OK",
+        "sj_jump": 0,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 335822,
+        "horse_id": 54738,
+        "first_hi_status": "OK",
+        "final_status": "OK",
+        "final_score": "30.2",
+        "final_position": 1,
+        "final_comment": null,
+        "final_code": null,
+        "dr_status": "OK",
+        "dr_score": "30.2",
+        "dr_percentage": "69.8",
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 10652,
+        "athlete_id": 27995
+      }
     }
+  ],
+  "data": {
+    "type": "competition",
+    "relationships": {
+      "results": {
+        "data": [
+          {
+            "type": "result",
+            "id": "335822"
+          },
+          {
+            "type": "result",
+            "id": "335821"
+          }
+        ]
+      }
+    },
+    "links": {
+      "self": "/v1/competitions/10652"
+    },
+    "id": "10652",
+    "attributes": {
+      "source_id": "002",
+      "sj_before_xc": false,
+      "show_id": 4975,
+      "second_hi_order": "Before_SJ",
+      "name": "Competition 2",
+      "id": 10652,
+      "first_hi_order": "Before_DR",
+      "display_name": "Updated Second Competition",
+      "date": "2018-03-13",
+      "class_category_id": 147,
+      "championship": false
+    }
+  }
 }
 ```
 
 Update a competition for the supplied data.
+
+### Important documentation for embedded Results
+
+Because Results are managed through the Competitions endpoint. They must always be included when updating a Competition. If they are not included, **they will be deleted**.
+
+#### Updating Results
+
+To update a Result, include all of a Competitions results including the updated Result embedded within the Competition. The system will then handle the updating of Results and re-generation of ERQI's.
+
+#### Deleting Results
+
+To delete a Result, simply omit it from the Competitions embedded Results and it will be deleted along with the relevant ERQI's.
 
 ### HTTP Request
 
@@ -2628,19 +2643,19 @@ Update a competition for the supplied data.
 
 ### Attributes
 
-| Parameter         | Description                                                                                           |
-| ----------------- | ----------------------------------------------------------------------------------------------------- |
-| name              | **String**<br>The name of the competition                                                       		|
-| date              | **Date**<br>The date that the competition started                                             		|
-| sj_before_xc      | **Boolean**<br>If SJ is before XC this will be true, otherwise false                             		|
-| first_hi_order    | **String**<br>If a 1st Horse Inspection takes place and if so before which phase the HI happens 		|
-| second_hi_order   | **String**<br>If a 2nd Horse Inspection takes place and if so before which phase the HI happens 		|
-| display_name      | **String**<br>The display name of the competition if different to the competition name          		|
-| championship      | **Boolean**<br>Is the competition a championship competition                                    		|
-| results           | **Results**<br>These are the results for the compeition                                          		|
-| class_category_id | **Integer**<br>This is the internal EquiRatings API ID for the class category of this competition 	|
-| show_id           | **Integer**<br>This is the internal EquiRatings API ID of the show that this competition is part of.  |
-| source_id         | **String**<br>The ID that the Provider uses locally on their own system                         	    |
+| Parameter         | Description                                                                                          |
+| ----------------- | ---------------------------------------------------------------------------------------------------- |
+| name              | **String**<br>The name of the competition                                                            |
+| date              | **Date**<br>The date that the competition started                                                    |
+| sj_before_xc      | **Boolean**<br>If SJ is before XC this will be true, otherwise false                                 |
+| first_hi_order    | **String**<br>If a 1st Horse Inspection takes place and if so before which phase the HI happens      |
+| second_hi_order   | **String**<br>If a 2nd Horse Inspection takes place and if so before which phase the HI happens      |
+| display_name      | **String**<br>The display name of the competition if different to the competition name               |
+| championship      | **Boolean**<br>Is the competition a championship competition                                         |
+| results           | **Results**<br>These are the results for the compeition                                              |
+| class_category_id | **Integer**<br>This is the internal EquiRatings API ID for the class category of this competition    |
+| show_id           | **Integer**<br>This is the internal EquiRatings API ID of the show that this competition is part of. |
+| source_id         | **String**<br>The ID that the Provider uses locally on their own system                              |
 
 ### URL Parameters
 
@@ -2671,8 +2686,8 @@ Deletes a competition with the supplied id. Also deletes all results from that c
 
 ### URL Parameters
 
-| Parameter | Description                           |
-| --------- | ------------------------------------- |
+| Parameter | Description                                                    |
+| --------- | -------------------------------------------------------------- |
 | ID        | The internal EquiRatings API ID of the competition to retrieve |
 
 ### Query Parameters
@@ -2685,155 +2700,171 @@ This endpoint does not support query parameters.
 
 Here you will find support for results:
 
-* List of fields in results
-* Descriptions of each field
-* Allowed values for fields
+- List of fields in results
+- Descriptions of each field
+- Allowed values for fields
 
 ### Key Term's Explained
 
-* Phase Status: Shows if a combination is Eliminated or Retires in this phase, does not start the phase or completes the phase
-* Phase Code: A code to represent the reason for a given status
-* Phase comment: Used to give further context for a given status, and code combination
+- Phase Status: Shows if a combination is Eliminated or Retires in this phase, does not start the phase or completes the phase
+- Phase Code: A code to represent the reason for a given status
+- Phase comment: Used to give further context for a given status, and code combination
 
 ### Result Fields
 
-| Field | Definition |
-|-----| ------- |
-|dr_status	| Dressage Phase Status (Allowed Phase Statuses) |
-|dr_code |	Dressage Phase Code (Allowed Phase Codes) |
-|dr_score	| Dressage score in penalty points (1 decimal point) |
-|dr_percentage |	The percentage of good marks |
-|dr_comment	| Dressage Phase Comment |
-|xc_status	| Cross Country Phase Status (Allowed Phase Statuses) |
-|xc_code	| Cross Country Phase Code (Allowed Phase Codes) |
-|xc_jump	| Cross Country Obstacle penalties (integer) |
-|xc_time	| Cross country time penalties (only multiples of 0.4) |
-|xc_comment |	Cross Country Phase Comment |
-|sj_status |	Show Jumping Phase Status (Allowed Phase Statuses) |
-|sj_code |	Show Jumping Phase Code (Allowed Phase Codes) |
-|sj_jump |	Show Jumping obstacle penalties (integer) |
-|sj_time |	Show Jumping time penalties (integer) |
-|sj_comment |	Show Jumping Phase Comment |
-|final_status	| The outcome of the combination in the competition (Allowed Final Statuses) |
-|final_code |	When final_status is not OK, explains at which phase the final_status applies to. (e.g. XC-FR would be a final_code of XC) (Allowed Final Codes) |
-|final_comment |	The final comment |
-|final_score	| The final score of the combination (only when final_status is OK or DSQ) |
-|final_position	| The final position of the combination (only when final_status is OK) |
-|first_hi_status	| First Horse Inspection Phase Status (Allowed Phase Statuses) |
-|second_hi_status	| Second Horse Inspection Phase Status (Allowed Phase Statuses) |
-|disqualification_code	| Codes for dangerous riding |
+| Field                 | Definition                                                                                                                                       |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| dr_status             | Dressage Phase Status (Allowed Phase Statuses)                                                                                                   |
+| dr_code               | Dressage Phase Code (Allowed Phase Codes)                                                                                                        |
+| dr_score              | Dressage score in penalty points (1 decimal point)                                                                                               |
+| dr_percentage         | The percentage of good marks                                                                                                                     |
+| dr_comment            | Dressage Phase Comment                                                                                                                           |
+| xc_status             | Cross Country Phase Status (Allowed Phase Statuses)                                                                                              |
+| xc_code               | Cross Country Phase Code (Allowed Phase Codes)                                                                                                   |
+| xc_jump               | Cross Country Obstacle penalties (integer)                                                                                                       |
+| xc_time               | Cross country time penalties (only multiples of 0.4)                                                                                             |
+| xc_comment            | Cross Country Phase Comment                                                                                                                      |
+| sj_status             | Show Jumping Phase Status (Allowed Phase Statuses)                                                                                               |
+| sj_code               | Show Jumping Phase Code (Allowed Phase Codes)                                                                                                    |
+| sj_jump               | Show Jumping obstacle penalties (integer)                                                                                                        |
+| sj_time               | Show Jumping time penalties (integer)                                                                                                            |
+| sj_comment            | Show Jumping Phase Comment                                                                                                                       |
+| final_status          | The outcome of the combination in the competition (Allowed Final Statuses)                                                                       |
+| final_code            | When final_status is not OK, explains at which phase the final_status applies to. (e.g. XC-FR would be a final_code of XC) (Allowed Final Codes) |
+| final_comment         | The final comment                                                                                                                                |
+| final_score           | The final score of the combination (only when final_status is OK or DSQ)                                                                         |
+| final_position        | The final position of the combination (only when final_status is OK)                                                                             |
+| first_hi_status       | First Horse Inspection Phase Status (Allowed Phase Statuses)                                                                                     |
+| second_hi_status      | Second Horse Inspection Phase Status (Allowed Phase Statuses)                                                                                    |
+| disqualification_code | Codes for dangerous riding                                                                                                                       |
 
 ### Allowed Statuses and Codes
 
 #### Phase Statuses
-* OK – Completed the phase
-* EL – Eliminated in the phase
-* RET – Retired in the phase
-*	NS – Did not start the phase
+
+- OK – Completed the phase
+- EL – Eliminated in the phase
+- RET – Retired in the phase
+- NS – Did not start the phase
 
 #### Phase Codes
 
-|Code| Description |
-|---|-----|
-|3E	| 3 errors of course (dressage) |
-|AH	| abuse of horse |
-|AR	| Accumulated Refusals (British Eventing) |
-|CR	| compulsory retirement |
-|DR	| dangerous riding |
-|F2	| rider unseated twice (national federation specific) |
-|FH	| fall of horse |
-|FOF	|fall on the flat |
-|FR	| fall of rider |
-|MJ	| missed jump |
-|OT	| other |
-|R	| multiple refusals |
-|TH	| trapped horse |
-|nil	| when no code is required |
+| Code | Description                                         |
+| ---- | --------------------------------------------------- |
+| 3E   | 3 errors of course (dressage)                       |
+| AH   | abuse of horse                                      |
+| AR   | Accumulated Refusals (British Eventing)             |
+| CR   | compulsory retirement                               |
+| DR   | dangerous riding                                    |
+| F2   | rider unseated twice (national federation specific) |
+| FH   | fall of horse                                       |
+| FOF  | fall on the flat                                    |
+| FR   | fall of rider                                       |
+| MJ   | missed jump                                         |
+| OT   | other                                               |
+| R    | multiple refusals                                   |
+| TH   | trapped horse                                       |
+| nil  | when no code is required                            |
 
 #### Final Statuses
 
-* OK – Completed the competition
-* EL- Eliminated in the competition
-* RET – Retired in the competition
-* WD – Withdrew from the competition
-* DSQ – Disqualified from the competition
+- OK – Completed the competition
+- EL- Eliminated in the competition
+- RET – Retired in the competition
+- WD – Withdrew from the competition
+- DSQ – Disqualified from the competition
 
 #### Final Codes
 
-*	H1 – 1st Horse Inspection
-*	H2 – 2nd Horse Inspection
-*	DR – Dressage
-* XC – Cross Country
-* SJ – Show Jumping
+- H1 – 1st Horse Inspection
+- H2 – 2nd Horse Inspection
+- DR – Dressage
+- XC – Cross Country
+- SJ – Show Jumping
 
 #### Disqualification Codes
 
-* Warning_DR – a warning given for dangerous riding
-* Minor_DR – a minor dangerous riding
-* Major_DR – a major dangerous riding fault
+- Warning_DR – a warning given for dangerous riding
+- Minor_DR – a minor dangerous riding
+- Major_DR – a major dangerous riding fault
 
 ## Constraints on Result data
+
 Rules have been implemented around results to insure the continued quality of data received, these rules have been laid out below:
 
 ### Phase Statuses
+
 ##### When phase status = OK
-| | |
-|-|-|
-|DR phase |	dr_score must be not nil |
-|XC phase	| xc_jump must be not nil  <br> xc_time must be not nil |
-|SJ phase |	sj_jump must not be nil <br> sj_time must not be nil |
+
+|          |                                                      |
+| -------- | ---------------------------------------------------- |
+| DR phase | dr_score must be not nil                             |
+| XC phase | xc_jump must be not nil <br> xc_time must be not nil |
+| SJ phase | sj_jump must not be nil <br> sj_time must not be nil |
 
 ##### When phase status = NS
-| | |
-|-|-|
-XC phase	| xc_jump must be nil <br> xc_time must be nil
-SJ phase |	sj_jump must be nil <br> sj_time must be nil
+
+|          |                                              |
+| -------- | -------------------------------------------- |
+| XC phase | xc_jump must be nil <br> xc_time must be nil |
+| SJ phase | sj_jump must be nil <br> sj_time must be nil |
 
 ##### When phase status = EL or phase status = RET
-| | |
-|-|-|
-XC phase	| xc_time must be nil
-SJ phase	| sj_time must be nil
+
+|          |                     |
+| -------- | ------------------- |
+| XC phase | xc_time must be nil |
+| SJ phase | sj_time must be nil |
 
 ### Final Status
+
 ##### When final_status=OK
-* Final_score must not be nil
-* Final_position must not be nil
-* All Phase Statuses must be OK
+
+- Final_score must not be nil
+- Final_position must not be nil
+- All Phase Statuses must be OK
 
 ##### When final_status=EL
-* Final_score must be nil
-* Final_position must be nil
-* At least one phase status must be EL
-* Final code must not be nil
+
+- Final_score must be nil
+- Final_position must be nil
+- At least one phase status must be EL
+- Final code must not be nil
 
 ##### When final_status=RET
-* Final_score must be nil
-* Final_position must be nil
-* At least one phase status must be RET
-* Final code must not be nil
+
+- Final_score must be nil
+- Final_position must be nil
+- At least one phase status must be RET
+- Final code must not be nil
 
 ##### When final_status=WD
-* Final_score must be nil
-* Final_position must be nil
-* All phase statuses must be OK or NS, and at least one phase status must be NS
-* Final code must not be nil
+
+- Final_score must be nil
+- Final_position must be nil
+- All phase statuses must be OK or NS, and at least one phase status must be NS
+- Final code must not be nil
 
 ##### When final_status=DSQ
-* No rules have been implemented around Disqualifications
+
+- No rules have been implemented around Disqualifications
 
 ### Final Code
+
 ##### When final_code=DR
-* The final_status will match dr_status when dr_status is EL or RET
-* The dr_status will be NS when final_status=WD
+
+- The final_status will match dr_status when dr_status is EL or RET
+- The dr_status will be NS when final_status=WD
 
 ##### When final_code=XC
-* The final_status will match xc_status when xc_status is EL or RET
-* The xc_status will be NS when final_status=WD
+
+- The final_status will match xc_status when xc_status is EL or RET
+- The xc_status will be NS when final_status=WD
 
 ##### When final_code=SJ
-* The final_status will match sj_status when sj_status is EL or RET
-* The sj_status will be NS when final_status=WD
+
+- The final_status will match sj_status when sj_status is EL or RET
+- The sj_status will be NS when final_status=WD
 
 ## Get all Results
 
@@ -2848,86 +2879,86 @@ curl -XGET
 
 ```json
 {
-    "links": {
-        "self": "/v1/results?page[page]=1&page[page_size]=50"
+  "links": {
+    "self": "/v1/results?page[page]=1&page[page_size]=50"
+  },
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": [
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/335818"
+      },
+      "id": "335818",
+      "attributes": {
+        "xc_time": null,
+        "xc_status": "EL",
+        "xc_jump": 0,
+        "xc_comment": null,
+        "xc_code": "FH",
+        "source_id": "001",
+        "sj_time": null,
+        "sj_status": "NS",
+        "sj_jump": null,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 335818,
+        "horse_id": 54739,
+        "first_hi_status": "OK",
+        "final_status": "EL",
+        "final_score": null,
+        "final_position": null,
+        "final_comment": null,
+        "final_code": "XC",
+        "dr_status": "OK",
+        "dr_score": "33.2",
+        "dr_percentage": "66.8",
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 10650,
+        "athlete_id": 27996
+      }
     },
-    "jsonapi": {
-        "version": "1.0"
-    },
-    "data": [
-        {
-            "type": "result",
-            "links": {
-                "self": "/v1/results/335818"
-            },
-            "id": "335818",
-            "attributes": {
-                "xc_time": null,
-                "xc_status": "EL",
-                "xc_jump": 0,
-                "xc_comment": null,
-                "xc_code": "FH",
-                "source_id": "001",
-                "sj_time": null,
-                "sj_status": "NS",
-                "sj_jump": null,
-                "sj_code": null,
-                "second_hi_status": null,
-                "id": 335818,
-                "horse_id": 54739,
-                "first_hi_status": "OK",
-                "final_status": "EL",
-                "final_score": null,
-                "final_position": null,
-                "final_comment": null,
-                "final_code": "XC",
-                "dr_status": "OK",
-                "dr_score": "33.2",
-                "dr_percentage": "66.8",
-                "dr_comment": null,
-                "dr_code": null,
-                "disqualification_code": null,
-                "competition_id": 10650,
-                "athlete_id": 27996
-            }
-        },
-        {
-            "type": "result",
-            "links": {
-                "self": "/v1/results/335819"
-            },
-            "id": "335819",
-            "attributes": {
-                "xc_time": "0",
-                "xc_status": "OK",
-                "xc_jump": 0,
-                "xc_comment": null,
-                "xc_code": null,
-                "source_id": "002",
-                "sj_time": 0,
-                "sj_status": "OK",
-                "sj_jump": 0,
-                "sj_code": null,
-                "second_hi_status": null,
-                "id": 335819,
-                "horse_id": 54738,
-                "first_hi_status": "OK",
-                "final_status": "OK",
-                "final_score": "30.2",
-                "final_position": 1,
-                "final_comment": null,
-                "final_code": null,
-                "dr_status": "OK",
-                "dr_score": "30.2",
-                "dr_percentage": "69.8",
-                "dr_comment": null,
-                "dr_code": null,
-                "disqualification_code": null,
-                "competition_id": 10650,
-                "athlete_id": 27995
-            }
-        }
-    ]
+    {
+      "type": "result",
+      "links": {
+        "self": "/v1/results/335819"
+      },
+      "id": "335819",
+      "attributes": {
+        "xc_time": "0",
+        "xc_status": "OK",
+        "xc_jump": 0,
+        "xc_comment": null,
+        "xc_code": null,
+        "source_id": "002",
+        "sj_time": 0,
+        "sj_status": "OK",
+        "sj_jump": 0,
+        "sj_code": null,
+        "second_hi_status": null,
+        "id": 335819,
+        "horse_id": 54738,
+        "first_hi_status": "OK",
+        "final_status": "OK",
+        "final_score": "30.2",
+        "final_position": 1,
+        "final_comment": null,
+        "final_code": null,
+        "dr_status": "OK",
+        "dr_score": "30.2",
+        "dr_percentage": "69.8",
+        "dr_comment": null,
+        "dr_code": null,
+        "disqualification_code": null,
+        "competition_id": 10650,
+        "athlete_id": 27995
+      }
+    }
+  ]
 }
 ```
 
@@ -2941,11 +2972,11 @@ Returns all result for the current user's organization.
 
 This endpoint supports query parameters for paging and finding by a result by source_id:
 
-| Parameter         | Description                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------- |
-| page[page]        | **Integer**<br>The number of the page to be returned.                                                   |
-| page[page_size]   | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50.   |
-| source_id         | The source_id of a specific result                                                                      |
+| Parameter       | Description                                                                                           |
+| --------------- | ----------------------------------------------------------------------------------------------------- |
+| page[page]      | **Integer**<br>The number of the page to be returned.                                                 |
+| page[page_size] | **Integer**<br>The number of records per page. <br>This is a read-only parameter and is locked at 50. |
+| source_id       | The source_id of a specific result                                                                    |
 
 Predefined paging URLs are also returned within the json payload.
 
@@ -2962,45 +2993,45 @@ curl -XGET
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": {
+    "type": "result",
+    "links": {
+      "self": "/v1/results/335818"
     },
-    "data": {
-        "type": "result",
-        "links": {
-            "self": "/v1/results/335818"
-        },
-        "id": "335818",
-        "attributes": {
-            "xc_time": null,
-            "xc_status": "EL",
-            "xc_jump": 0,
-            "xc_comment": null,
-            "xc_code": "FH",
-            "source_id": "001",
-            "sj_time": null,
-            "sj_status": "NS",
-            "sj_jump": null,
-            "sj_code": null,
-            "second_hi_status": null,
-            "id": 335818,
-            "horse_id": 54739,
-            "first_hi_status": "OK",
-            "final_status": "EL",
-            "final_score": null,
-            "final_position": null,
-            "final_comment": null,
-            "final_code": "XC",
-            "dr_status": "OK",
-            "dr_score": "33.2",
-            "dr_percentage": "66.8",
-            "dr_comment": null,
-            "dr_code": null,
-            "disqualification_code": null,
-            "competition_id": 10650,
-            "athlete_id": 27996
-        }
+    "id": "335818",
+    "attributes": {
+      "xc_time": null,
+      "xc_status": "EL",
+      "xc_jump": 0,
+      "xc_comment": null,
+      "xc_code": "FH",
+      "source_id": "001",
+      "sj_time": null,
+      "sj_status": "NS",
+      "sj_jump": null,
+      "sj_code": null,
+      "second_hi_status": null,
+      "id": 335818,
+      "horse_id": 54739,
+      "first_hi_status": "OK",
+      "final_status": "EL",
+      "final_score": null,
+      "final_position": null,
+      "final_comment": null,
+      "final_code": "XC",
+      "dr_status": "OK",
+      "dr_score": "33.2",
+      "dr_percentage": "66.8",
+      "dr_comment": null,
+      "dr_code": null,
+      "disqualification_code": null,
+      "competition_id": 10650,
+      "athlete_id": 27996
     }
+  }
 }
 ```
 
@@ -3020,10 +3051,13 @@ Returns a result for the supplied ID parameter.
 
 This endpoint does not support query parameters.
 
+## Delete a Result
+
+To delete a Result you must handle the deletion through the update a Competition endpoint. See documentation [here](#update-a-competition)
+
 # Risk Data
 
 ##Get a Specific Horses Data
-
 
 ```shell
 curl -XGET
@@ -3036,193 +3070,193 @@ curl -XGET
 
 ```json
 {
-    "jsonapi": {
-        "version": "1.0"
+  "jsonapi": {
+    "version": "1.0"
+  },
+  "data": [
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1000"
+      },
+      "id": "1000",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1000,
+        "horse_id": 3000,
+        "erqi": null,
+        "er_level": 1
+      }
     },
-    "data": [
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1000"
-            },
-            "id": "1000",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1000,
-                "horse_id": 3000,
-                "erqi": null,
-                "er_level": 1
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1001"
-            },
-            "id": "1001",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1001,
-                "horse_id": 3000,
-                "erqi": "0.82669",
-                "er_level": 2
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1002"
-            },
-            "id": "1002",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1002,
-                "horse_id": 3000,
-                "erqi": "0.78671",
-                "er_level": 3
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1003"
-            },
-            "id": "1003",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1003,
-                "horse_id": 3000,
-                "erqi": "0.733908",
-                "er_level": 4
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1004"
-            },
-            "id": "1004",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1004,
-                "horse_id": 3000,
-                "erqi": "0.7783746",
-                "er_level": 5
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1005"
-            },
-            "id": "1005",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1005,
-                "horse_id": 3000,
-                "erqi": "0.742637",
-                "er_level": 6
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1006"
-            },
-            "id": "1006",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1006,
-                "horse_id": 3000,
-                "erqi": "0.670112",
-                "er_level": 7
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1007"
-            },
-            "id": "1007",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1007,
-                "horse_id": 3000,
-                "erqi": "0.647961",
-                "er_level": 8
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1008"
-            },
-            "id": "1008",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1008,
-                "horse_id": 3000,
-                "erqi": "0.625094",
-                "er_level": 9
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1009"
-            },
-            "id": "1009",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1009,
-                "horse_id": 3000,
-                "erqi": "0.4789486666666666666666666667",
-                "er_level": 10
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1010"
-            },
-            "id": "1010",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1010,
-                "horse_id": 3000,
-                "erqi": "0.53055",
-                "er_level": 11
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1011"
-            },
-            "id": "1011",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1011,
-                "horse_id": 3000,
-                "erqi": "0.161742",
-                "er_level": 12
-            }
-        },
-        {
-            "type": "risk_data",
-            "links": {
-                "self": "/v1/horses/3000/risk_data/1012"
-            },
-            "id": "1012",
-            "attributes": {
-                "result_id": 2000,
-                "id": 1012,
-                "horse_id": 3000,
-                "erqi": "0.0000",
-                "er_level": 13
-            }
-        }
-    ]
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1001"
+      },
+      "id": "1001",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1001,
+        "horse_id": 3000,
+        "erqi": "0.82669",
+        "er_level": 2
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1002"
+      },
+      "id": "1002",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1002,
+        "horse_id": 3000,
+        "erqi": "0.78671",
+        "er_level": 3
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1003"
+      },
+      "id": "1003",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1003,
+        "horse_id": 3000,
+        "erqi": "0.733908",
+        "er_level": 4
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1004"
+      },
+      "id": "1004",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1004,
+        "horse_id": 3000,
+        "erqi": "0.7783746",
+        "er_level": 5
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1005"
+      },
+      "id": "1005",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1005,
+        "horse_id": 3000,
+        "erqi": "0.742637",
+        "er_level": 6
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1006"
+      },
+      "id": "1006",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1006,
+        "horse_id": 3000,
+        "erqi": "0.670112",
+        "er_level": 7
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1007"
+      },
+      "id": "1007",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1007,
+        "horse_id": 3000,
+        "erqi": "0.647961",
+        "er_level": 8
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1008"
+      },
+      "id": "1008",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1008,
+        "horse_id": 3000,
+        "erqi": "0.625094",
+        "er_level": 9
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1009"
+      },
+      "id": "1009",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1009,
+        "horse_id": 3000,
+        "erqi": "0.4789486666666666666666666667",
+        "er_level": 10
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1010"
+      },
+      "id": "1010",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1010,
+        "horse_id": 3000,
+        "erqi": "0.53055",
+        "er_level": 11
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1011"
+      },
+      "id": "1011",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1011,
+        "horse_id": 3000,
+        "erqi": "0.161742",
+        "er_level": 12
+      }
+    },
+    {
+      "type": "risk_data",
+      "links": {
+        "self": "/v1/horses/3000/risk_data/1012"
+      },
+      "id": "1012",
+      "attributes": {
+        "result_id": 2000,
+        "id": 1012,
+        "horse_id": 3000,
+        "erqi": "0.0000",
+        "er_level": 13
+      }
+    }
+  ]
 }
 ```
 
@@ -3234,10 +3268,10 @@ Returns a list of erqis for the given horse id. If date is provided then erqi wi
 
 ### URL Parameters
 
-| Parameter | Description                                               |
-| --------- | --------------------------------------------------------- |
-| Horse ID  | The internal EquiRatings API ID of the horse whose current erqis are to be retrieve  |
-| Date (optional)| To get a set of erqis from on a specific date. Date must be iso8601|
+| Parameter       | Description                                                                         |
+| --------------- | ----------------------------------------------------------------------------------- |
+| Horse ID        | The internal EquiRatings API ID of the horse whose current erqis are to be retrieve |
+| Date (optional) | To get a set of erqis from on a specific date. Date must be iso8601                 |
 
 ### Query Parameters
 
@@ -3246,8 +3280,6 @@ This endpoint does not support query parameters.
 ##ERQIs
 
 An ERQI between 0 and 1 is provided for a horse at every level from 1 to 13, if you see something other than a number between 0 and 1 it is a status code.
-
-
 
 > Below are examples of returned erqis:
 
@@ -3298,7 +3330,7 @@ An ERQI between 0 and 1 is provided for a horse at every level from 1 to 13, if 
 
 ### ERQI Status Codes
 
-| Codes | Description                                               |
-| --------- | --------------------------------------------------------- |
-| 8001 | This means that there is insufficient data to provide an ERQI for this horse at this level |
-| null | This means that we do not provide an ERQI for this level |
+| Codes | Description                                                                                |
+| ----- | ------------------------------------------------------------------------------------------ |
+| 8001  | This means that there is insufficient data to provide an ERQI for this horse at this level |
+| null  | This means that we do not provide an ERQI for this level                                   |
