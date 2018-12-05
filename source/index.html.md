@@ -1151,17 +1151,17 @@ When risk data is returned you will find an ERQI for each of the 13 er_levels, t
 | -------- | ------------------------------------------------------------------- |
 | 1        | Competitions where the XC Course max fixed height is 80cm or 90cm   |
 | 2        | Competitions where the XC Course max fixed height is 95cm or 100cm  |
-| 3        | Competitions where the XC Course max fixed height is 105cm          |
+| 3        | Competitions where the XC Course max fixed height is 105cm including CCI1\* Unified |
 | 4        | National competitions where the XC course max fixed height is 110cm |
-| 5        | CIC1\* and FEI Introductory level                                   |
-| 6        | CCI1\*                                                              |
+| 5        | CCI2\*-S, CIC1\* and FEI Introductory level                         |
+| 6        | CCI2\*-L and CCI1\*                                                 |
 | 7        | National competitions where the XC Course max fixed height is 115cm |
-| 8        | CIC2\*                                                              |
-| 9        | CCI2\*                                                              |
-| 10       | National competitions where the XC Course max fixed height is 120cm |
-| 11       | CIC3\*                                                              |
-| 12       | CCI3\*                                                              |
-| 13       | CCI4\*                                                              |
+| 8        | CCI3\*-S and CIC2\*                                                 |
+| 9        | CCI3\*-L and CCI2\*                                                 |
+| 10       | National competitions where the XC Course max fixed height is 120cm |  
+| 11       | CCI4\*-S and CIC3\*                                                 |
+| 12       | CCI4\*-L and CCI3\*                                                 |
+| 13       | CCI5\*-L and CCI4\*                                                 |
 
 # Class Categories
 
@@ -1289,7 +1289,7 @@ This endpoint does not support query parameters.
 curl -XPOST
      -H 'Authorization: Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9'
      -H "Content-type: application/json"
-     -d '{"class_category": {"type": "CCI", "name": "CCI3*", "level": "3"}}'
+     -d '{"class_category": {"type": "CCI-L", "name": "CCI3*-L", "level": "3"}}'
      'https://eventing.api.equiratings.com/v1/class_categories'
 ```
 
@@ -1301,17 +1301,17 @@ curl -XPOST
     "version": "1.0"
   },
   "data": {
-    "type": "CCI",
+    "type": "CCI-L",
     "links": {
       "self": "/v1/class_categories/148"
     },
     "id": "148",
     "attributes": {
-      "type": "CCI",
-      "name": "CCI3*",
+      "type": "CCI-L",
+      "name": "CCI3*-L",
       "level": "3",
       "id": 148,
-      "er_level": 12
+      "er_level": 9
     }
   }
 }
@@ -1335,15 +1335,20 @@ Create a class_category for the supplied data.
 
 #### Allowed Class Types
 
-- CCI - International 3-day
-- CIC - International 1-day
 - CCN - National 3-day
 - CNC - National 1-day
+- CCI - International 3-day
+- CIC - International 1-day
+- CCI-L - International 3-day
+- CCI-S - International 1-day
+- CCI-U - Used for CCI1* Unified from 2019 onwards
+
 
 #### Allowed Class Levels
 
 This is the level of the competition, expressed as either height of jumps or FEI level.
 
+- 5
 - 4
 - 3
 - 2
@@ -1358,15 +1363,18 @@ This is the level of the competition, expressed as either height of jumps or FEI
 
 #### Examples
 
-| Class            | name             | type | level        |
-| ---------------- | ---------------- | ---- | ------------ |
-| CCI4\*           | CCI4             | CCI  | 4            |
-| CIC3\*           | CIC3             | CIC  | 3            |
-| CCI Introductory | CCI Introductory | CCI  | Introductory |
-| Advanced         | Advanced         | CNC  | 3            |
-| Preliminary      | Preliminary      | CNC  | 1            |
-| CNC1             | CNC1             | CNC  | 1            |
-| EvA95            | EvA95            | CNC  | 95           |
+| Class            | name             | type  | level        |
+| ---------------- | ---------------- | ----  | ------------ |
+| CCI5\*-L         | CCI5\*-L         | CCI-L | 5            |
+| CCI4\*-S         | CCI4\*-S         | CCI-S | 4            |
+| CCI1\* Unified   | CCI1\*-U         | CCI-U | 1            |
+| CCI4\*           | CCI4             | CCI   | 4            |
+| CIC3\*           | CIC3             | CIC   | 3            |
+| CCI Introductory | CCI Introductory | CCI   | Introductory |
+| Advanced         | Advanced         | CNC   | 3            |
+| Preliminary      | Preliminary      | CNC   | 1            |
+| CNC1             | CNC1             | CNC   | 1            |
+| EvA95            | EvA95            | CNC   | 95           |
 
 ### Query Parameters
 
