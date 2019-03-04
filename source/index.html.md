@@ -2056,7 +2056,7 @@ curl -XGET
         "xc_comment": null,
         "xc_code": null,
         "source_id": "002",
-        "sj_time": 0,
+        "sj_time": "0",
         "sj_status": "OK",
         "sj_jump": 0,
         "sj_code": null,
@@ -2203,7 +2203,7 @@ curl -XGET
         "xc_comment": null,
         "xc_code": null,
         "source_id": "002",
-        "sj_time": 0,
+        "sj_time": "0",
         "sj_status": "OK",
         "sj_jump": 0,
         "sj_code": null,
@@ -2416,7 +2416,7 @@ curl -XPOST
         "xc_comment": null,
         "xc_code": null,
         "source_id": "004",
-        "sj_time": 0,
+        "sj_time": "0",
         "sj_status": "OK",
         "sj_jump": 0,
         "sj_code": null,
@@ -2570,7 +2570,7 @@ curl -XPUT
         "xc_comment": null,
         "xc_code": null,
         "source_id": "004",
-        "sj_time": 0,
+        "sj_time": "0",
         "sj_status": "OK",
         "sj_jump": 0,
         "sj_code": null,
@@ -2735,7 +2735,7 @@ Here you will find support for results:
 | sj_status             | Show Jumping Phase Status (Allowed Phase Statuses)                                                                                               |
 | sj_code               | Show Jumping Phase Code (Allowed Phase Codes)                                                                                                    |
 | sj_jump               | Show Jumping obstacle penalties (integer)                                                                                                        |
-| sj_time               | Show Jumping time penalties (integer)                                                                                                            |
+| sj_time               | Show Jumping time penalties                                                                                                                      |
 | sj_comment            | Show Jumping Phase Comment                                                                                                                       |
 | final_status          | The outcome of the combination in the competition (Allowed Final Statuses)                                                                       |
 | final_code            | When final_status is not OK, explains at which phase the final_status applies to. (e.g. XC-FR would be a final_code of XC) (Allowed Final Codes) |
@@ -2943,7 +2943,7 @@ curl -XGET
         "xc_comment": null,
         "xc_code": null,
         "source_id": "002",
-        "sj_time": 0,
+        "sj_time": "0",
         "sj_status": "OK",
         "sj_jump": 0,
         "sj_code": null,
