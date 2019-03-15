@@ -2745,6 +2745,8 @@ Here you will find support for results:
 | first_hi_status       | First Horse Inspection Phase Status (Allowed Phase Statuses)                                                                                     |
 | second_hi_status      | Second Horse Inspection Phase Status (Allowed Phase Statuses)                                                                                    |
 | disqualification_code | Codes for dangerous riding                                                                                                                       |
+| source_id             | The ID that the Provider uses locally on their own system                                                                                        |
+
 
 ### Allowed Statuses and Codes
 
